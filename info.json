@@ -1,0 +1,54 @@
+{
+  "estudiantes": [
+    {
+      "nombre": "Miguel Torrez",
+      "edad": "18",
+      "correo": "miguel@mail.com"
+    },
+    {
+      "nombre": "Arturo Costa",
+      "edad": "20",
+      "correo": "arturo@mail.com"
+    },
+    {
+      "nombre": "Ernesto Peralta",
+      "edad": "21",
+      "correo": "ernesto@mail.com"
+    },
+    {
+      "nombre": "Juan Escutia",
+      "edad": "19",
+      "correo": "juan@mail.com"
+    },
+    {
+      "nombre": "Yahir Prada",
+      "edad": "21",
+      "correo": "yahir@mail.com"
+    },
+    {
+      "nombre": "Juan Casimiro",
+      "edad": "19",
+      "correo": "juan@mail.com"
+    },
+    {
+      "nombre": "Bartolomeo Errain",
+      "edad": "23",
+      "correo": "bart@mail.com"
+    },
+    {
+      "nombre": "Elain Gomez",
+      "edad": "18",
+      "correo": "elain@mail.com"
+    },
+    {
+      "nombre": "Ricardo Gozza",
+      "edad": "18",
+      "correo": "ricardo@mail.com"
+    },
+    {
+      "nombre": "Alexandro Popovich",
+      "edad": "22",
+      "correo": "alexx@mail.com"
+    }
+  ]
+}
