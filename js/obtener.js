@@ -1,20 +1,21 @@
 let $btnRegistrarse = document.getElementById("btnRegistrarse");
 let $tfEmail = document.getElementById("tfEmail");
-let $tfNickname = document.getElementById("tfSalario");
-let $tfContrasenia = document.getElementById("tfEdad");
+let $tfNickname = document.getElementById("tfNickname");
+let $tfContrasenia = document.getElementById("tfContrasenia");
 
 $btnRegistrarse.addEventListener("click", ()=> {
     let nuevoPlayer = {
         email: $tfEmail.value,
         nickname: $tfNickname.value,
-        contrasenia: $tfContrasenia.value
+        password: $tfContrasenia.value
     }
     let opcionesEnvio = {
         method: "POST",
         body: JSON.stringify(nuevoPlayer)
     }
 
-    fetch("https://dummy.restapiexample.com/api/v1/create", opcionesEnvio).then(respuestaSolicitud => {
+    fetch("http://127.0.0.1:5000/" + "players", opcionesEnvio).then(respuestaSolicitud => {
+        console.log(opcionesEnvio.body);
         respuestaSolicitud.json().then(respuestaJson => {
             let $parrafo = document.getElementById("Parrafo");
             if (respuestaJson.status == "success"){
