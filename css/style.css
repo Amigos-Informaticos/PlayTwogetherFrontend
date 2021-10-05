@@ -1,11 +1,26 @@
 body{
     background: #473080;
-    background: linear-gradient(to right, #B931BC, #473080);
+    background: radial-gradient( #B931BC, #473080) no-repeat;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
 }
 .bg {
     background-image: url(../img/gamer.jpg);
     background-position: center center;
 }
+
+.content-wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.content-wrapper > .container{
+    margin-top: 10%;
+}
+
+
 
 
 input[name=birth]{
@@ -19,11 +34,6 @@ button{
     color: white;
     padding: 15px 32px;
     font-size: 16px;
-    margin: 0 auto;
-    justify-content: center;
 
 }
 
-.signup{
-
-}

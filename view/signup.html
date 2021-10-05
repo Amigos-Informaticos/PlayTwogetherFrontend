@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sign Up</title>
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" crossorigin="anonymous">
+</head>
+<body>
+<div class="container content-wrapper">
+    <div class="container bg-white rounded shadow">
+
+        <div class="row align-items-stretch">
+            <div class="col bg-white p-5 rounded-end">
+
+                <h2 class="fw-bold text-center py-5">Regístrate</h2>
+                <form action="#">
+                    <div class="container">
+                        <div class="row mb-4">
+                            <label class="col-lg-3 form-label text-lg-end">Correo electronico:</label>
+                            <input type="email" class="col form-control" name="email">
+
+                            <label class="col-lg-3 form-label text-lg-end">Nombre de usuario:</label>
+                            <input type="email" class="col form-control" name="nickname">
+                        </div>
+                        <div class="row mb-4">
+                            <label class="col-lg-3 form-label text-lg-end">Contraseña:</label>
+                            <input type="password" class="col form-control" name="password">
+
+                            <label class="col-lg-3 form-label text-lg-end">Repetir Contraseña:</label>
+                            <input type="password" class="col form-control text-end" name="repeatPassword">
+                        </div>
+
+                        <div class="row mb-4">
+                            <label class="col-lg-3 form-label text-lg-end">Sexo: </label>
+                            <select name="sex" class="col form-select" id="">
+                                <option value="">Mujer</option>
+                                <option value="">Hombre</option>
+                                <option value="">Compañere</option>
+                            </select>
+
+                            <label class="col-lg-3 form-label text-lg-end">Fecha de nacimiento: </label>
+                            <input type="date" class="col form-control" name="birth">
+                        </div>
+
+                        <div class="row">
+                            <button class="col-lg-12 rounded-2 shadow" type="submit">Registrarse</button>
+                        </div>
+
+
+                    </div>
+
+
+                </form>
+            </div>
+        </div>
+    </div>
+
+</div>
+
+
+<script src="../js/bootstrap.bundle.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+</body>
+</html>

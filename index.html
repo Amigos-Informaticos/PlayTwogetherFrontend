@@ -8,40 +8,43 @@
     <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
 </head>
 <body>
-<div class="container w-75 bg-white mt-5 rounded shadow">
-    <div class="row align-items-stretch">
-        <!--Aquí abajo le decimos con d-none que no se muestre la imagen, pero con d-lg-block que se muestre cuando el tamaño sea large, con los col también le damos dimension segun el tamaño-->
-        <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
+<div class="container content-wrapper">
+    <div class="container bg-white rounded shadow">
+        <div class="row align-items-stretch">
+            <!--Aquí abajo le decimos con d-none que no se muestre la imagen, pero con d-lg-block que se muestre cuando el tamaño sea large, con los col también le damos dimension segun el tamaño-->
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
 
-        </div>
-        <div class="col bg-white p-5 rounded-end">
-            <div class="text-end">
-                <img src="img/logo.png" width="48" alt="">
             </div>
-
-            <h2 class="fw-bold text-center py-5">Bienvenido</h2>
-
-            <!--Login-->
-            <form action="#">
-                <div class="mb-4">
-                    <label class="form-label">Correo electronico:</label>
-                    <input type="email" class="form-control" name="email">
-                </div>
-                <div class="mb-4">
-                    <label class="form-label">Contraseña:</label>
-                    <input type="password" class="form-control" name="email">
-                </div>
-                <div class="d-grid">
-                    <button type="submit" >Iniciar Sesión</button>
+            <div class="col bg-white p-5 rounded-end">
+                <div class="text-end">
+                    <img src="img/logo.png" width="48" alt="">
                 </div>
 
-                <div class="my-3">
-                    <span>No tienes cuenta? <a href="#">Regístrate</a></span><br>
-                </div>
-            </form>
+                <h2 class="fw-bold text-center py-5">Bienvenido</h2>
+
+                <!--Login-->
+                <form action="#">
+                    <div class="mb-4">
+                        <label class="form-label">Correo electronico:</label>
+                        <input type="email" class="form-control" name="email">
+                    </div>
+                    <div class="mb-4">
+                        <label class="form-label">Contraseña:</label>
+                        <input type="password" class="form-control" name="email">
+                    </div>
+                    <div class="d-grid">
+                        <button type="submit" >Iniciar Sesión</button>
+                    </div>
+
+                    <div class="my-3">
+                        <span>No tienes cuenta? <a href="view/signup.html">Regístrate</a></span><br>
+                    </div>
+                </form>
+            </div>
         </div>
     </div>
 </div>
+
 
 <script src="js/bootstrap.bundle.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
 </body>
