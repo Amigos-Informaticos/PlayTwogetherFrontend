@@ -14,11 +14,16 @@ input[name=birth]{
 
 button{
     background-color: #B931BC;
-    border-radius: 50%;
+    border-radius: 12px;
     border: none;
     color: white;
     padding: 15px 32px;
-    text-decoration: none;
     font-size: 16px;
+    margin: 0 auto;
+    justify-content: center;
+
+}
+
+.signup{
 
 }
