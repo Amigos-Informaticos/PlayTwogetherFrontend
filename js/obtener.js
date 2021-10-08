@@ -25,7 +25,10 @@ $btnRegistrarse.addEventListener("click", ()=> {
 
     let opcionesEnvio = {
         method: "POST",
-        body: JSON.stringify(nuevoPlayer)
+        body: JSON.stringify(nuevoPlayer),
+        headers:{
+            'Content-Type': 'application/json'
+        }
     }
 
     console.log(opcionesEnvio.body);
