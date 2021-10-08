@@ -20,7 +20,7 @@ $btnLogin.addEventListener("click", ()=> {
         console.log(opcionesEnvio.body);
         fetch("http://127.0.0.1:5000/" + "players", opcionesEnvio).then(respuestaSolicitud => {
             respuestaSolicitud.json().then(respuestaJson => {
-
+                $pWarning.innerHTML = "YES"
             })
         })
 

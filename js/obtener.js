@@ -8,7 +8,8 @@ let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
 
 
-$btnRegistrarse.addEventListener("click", ()=> {
+$btnRegistrarse.addEventListener("click", (event)=> {
+    event.preventDefault();
     let contrasenia;
     if ($tfContrasenia.value == $tfRepetirContrasenia.value){
         contrasenia = $tfContrasenia.value;
@@ -34,7 +35,7 @@ $btnRegistrarse.addEventListener("click", ()=> {
         })
 
     }else{
-        $pWarning.innerHTML = "Las contraseñas no coinciden"
+        $pWarning.innerHTML = "* Las contraseñas no coinciden"
     }
 })
 
