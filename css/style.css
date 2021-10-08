@@ -1,0 +1,39 @@
+body{
+    background: #473080;
+    background: radial-gradient( #B931BC, #473080) no-repeat;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+.bg {
+    background-image: url(../img/gamer.jpg);
+    background-position: center center;
+}
+
+.content-wrapper{
+    width: 100%;
+    height: 100%;
+}
+
+.content-wrapper > .container{
+    margin-top: 10%;
+}
+
+
+
+
+input[name=birth]{
+
+}
+
+button{
+    background-color: #B931BC;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+
+}
+
