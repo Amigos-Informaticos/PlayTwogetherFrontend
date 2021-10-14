@@ -8,11 +8,10 @@ body{
     margin: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
 }
 
 #profile-pic{
-    height: 264px;
+    height: 260px;
     width: 264px;
     border-radius: 100%;
 }
@@ -31,6 +30,18 @@ body{
     padding-top: 20px;
 }
 
+label{
+    font-size: 28px;
+}
+
+button{
+    background-color: #B931BC;
+    border-radius: 12px;
+    border: none;
+    color: white;
+    padding: 15px 32px;
+    font-size: 16px;
+}
 
 /*Navbar*/
 /*
@@ -160,6 +171,7 @@ body{
     margin: -100px 0 0 -50px;
     padding: 50px;
     padding-top: 125px;
+    margin-bottom: 0px;
 
     background: #473080;
     list-style-type: none;
@@ -185,4 +197,3 @@ body{
 {
     transform: none;
 }
-
