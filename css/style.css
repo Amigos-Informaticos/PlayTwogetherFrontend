@@ -71,177 +71,81 @@ button{
 }
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-/*Navbar*/
-/*
- * Made by Erik Terwan
- * 24th of November 2015
- * MIT License
- *
- *
- * If you are thinking of using this in
- * production code, beware of the browser
- * prefixes.
- */
-
-#menuToggle
-{
-    display: block;
-    position: relative;
-    top: 50px;
-    left: 50px;
-
-    z-index: 1;
-
-    -webkit-user-select: none;
-    user-select: none;
-}
-
-#menuToggle a
-{
-    text-decoration: none;
-    color: white;
-
-    transition: color 0.3s ease;
-}
-
-#menuToggle a:hover
-{
-    color: tomato;
-}
-
-
-#menuToggle input
-{
-    display: block;
-    width: 40px;
-    height: 32px;
-    position: absolute;
-    top: -7px;
-    left: -5px;
-
-    cursor: pointer;
-
-    opacity: 0; /* hide this */
-    z-index: 2; /* and place it over the hamburger */
-
-    -webkit-touch-callout: none;
-}
-
-/*
- * Just a quick hamburger
- */
-#menuToggle span
-{
-    display: block;
-    width: 33px;
-    height: 4px;
-    margin-bottom: 5px;
-    position: relative;
-
-    background: black;
-    border-radius: 3px;
-
-    z-index: 1;
-
-    transform-origin: 4px 0px;
-
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-    background 0.5s cubic-bezier(0.77,0.2,0.05,1.0),
-    opacity 0.55s ease;
-}
-
-#menuToggle span:first-child
-{
-    transform-origin: 0% 0%;
-}
-
-#menuToggle span:nth-last-child(2)
-{
-    transform-origin: 0% 100%;
-}
-
-/*
- * Transform all the slices of hamburger
- * into a crossmark.
- */
-#menuToggle input:checked ~ span
-{
-    opacity: 1;
-    transform: rotate(45deg) translate(-2px, -1px);
-    background: white;
-}
-
-/*
- * But let's hide the middle one.
- */
-#menuToggle input:checked ~ span:nth-last-child(3)
-{
+/*Hamburguesa*/
+.panel{
+    position: fixed;
+    z-index: 2;
+    /* Estirando los position */
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    /* - - - - - */
+    background-color:#473080;
+    width: 25vw;
+    /* se le aplica la transición a la propiedad transform*/
+    /*transition: transform 0.3s ease;*/
+    /*translate(x,y). valores negativos en Y hacia arriba*/
+    transform:translate(-100%,0);
     opacity: 0;
-    transform: rotate(0deg) scale(0.2, 0.2);
+    /* Haciendo oparecer y desaparecer con opacity
+    opacity: 0;
+    transition:opacity 0.5s ease;
+    /* - - - - - - */
+
+    /* Haciendo aparecer con movimiento (translate) */
+    transition:transform 0.5s ease, opacity 0.8s ease;
+    /* - - - - -- */
+
+
 }
 
-/*
- * Ohyeah and the last one should go the other direction
- */
-#menuToggle input:checked ~ span:nth-last-child(2)
-{
-    transform: rotate(-45deg) translate(0, -1px);
+.panel.is-active {
+    transform: translate(0,0);
+    opacity: 1;
+
 }
 
-/*
- * Make this absolute positioned
- * at the top left of the screen
- */
-#menu
-{
-    position: absolute;
-    width: 300px;
-    margin: -100px 0 0 -50px;
-    padding: 50px;
-    padding-top: 125px;
-    margin-bottom: 0px;
+.navMenu {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    margin-top: 5vh;
 
-    background: #473080;
-    list-style-type: none;
-
-    transform-origin: 0% 0%;
-    transform: translate(-100%, 0);
-
-    transition: transform 0.5s cubic-bezier(0.77,0.2,0.05,1.0);
 }
 
-#menu li
-{
-    padding: 10px 0;
-    font-size: 22px;
+.navMenu > a {
+    text-decoration: none;
+    padding: 1rem;
+    width: inherit;
+    display: block;
+    font-size:1.5rem;
+    color:aquamarine;
+    transition: all 0.3s ease;
 }
 
-/*
- * And let's slide it in from the left
- */
-#menuToggle input:checked ~ ul
-{
-    transform: none;
+.navMenu > a:hover {
+    font-weight: bold;
+    color:white;
+
 }
 
+.hamburger-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:fixed;
+    top:1vh;
+    left: 1vh;
+    z-index: 999;
+
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+
+    background-color: #473080;
+    border-radius: 50%;
+}

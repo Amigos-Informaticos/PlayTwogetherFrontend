@@ -5,57 +5,54 @@
     <title>Title</title>
     <link href="../css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="../css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/hamburgers.css">
 </head>
 <body class="logged-in">
-    <nav role="navigation">
-        <div id="menuToggle">
-            <input type="checkbox"/>
-            <span></span>
-            <span></span>
-            <span></span>
-            <ul id="menu">
-                <a href="#">
-                    <li>Buscar</li>
-                </a>
-                <a href="#">
-                    <li>Mi Perfil</li>
-                </a>
-                <a href="#">
-                    <li>Juegos</li>
-                </a>
-                <a href="https://erikterwan.com/" target="_blank">
-                    <li>Show me more</li>
-                </a>
-            </ul>
-        </div>
-    </nav>
+    <button id="btnHamburger" class="hamburger-button hamburger hamburger--arrowturn" type="button">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+    </button>
+    <aside class="panel aside-1">
+        <nav class="navMenu">
+            <a href="#section1" class="panel-options">Reloj</a>
+            <a href="#section2" class="panel-options">Eventos del teclado</a>
+            <a href="#section3" class="panel-options">Cuenta regresiva</a>
+            <a href="#section4" class="panel-options">Sección 4</a>
+            <a href="#section5" class="panel-options">Sección 5</a>
+            <img id="profile-pic" class="col-xs-12 col-sm-12 col-md-12" src="../img/default_picture.jpg"
+                 alt="Profile pic">
+        </nav>
 
-    <div id="content-box" class="container rounded shadow">
+    </aside>
 
-        <div id="edit-icon" class="text-end">
-            <input id="btnEdit" type="image" src="../img/logo.png" width="48" alt="">
-        </div>
+<div id="content-box" class="container rounded shadow">
 
-        <div class="row align-items-stretch">
-            <div class="col mt-1 rounded-end">
-                <div class="container">
-                    <div class="row mb-4">
-                        <img id="profile-pic" class="col-xs-12 col-sm-12 col-md-12" src="../img/default_picture.jpg"
-                             alt="Profile pic">
-                        <div class="col-xs-12 col-lg-6">
-                            <label class="info mb-2">Efrain Arenas</label><br>
-                            <label class="info mb-2">22 años</label><br>
-                            <label class="info mb-2">Hombre</label>
-                        </div>
+    <div id="edit-icon" class="text-end">
+        <input id="btnEdit" type="image" src="../img/logo.png" width="48" alt="">
+    </div>
+
+    <div class="row align-items-stretch">
+        <div class="col mt-1 rounded-end">
+            <div class="container">
+                <div class="row mb-4">
+                    <img id="profile-pic" class="col-xs-12 col-sm-12 col-md-12" src="../img/default_picture.jpg"
+                         alt="Profile pic">
+                    <div class="col-xs-12 col-lg-6">
+                        <label class="info mb-2">Efrain Arenas</label><br>
+                        <label class="info mb-2">22 años</label><br>
+                        <label class="info mb-2">Hombre</label>
                     </div>
                 </div>
             </div>
         </div>
-
-        <div id="games-box" class="container bg-dark rounded overflow-auto ">
-
-        </div>
     </div>
+
+    <div id="games-box" class="container bg-dark rounded overflow-auto ">
+
+    </div>
+</div>
     <script src="../js/ViewProfile.js"></script>
+    <script src="../js/menu_hamburguesa.js" type="module"></script>
 </body>
 </html>

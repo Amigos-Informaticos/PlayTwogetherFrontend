@@ -29,6 +29,7 @@ $btnRegistrarse.addEventListener("click", (event)=> {
         }
         console.log(opcionesEnvio.body);
         fetch("http://127.0.0.1:5000/" + "players", opcionesEnvio).then(respuestaSolicitud => {
+            console.log(respuestaSolicitud)
             respuestaSolicitud.json().then(respuestaJson => {
                 let $tiulo = document.getElementById("title").innerHTML = respuestaJson;
             })

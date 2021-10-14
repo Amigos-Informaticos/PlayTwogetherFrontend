@@ -173,7 +173,7 @@ button{
     padding-top: 125px;
     margin-bottom: 0px;
 
-    background: #473080;
+    background: red;
     list-style-type: none;
     -webkit-font-smoothing: antialiased;
     /* to stop flickering of text in safari */
