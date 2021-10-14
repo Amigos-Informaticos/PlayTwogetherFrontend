@@ -15,43 +15,40 @@
             <div class="col bg-white p-5 rounded-end">
 
                 <h2 id="title" class="fw-bold text-center py-5">Regístrate</h2>
-                <form action="#">
+                <form>
                     <div class="container">
                         <div class="row mb-4">
-                            <label class="col-lg-3 form-label text-lg-end">Correo electronico:</label>
+                            <label for="tfEmail" class="col-lg-3 form-label text-lg-end">Correo electronico:</label>
                             <input type="email" class="col form-control" name="email" id="tfEmail">
 
-                            <label class="col-lg-3 form-label text-lg-end">Nombre de usuario:</label>
+                            <label for="tfNickname" class="col-lg-3 form-label text-lg-end">Nombre de usuario:</label>
                             <input type="text" class="col form-control" name="nickname" id="tfNickname">
                         </div>
                         <div class="row mb-4">
-                            <label class="col-lg-3 form-label text-lg-end">Contraseña:</label>
+                            <label for="tfPassword" class="col-lg-3 form-label text-lg-end">Contraseña:</label>
                             <input type="password" class="col form-control" name="password" id="tfPassword">
 
-                            <label class="col-lg-3 form-label text-lg-end">Repetir Contraseña:</label>
+                            <label for="tfRepeatPassword" class="col-lg-3 form-label text-lg-end">Repetir Contraseña:</label>
                             <input type="password" class="col form-control" name="repeatPassword" id="tfRepeatPassword">
                         </div>
 
                         <div class="row mb-4">
-                            <label class="col-lg-3 form-label text-lg-end">Sexo: </label>
+                            <label for="cbSex" class="col-lg-3 form-label text-lg-end">Sexo: </label>
                             <select name="sex" class="col form-select" id="cbSex">
                                 <option value="F">Mujer</option>
                                 <option value="M">Hombre</option>
                                 <option value="O">Compañere</option>
                             </select>
 
-                            <label class="col-lg-3 form-label text-lg-end">Fecha de nacimiento: </label>
+                            <label for="dpBirthday" class="col-lg-3 form-label text-lg-end">Fecha de nacimiento: </label>
                             <input type="date" class="col form-control" name="birth" id="dpBirthday">
                         </div>
 
                         <div class="row">
+                            <p id="warning" class="col warning-message"></p>
                             <button id="btnSignUp" class="col-lg-12 rounded-2 shadow" type="submit">Registrarse</button>
                         </div>
-
-
                     </div>
-
-
                 </form>
             </div>
         </div>

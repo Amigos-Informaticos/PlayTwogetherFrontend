@@ -6,6 +6,15 @@ body{
     height: 100vh;
     overflow: hidden;
 }
+
+.logged-in{
+    background: #CBCBCB;
+    margin: 0;
+    width: 100vw;
+    height: 100vh;
+    overflow: hidden;
+}
+
 .bg {
     background-image: url(../img/gamer.jpg);
     background-position: center center;
@@ -16,15 +25,36 @@ body{
     height: 100%;
 }
 
+#profile-pic{
+    height: 260px;
+    width: 264px;
+    border-radius: 100%;
+}
+
 .content-wrapper > .container{
     margin-top: 10%;
 }
 
+.warning-message{
+    color: #dc3545;
+}
 
+#content-box{
+    margin-bottom: 30px;
+    background: #E8E8E8;
+}
 
+#games-box{
+    margin-bottom: 100px;
+    margin-right: 100px;
+}
 
-input[name=birth]{
+#edit-icon{
+    padding-top: 20px;
+}
 
+label{
+    font-size: 18px;
 }
 
 button{
@@ -34,6 +64,88 @@ button{
     color: white;
     padding: 15px 32px;
     font-size: 16px;
+}
+
+.info{
+    font-size: 36px;
+}
+
+
+/*Hamburguesa*/
+.panel{
+    position: fixed;
+    z-index: 2;
+    /* Estirando los position */
+    bottom:0;
+    top:0;
+    left:0;
+    right:0;
+    /* - - - - - */
+    background-color:#473080;
+    width: 25vw;
+    /* se le aplica la transición a la propiedad transform*/
+    /*transition: transform 0.3s ease;*/
+    /*translate(x,y). valores negativos en Y hacia arriba*/
+    transform:translate(-100%,0);
+    opacity: 0;
+    /* Haciendo oparecer y desaparecer con opacity
+    opacity: 0;
+    transition:opacity 0.5s ease;
+    /* - - - - - - */
+
+    /* Haciendo aparecer con movimiento (translate) */
+    transition:transform 0.5s ease, opacity 0.8s ease;
+    /* - - - - -- */
+
 
 }
 
+.panel.is-active {
+    transform: translate(0,0);
+    opacity: 1;
+
+}
+
+.navMenu {
+    width:100%;
+    display: flex;
+    flex-direction: column;
+    justify-content: space-evenly;
+    align-items: center;
+    text-align: center;
+    margin-top: 5vh;
+
+}
+
+.navMenu > a {
+    text-decoration: none;
+    padding: 1rem;
+    width: inherit;
+    display: block;
+    font-size:1.5rem;
+    color:aquamarine;
+    transition: all 0.3s ease;
+}
+
+.navMenu > a:hover {
+    font-weight: bold;
+    color:white;
+
+}
+
+.hamburger-button {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    position:fixed;
+    top:1vh;
+    left: 1vh;
+    z-index: 999;
+
+    width: 4rem;
+    height: 4rem;
+    padding: 0;
+
+    background-color: #473080;
+    border-radius: 50%;
+}
