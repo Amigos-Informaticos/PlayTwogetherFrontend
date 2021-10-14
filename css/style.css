@@ -24,13 +24,6 @@ body{
     color: #dc3545;
 }
 
-
-
-
-input[name=birth]{
-
-}
-
 button{
     background-color: #B931BC;
     border-radius: 12px;
@@ -38,6 +31,5 @@ button{
     color: white;
     padding: 15px 32px;
     font-size: 16px;
-
 }
 
