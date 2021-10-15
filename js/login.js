@@ -24,6 +24,8 @@ $btnLogin.addEventListener("click", (event)=> {
                 localStorage.setItem('nickname', responseJson.nickname);
                 localStorage.setItem('birthday', responseJson.birthday);
                 localStorage.setItem('gender',responseJson.gender);
+                localStorage.setItem('email',loginInformation.email);
+                localStorage.setItem('currentPassword',loginInformation.password);
                 location.href = 'view/ViewProfile.html';
             })
 
