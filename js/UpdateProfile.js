@@ -7,9 +7,9 @@ let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
 let $btnDelete = document.getElementById("delete-icon");
 
-$tfNickname.value = localStorage.getItem('nickname');
-$dpBirthday.value = localStorage.getItem('birthday');
-$cbSex.value = localStorage.getItem('gender');
+$tfNickname.value = sessionStorage.getItem('nickname');
+$dpBirthday.value = sessionStorage.getItem('birthday');
+$cbSex.value = sessionStorage.getItem('gender');
 
 $btnUpdate.addEventListener("click", (event) => {
     event.preventDefault();
@@ -17,10 +17,10 @@ $btnUpdate.addEventListener("click", (event) => {
     if ($tfPassword.value == $tfRepeatPassword.value) {
         password = $tfPassword.value;
         if (password == ""){
-            password = localStorage.getItem('currentPassword')
+            password = sessionStorage.getItem('currentPassword')
         }
         let newPlayer = {
-            email: localStorage.getItem('email'),
+            email: sessionStorage.getItem('email'),
             nickname: $tfNickname.value,
             password: password,
             gender: $cbSex.value,
@@ -31,17 +31,17 @@ $btnUpdate.addEventListener("click", (event) => {
             body: JSON.stringify(newPlayer),
             headers: {
                 'Content-Type': 'application/json',
-                'token': localStorage.getItem('token')
+                'token': sessionStorage.getItem('token')
             }
         }
         console.log(sendOptions.body);
         fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
             console.log(response);
             if (response.ok){
-                localStorage.setItem('nickname', newPlayer.nickname);
-                localStorage.setItem('birthday', newPlayer.birthday);
-                localStorage.setItem('gender',newPlayer.gender);
-                localStorage.setItem('currentPassword',password);
+                sessionStorage.setItem('nickname', newPlayer.nickname);
+                sessionStorage.setItem('birthday', newPlayer.birthday);
+                sessionStorage.setItem('gender',newPlayer.gender);
+                sessionStorage.setItem('currentPassword',password);
                 location.href = '../view/ViewProfile.html';
             }
         })
@@ -54,20 +54,21 @@ $btnUpdate.addEventListener("click", (event) => {
 $btnDelete.addEventListener("click",(event) =>{
     event.preventDefault();
     let playerToDelete = {
-        email: localStorage.getItem('email'),
+        email: sessionStorage.getItem('email'),
     }
     let sendOptions = {
         method: "DELETE",
         body: JSON.stringify(playerToDelete),
         headers: {
             'Content-Type': 'application/json',
-            'token': localStorage.getItem('token')
+            'token': sessionStorage.getItem('token')
         }
     }
     console.log(sendOptions.body);
     fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
         console.log(response);
         if (response.ok) {
+            sessionStorage.clear();
             location.href = '../index.html';
         }
     })

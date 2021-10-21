@@ -7,7 +7,6 @@ let $cbGender = document.getElementById("cbSex");
 let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
 
-
 $btnSignUp.addEventListener("click", (event) => {
     event.preventDefault();
     let playerEmail = $tfEmail.value;
@@ -61,8 +60,8 @@ function validateFields(email, password, repeatPassword) {
 }
 
 function validateEmail(email) {
-    const re = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
-    return re.test(String(email).toLowerCase());
+    const regExp = /^(([^<>()[\]\\.,;:\s@"]+(\.[^<>()[\]\\.,;:\s@"]+)*)|(".+"))@((\[[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\.[0-9]{1,3}\])|(([a-zA-Z\-0-9]+\.)+[a-zA-Z]{2,}))$/;
+    return regExp.test(String(email).toLowerCase());
 }
 
 function validatePassword(password, repeatPassword) {

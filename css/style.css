@@ -40,7 +40,7 @@ body{
 }
 
 #content-box{
-    margin-bottom: 30px;
+    margin-top: 5vh;
     background: #E8E8E8;
 }
 
@@ -82,7 +82,7 @@ button{
     right:0;
     /* - - - - - */
     background-color:#473080;
-    width: 25vw;
+    width: 15vw;
     /* se le aplica la transición a la propiedad transform*/
     /*transition: transform 0.3s ease;*/
     /*translate(x,y). valores negativos en Y hacia arriba*/
@@ -111,25 +111,33 @@ button{
     display: flex;
     flex-direction: column;
     justify-content: space-evenly;
-    align-items: center;
-    text-align: center;
-    margin-top: 5vh;
+    align-items: start;
+    text-align: start;
+    margin-top: 10vh;
+    margin-left: 2vh;
 
 }
 
 .navMenu > a {
     text-decoration: none;
     padding: 1rem;
-    width: inherit;
+    width: 25vh;
     display: block;
     font-size:1.5rem;
-    color:aquamarine;
+    color:white;
     transition: all 0.3s ease;
+    margin-bottom: 2vh;
+
+    border-radius: 23px;
+    background: #473080;
+    box-shadow:  5px 5px 10px #312158,
+    -5px -5px 10px #5d3fa8;
+
 }
 
 .navMenu > a:hover {
     font-weight: bold;
-    color:white;
+    color:aquamarine;
 
 }
 
@@ -148,4 +156,20 @@ button{
 
     background-color: #473080;
     border-radius: 50%;
+}
+
+.playTwogether-brand{
+    position: absolute;
+    align-items: center;
+    text-align: center;
+    bottom: 10vh;
+}
+
+.playTwogether-brand > label{
+    color: white;
+    font-size:1.5rem;
+}
+
+.playTwogether-logo {
+    width: 30vh;
 }
