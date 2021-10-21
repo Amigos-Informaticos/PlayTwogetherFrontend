@@ -20,12 +20,12 @@ $btnLogin.addEventListener("click", (event)=> {
         if (response.ok){
             response.json().then(responseJson => {
                 console.log(responseJson);
-                localStorage.setItem('token', responseJson.token);
-                localStorage.setItem('nickname', responseJson.nickname);
-                localStorage.setItem('birthday', responseJson.birthday);
-                localStorage.setItem('gender',responseJson.gender);
-                localStorage.setItem('email',loginInformation.email);
-                localStorage.setItem('currentPassword',loginInformation.password);
+                sessionStorage.setItem('token', responseJson.token);
+                sessionStorage.setItem('nickname', responseJson.nickname);
+                sessionStorage.setItem('birthday', responseJson.birthday);
+                sessionStorage.setItem('gender',responseJson.gender);
+                sessionStorage.setItem('email',loginInformation.email);
+                sessionStorage.setItem('currentPassword',loginInformation.password);
                 location.href = 'view/ViewProfile.html';
             })
 

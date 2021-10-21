@@ -5,6 +5,7 @@ let $tfRepeatPassword = document.getElementById("tfRepeatPassword");
 let $cbSex = document.getElementById("cbSex");
 let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
+let $btnDelete = document.getElementById("delete-icon");
 
 $tfNickname.value = localStorage.getItem('nickname');
 $dpBirthday.value = localStorage.getItem('birthday');
@@ -43,10 +44,31 @@ $btnUpdate.addEventListener("click", (event) => {
                 localStorage.setItem('currentPassword',password);
                 location.href = '../view/ViewProfile.html';
             }
-
         })
 
     } else {
         $pWarning.innerHTML = "* Las contraseñas no coinciden"
     }
+})
+
+$btnDelete.addEventListener("click",(event) =>{
+    event.preventDefault();
+    let playerToDelete = {
+        email: localStorage.getItem('email'),
+    }
+    let sendOptions = {
+        method: "DELETE",
+        body: JSON.stringify(playerToDelete),
+        headers: {
+            'Content-Type': 'application/json',
+            'token': localStorage.getItem('token')
+        }
+    }
+    console.log(sendOptions.body);
+    fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
+        console.log(response);
+        if (response.ok) {
+            location.href = '../index.html';
+        }
+    })
 })

@@ -3,9 +3,9 @@ let $lblAge = document.getElementById("lblAge");
 let $lblGender = document.getElementById("lblGender");
 let $btnEdit = document.getElementById("btnEdit");
 
-$lblNickname.innerText = localStorage.getItem('nickname');
-$lblAge.innerText = getAge(localStorage.getItem('birthday'));
-var playerGender = localStorage.getItem('gender');
+$lblNickname.innerText = sessionStorage.getItem('nickname');
+$lblAge.innerText = getAge(sessionStorage.getItem('birthday'));
+var playerGender = sessionStorage.getItem('gender');
 var ScreenGender;
 if (playerGender == 'F'){
     ScreenGender = "Mujer";
