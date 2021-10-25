@@ -7,12 +7,18 @@ let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
 let $btnDelete = document.getElementById("delete-icon");
 
+let $modal = document.getElementById("exampleModal");
+
 $tfNickname.value = sessionStorage.getItem('nickname');
 $dpBirthday.value = sessionStorage.getItem('birthday');
 $cbSex.value = sessionStorage.getItem('gender');
 
+
+/*
 $btnUpdate.addEventListener("click", (event) => {
     event.preventDefault();
+    $modal.modal('show');
+
     let password;
     if ($tfPassword.value == $tfRepeatPassword.value) {
         password = $tfPassword.value;
@@ -49,10 +55,18 @@ $btnUpdate.addEventListener("click", (event) => {
     } else {
         $pWarning.innerHTML = "* Las contraseñas no coinciden"
     }
+
+
 })
+*/
 
 $btnDelete.addEventListener("click",(event) =>{
+
     event.preventDefault();
+
+    $modal.modal('show');
+
+    /*
     let playerToDelete = {
         email: sessionStorage.getItem('email'),
     }
@@ -67,9 +81,11 @@ $btnDelete.addEventListener("click",(event) =>{
     console.log(sendOptions.body);
     fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
         console.log(response);
-        if (response.ok) {
+        if (response.status == 200) {
             sessionStorage.clear();
             location.href = '../index.html';
         }
     })
+
+     */
 })

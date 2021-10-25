@@ -16,7 +16,7 @@ $btnSignUp.addEventListener("click", (event) => {
     let playerGender = $cbGender.value;
     let playerBirthday = $dpBirthday.value;
 
-    if (validateFields(playerEmail, playerPassword, playerRepeatPassword)) {
+    if (validateFields(playerNickname, playerEmail, playerPassword, playerRepeatPassword, playerBirthday)) {
         let newPlayer = {
             email: playerEmail,
             nickname: playerNickname,
@@ -31,9 +31,7 @@ $btnSignUp.addEventListener("click", (event) => {
                 'Content-Type': 'application/json'
             }
         }
-        console.log(sendOptions.body);
         fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
-            console.log(response)
             if (response.ok) {
                 location.href = '../index.html';
             }
@@ -42,21 +40,34 @@ $btnSignUp.addEventListener("click", (event) => {
     }
 })
 
-function validateFields(email, password, repeatPassword) {
+function validateFields(nickname, email, password, repeatPassword, birthday) {
     let flag = true;
     if (!validateEmail(email)) {
         flag = false;
         $pWarning.innerHTML = "* La dirección de correo no es válida"
     }
     let validatedPassword = validatePassword(password, repeatPassword);
-    if (validatedPassword == "dontMatch") {
+    if (validatedPassword === "dontMatch") {
         flag = false;
         $pWarning.innerHTML = "* Las contraseñas no coinciden"
     }else if (validatedPassword == "weakPassword"){
         flag = false;
         $pWarning.innerHTML = "* La contraseña debe contener al menos una mayúscula y un número"
     }
+    if (!validateNickname(nickname)) {
+        flag = false;
+        $pWarning.innerHTML = "* El nickname debe tener al menos 4 caracteres y máximo 25"
+    }
+    if (nickname != "" && email != "" && password != "" && repeatPassword != "" && birthday != "")
     return flag;
+}
+
+
+
+function validateNickname(nickname){
+    console.log(nickname.length);
+    return nickname.length > 3 &&
+        nickname.length < 26;
 }
 
 function validateEmail(email) {
@@ -65,8 +76,10 @@ function validateEmail(email) {
 }
 
 function validatePassword(password, repeatPassword) {
-    let response;
-    if (password != repeatPassword) {
+    let response = "ok";
+    if (password.localeCompare(repeatPassword) != 0) {
+        console.log("sos" + password);
+        console.log("sas" + repeatPassword);
         response = "dontMatch";
     } else if (!validateStrongPassword(password)){
         response = "weakPassword";
@@ -74,8 +87,10 @@ function validatePassword(password, repeatPassword) {
     return response;
 }
 
-function validateStrongPassword() {
-    return /[A-Z]/.test(pw) &&
-        /[a-z]/.test(pw) &&
-        /[0-9]/.test(pw);
+function validateStrongPassword(password) {
+    return /[A-Z]/.test(password) &&
+        /[a-z]/.test(password) &&
+        /[0-9]/.test(password) &&
+        password.length > 7 &&
+        password.length < 21;
 }
