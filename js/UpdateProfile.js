@@ -5,7 +5,7 @@ let $tfRepeatPassword = document.getElementById("tfRepeatPassword");
 let $cbSex = document.getElementById("cbSex");
 let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
-let $btnDelete = document.getElementById("delete-icon");
+let $btnDelete = document.getElementById("btnConfirmDelete");
 
 let $modal = document.getElementById("exampleModal");
 
@@ -14,7 +14,6 @@ $dpBirthday.value = sessionStorage.getItem('birthday');
 $cbSex.value = sessionStorage.getItem('gender');
 
 
-/*
 $btnUpdate.addEventListener("click", (event) => {
     event.preventDefault();
     $modal.modal('show');
@@ -58,15 +57,9 @@ $btnUpdate.addEventListener("click", (event) => {
 
 
 })
-*/
 
 $btnDelete.addEventListener("click",(event) =>{
-
     event.preventDefault();
-
-    $modal.modal('show');
-
-    /*
     let playerToDelete = {
         email: sessionStorage.getItem('email'),
     }
@@ -86,6 +79,4 @@ $btnDelete.addEventListener("click",(event) =>{
             location.href = '../index.html';
         }
     })
-
-     */
 })
