@@ -4,7 +4,6 @@ body{
     margin: 0;
     width: 100vw;
     height: 100vh;
-    overflow: hidden;
 }
 
 .logged-in{
@@ -18,6 +17,33 @@ body{
 .bg {
     background-image: url(../img/gamer.jpg);
     background-position: center center;
+}
+
+.Valorant {
+    background-image: url(../img/Valorant/valorant_bg.jpg);
+    background-position: center center;
+
+}
+
+.agent{
+    width: 100%;
+    height: auto;
+}
+
+.rank{
+    height: 100px;
+}
+
+.game-form{
+    opacity: 0.9;
+}
+
+.game-info{
+    font-size: 48px;
+}
+
+.game-info > *{
+    opacity: 1;
 }
 
 .content-wrapper{
