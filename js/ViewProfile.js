@@ -2,6 +2,7 @@ let $lblNickname = document.getElementById("lblNickname");
 let $lblAge = document.getElementById("lblAge");
 let $lblGender = document.getElementById("lblGender");
 let $btnEdit = document.getElementById("btnEdit");
+let $btnAddGame = document.getElementById("btnAddGame");
 
 $lblNickname.innerText = sessionStorage.getItem('nickname');
 $lblAge.innerText = getAge(sessionStorage.getItem('birthday'));
@@ -30,4 +31,9 @@ function getAge(dateString) {
 $btnEdit.addEventListener("click",(event) =>{
     event.preventDefault();
     location.href = '../view/UpdateProfile.html'
+})
+
+$btnAddGame.addEventListener("click",(event) =>{
+    event.preventDefault();
+    location.href = '../view/AddValorant.html'
 })
