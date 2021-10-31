@@ -5,7 +5,7 @@ let $btnEdit = document.getElementById("btnEdit");
 let $btnAddGame = document.getElementById("btnAddGame");
 
 $lblNickname.innerText = sessionStorage.getItem('nickname');
-$lblAge.innerText = getAge(sessionStorage.getItem('birthday'));
+$lblAge.setText = getAge(sessionStorage.getItem('birthday'));
 var playerGender = sessionStorage.getItem('gender');
 var ScreenGender;
 if (playerGender == 'F'){
