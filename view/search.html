@@ -1,10 +1,101 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
     <meta charset="UTF-8">
-    <title>Title</title>
+    <title>Buscador</title>
+    <link href="../css/style.css" rel="stylesheet">
+    <link rel="stylesheet" href="../css/bootstrap.min.css" crossorigin="anonymous">
+    <link rel="stylesheet" href="../css/hamburgers.css">
 </head>
-<body>
+<body class="logged-in">
+<button id="btnHamburger" class="hamburger-button hamburger hamburger--arrowturn" type="button">
+        <span class="hamburger-box">
+            <span class="hamburger-inner"></span>
+        </span>
+</button>
+<aside class="panel aside-1">
+    <nav class="navMenu">
+        <a href="#section1" class="panel-options">Buscar</a>
+        <a href="#section2" class="panel-options">Mi Perfil</a>
+        <a href="#section3" class="panel-options">Juegos</a>
+    </nav>
+    <div class="playTwogether-brand">
+        <img class="playTwogether-logo" src="../img/PlayTwogether_icon.png" alt="Play Twogether Logo">
+        <label class="lblPlayTwogether">Play Twogether</label>
+    </div>
+</aside>
 
+<div class="container bg-white mt-5 rounded shadow">
+    <div class="row p-5 align-items-stretch">
+        <div class="col">
+            <div class="row">
+                <h1 class="text-center">Buscar</h1>
+            </div>
+            <div class="row mt-5">
+                <label for="tfNombreUsuario">Nombre de usuario</label>
+                <input id="tfNombreUsuario" type="text" class="form-control">
+            </div>
+            <div class="row mt-5">
+                <p class="row">Horario</p>
+                <div class="row">
+                    <div class="col">
+                        <label for="tHoraInicio">Hora Inicio</label>
+                        <input type="time" id="tHoraInicio" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="tHoraFin">Hora Fin</label>
+                        <input type="time" id="tHoraFin" class="form-control">
+                    </div>
+                    <div class="col">
+                        <label for="rdMiHorario">Mi horario:</label>
+                        <input type="checkbox" id="rdMiHorario" class="form-check-input">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <label for="cbJuegos">Juego</label>
+                <select id="cbJuegos" class="form-select">
+                    <option value="0">Cualquiera</option>
+                    <option value="1">Apex Legends</option>
+                    <option value="2">League Of Legends</option>
+                    <option value="3">Valorant</option>
+                </select>
+            </div>
+            <div class="row mt-5">
+                <p class="row">Características personales</p>
+                <div class="row">
+                    <div class="col">
+                        <label for="cbGenero">Género:</label>
+                        <select name="" id="cbGenero" class="form-select">
+                            <option value="NA">Cualquiera</option>
+                            <option value="F">Femenino</option>
+                            <option value="M">Masculino</option>
+                            <option value="O">Compañere</option>
+                        </select>
+                    </div>
+                    <div class="col">
+                        <label for="tfEdad">Edad mínima:</label>
+                        <input type="text" id="tfEdad" class="form-control">
+                    </div>
+                </div>
+            </div>
+            <div class="row mt-5">
+                <button class="boton-buscador rounded">Buscar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+<script src="../js/menu_hamburguesa.js" type="module"></script>
+
+<script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
+        integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
+        crossorigin="anonymous"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.1.3/dist/js/bootstrap.bundle.min.js"
+        integrity="sha384-ka7Sk0Gln4gmtz2MlQnikT1wXgYsOg+OMhuP+IlRH9sENBO0LRn5q+8nbTov4+1p"
+        crossorigin="anonymous"></script>
 </body>
 </html>
