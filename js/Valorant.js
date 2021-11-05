@@ -4,16 +4,15 @@ let $lblRank = document.getElementById("lblRank");
 let $lblCharacter = document.getElementById("lblCharacter");
 let $imgCharacter = document.getElementById("imgCharacter");
 let $imgRank = document.getElementById("imgRank");
+let $pNote = document.getElementById("pNote");
 
-let getGameformation = {
-    email: sessionStorage.getItem("email"),
-    game: "Valorant"
-}
+
 let sendOptions = {
     method: "GET",
-    body: JSON.stringify(getGameformation),
     headers: {
-        'Content-Type': 'application/json'
+        'Content-Type': 'application/json',
+        email: sessionStorage.getItem("email"),
+        game: "Valorant"
     }
 }
 fetch("http://127.0.0.1:5000/player/" + "game", sendOptions).then(response => {
@@ -22,11 +21,12 @@ fetch("http://127.0.0.1:5000/player/" + "game", sendOptions).then(response => {
         response.json().then(responseJson => {
             console.log(responseJson);
             $lblNickname.innerText = responseJson.nickname;
-            $lblLevel.innerText = responseJson.level;
+            $lblLevel.innerText = "Nivel: " + responseJson.accountLevel;
             $lblRank.innerText = responseJson.rank;
             $imgRank.src = "../img/Valorant/rank/" + responseJson.rank + ".png";
             $lblCharacter.innerText = responseJson.personage;
             $imgCharacter.src = "../img/Valorant/agents/" + responseJson.personage + ".png";
+            $pNote.innerText = responseJson.note;
         })
     }
 })
