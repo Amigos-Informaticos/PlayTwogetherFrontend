@@ -32,7 +32,7 @@ body{
 }
 
 .lol {
-    background-image: url(https://ddragon.leagueoflegends.com/cdn/img/champion/splash/Evelynn_0.jpg);
+    background-image: url(../img/lol/lol_bg.png);
     background-size: cover;
     background-attachment: fixed;
 }
@@ -54,6 +54,7 @@ body{
 .game-info{
     opacity: 1;
     font-size: 48px;
+    font-weight: bold;
 }
 
 #pNote{
