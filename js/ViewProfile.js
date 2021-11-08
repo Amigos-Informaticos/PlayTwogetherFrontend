@@ -6,6 +6,8 @@ let $btnAddGame = document.getElementById("btnAddGame");
 
 let $btnValorant = document.getElementById("btnValorant");
 
+console.log("MOD:" + sessionStorage.getItem('isModerator'));
+
 $lblNickname.innerText = sessionStorage.getItem('nickname');
 $lblAge.setText = getAge(sessionStorage.getItem('birthday'));
 var playerGender = sessionStorage.getItem('gender');
