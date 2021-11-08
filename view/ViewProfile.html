@@ -31,6 +31,12 @@
 
     <div id="edit-icon" class="text-end">
         <input id="btnEdit" type="image" src="../img/update_icon.png" width="48" alt="Update Profile">
+        <input id="btnReport" type="image" src="../img/report_user.png" width="48" alt="Report Profile" data-bs-toggle="modal"
+               data-bs-target="#reportModal">
+        <input id="btnVerify" type="image" src="../img/verify_profile.png" width="48" alt="Verify Profile" data-bs-toggle="modal"
+               data-bs-target="#verifyModal">
+        <input id="btnBan" type="image" src="../img/ban_player.png" width="48" alt="Ban Profile" data-bs-toggle="modal"
+               data-bs-target="#banModal">
     </div>
 
     <div class="row align-items-stretch">
@@ -40,9 +46,13 @@
                     <img id="profile-pic" class="col-xs-12 col-sm-12 col-md-12" src="../img/default_picture.jpg"
                          alt="Profile pic">
                     <div class="col-xs-12 col-lg-6">
-                        <label id="lblNickname" class="info mb-2">Nickname</label><br>
-                        <label id="lblAge" class="info mb-2">Age</label><br>
-                        <label id="lblGender" class="info mb-2">Gender</label>
+                        <div class="row">
+                            <label id="lblNickname" class="info mb-2">Nickname</label>
+                            <img id="verified" src="../img/verified_icon.png" alt="Verified Player">
+                        </div>
+
+                        <label id="lblAge" class="row info mb-2">Age</label>
+                        <label id="lblGender" class="row info mb-2">Gender</label>
                     </div>
                 </div>
             </div>
@@ -57,6 +67,70 @@
             Valorant
         </button>
 
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="reportModalLabel">Reportar Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <input class="row" id="checkMisbehavior" type="checkbox">
+                <label class="row" for="checkMisbehavior">Irrespetuoso</label><br>
+                <input class="row" id="checkImpersonation" type="checkbox">
+                <label class="row" for="checkImpersonation">Suplantación de identidad</label><br>
+                <input class="row" id="checkFakeInformation" type="checkbox">
+                <label class="row" for="checkFakeInformation">Información falsa</label><br>
+                <label class="row" for="tfReport">Explícanos qué pasa</label>
+                <input class="row" id="tfReport" type="text">
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnConfirmReport" type="button" class="btn btn-warning">Reportar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="verifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="verifyModalLabel">Verificar Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro de que quieres marcar este perfil como "Verificado"?</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnConfirmVerify" type="button" class="btn btn-success">Verificar</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Modal -->
+<div class="modal fade" id="banModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel">Eliminar Perfil</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <p>¿Estás seguro que deseas eliminar la cuenta de este usuario? Esta accíón no puede deshacerse</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
+                <button id="btnConfirmBan" type="button" class="btn btn-danger">Eliminar</button>
+            </div>
+        </div>
     </div>
 </div>
 
