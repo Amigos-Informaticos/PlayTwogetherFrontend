@@ -26,6 +26,11 @@ body{
     width: 40px;
 }
 
+#tfNote{
+    height: 200px;
+    text-align: initial;
+}
+
 .Valorant {
     background-image: url(../img/Valorant/valorant_bg.jpg);
     background-size: cover;

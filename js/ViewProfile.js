@@ -6,64 +6,67 @@ let $btnReport = document.getElementById("btnReport");
 let $btnVerify = document.getElementById("btnVerify");
 let $btnBan = document.getElementById("btnBan");
 let $btnAddGame = document.getElementById("btnAddGame");
+let $btnConfirmReport = document.getElementById("btnConfirmReport");
+let $btnConfirmVerify = document.getElementById("btnConfirmVerify");
+let $btnConfirmBan = document.getElementById("btnConfirmBan");
 
 let profileToShow = sessionStorage.getItem('viewProfile');
 let nickname;
 let birthday;
 let gender;
+let isModerator = sessionStorage.getItem('isModerator');
 
 if (profileToShow === "MyProfile"){
     nickname = sessionStorage.getItem('nickname');
     gender = sessionStorage.getItem('gender');
     birthday = sessionStorage.getItem('birthday');
-
-    console.log("Cumple:"+birthday);
+    showInfo(nickname, birthday, gender);
 
     $btnReport.remove();
     $btnVerify.remove();
     $btnBan.remove();
 
 }else{
-    let playerInformation = {
-        nickname: profileToShow
-    }
     let sendOptions = {
         method: "GET",
-        body: JSON.stringify(playerInformation),
-        headers:{
-            'Content-Type': 'application/json'
-        }
     }
-    fetch("http://127.0.0.1:5000/" + "login", sendOptions).then(response => {
+    fetch("http://127.0.0.1:5000/players/" + profileToShow, sendOptions).then(response => {
         console.log(response);
         if (response.ok){
             response.json().then(responseJson => {
-                console.log(responseJson);
-                nickname = responseJson.nickname;
                 gender = responseJson.gender;
                 birthday = responseJson.birthday;
+                showInfo(profileToShow, birthday, gender);
             })
         }
     })
+    $btnAddGame.remove();
     $btnEdit.remove();
+    console.log("MOD: " + isModerator);
+    if (isModerator != 1){
+        console.log("NO ADMIN");
+        $btnVerify.remove();
+        $btnBan.remove();
+    }
 }
 
-let $btnValorant = document.getElementById("btnValorant");
+console.log("Genero "+gender);
+console.log("Fecha "+birthday);
 
-console.log("MOD:" + sessionStorage.getItem('isModerator'));
-
-$lblNickname.innerText = nickname;
-$lblAge.innerText = getAge(birthday) + " años";
-var playerGender = gender;
-var ScreenGender;
-if (playerGender == 'F'){
-    ScreenGender = "Mujer";
-}else if (playerGender == 'M'){
-    ScreenGender = "Hombre";
-}else {
-    ScreenGender = "Compañere";
+function showInfo(nickname, birthday, gender){
+    $lblNickname.innerText = nickname;
+    $lblAge.innerText = getAge(birthday) + " años";
+    var playerGender = gender;
+    var ScreenGender;
+    if (playerGender == 'F'){
+        ScreenGender = "Mujer";
+    }else if (playerGender == 'M'){
+        ScreenGender = "Hombre";
+    }else {
+        ScreenGender = "Compañere";
+    }
+    $lblGender.innerHTML = ScreenGender;
 }
-$lblGender.innerHTML = ScreenGender;
 
 function getAge(dateString) {
     var today = new Date();
@@ -81,10 +84,57 @@ $btnEdit.addEventListener("click",(event) =>{
     location.href = '../view/UpdateProfile.html'
 })
 
-$btnValorant.addEventListener("click",(event) =>{
+$btnConfirmReport.addEventListener("click",(event) =>{
     event.preventDefault();
-    location.href = '../view/Valorant.html'
+    let reportInformation = {
+        email: $tfEmail.value,
+        password: $tfPassword.value
+    }
+    let sendOptions = {
+        method: "POST",
+        body: JSON.stringify(reportInformation),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }
+    fetch("http://127.0.0.1:5000/" + "login", sendOptions).then(response => {
+        console.log(response);
+        if (response.ok){
+            response.json().then(responseJson => {
+                console.log(responseJson);
+                location.href = 'view/Welcome.html';
+            })
+        }
+    })
 })
+
+$btnConfirmVerify.addEventListener("click",(event) =>{
+    event.preventDefault();
+    let reportInformation = {
+        nickname: profileToShow
+    }
+    let sendOptions = {
+        method: "PATCH",
+        body: JSON.stringify(reportInformation),
+        headers:{
+            'Content-Type': 'application/json',
+            'token': sessionStorage.getItem('token')
+        }
+    }
+    fetch("http://127.0.0.1:5000/players/" + "verify", sendOptions).then(response => {
+        console.log(response);
+        if (response.ok){
+            response.json().then(responseJson => {
+                console.log(responseJson);
+                location.href = 'view/Welcome.html';
+            })
+        }
+    })
+})
+
+
+
+
 
 $btnAddGame.addEventListener("click",(event) =>{
     event.preventDefault();
@@ -95,7 +145,7 @@ $btnAddGame.addEventListener("click",(event) =>{
 const response = [
     {
         id: 1,
-        game: "lol",
+        game: "Valorant",
         level: "160",
         rank: "Bronce"
     },
