@@ -6,6 +6,10 @@ body{
     height: 100vh;
 }
 
+.welcome-message{
+    text-align: justify;
+}
+
 .logged-in{
     background: #CBCBCB;
     margin: 0;
@@ -19,7 +23,7 @@ body{
 }
 
 #verified{
-    width: 60px;
+    width: 40px;
 }
 
 .Valorant {

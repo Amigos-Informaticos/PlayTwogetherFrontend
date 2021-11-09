@@ -2,15 +2,59 @@ let $lblNickname = document.getElementById("lblNickname");
 let $lblAge = document.getElementById("lblAge");
 let $lblGender = document.getElementById("lblGender");
 let $btnEdit = document.getElementById("btnEdit");
+let $btnReport = document.getElementById("btnReport");
+let $btnVerify = document.getElementById("btnVerify");
+let $btnBan = document.getElementById("btnBan");
 let $btnAddGame = document.getElementById("btnAddGame");
+
+let profileToShow = sessionStorage.getItem('viewProfile');
+let nickname;
+let birthday;
+let gender;
+
+if (profileToShow === "MyProfile"){
+    nickname = sessionStorage.getItem('nickname');
+    gender = sessionStorage.getItem('gender');
+    birthday = sessionStorage.getItem('birthday');
+
+    console.log("Cumple:"+birthday);
+
+    $btnReport.remove();
+    $btnVerify.remove();
+    $btnBan.remove();
+
+}else{
+    let playerInformation = {
+        nickname: profileToShow
+    }
+    let sendOptions = {
+        method: "GET",
+        body: JSON.stringify(playerInformation),
+        headers:{
+            'Content-Type': 'application/json'
+        }
+    }
+    fetch("http://127.0.0.1:5000/" + "login", sendOptions).then(response => {
+        console.log(response);
+        if (response.ok){
+            response.json().then(responseJson => {
+                console.log(responseJson);
+                nickname = responseJson.nickname;
+                gender = responseJson.gender;
+                birthday = responseJson.birthday;
+            })
+        }
+    })
+    $btnEdit.remove();
+}
 
 let $btnValorant = document.getElementById("btnValorant");
 
 console.log("MOD:" + sessionStorage.getItem('isModerator'));
 
-$lblNickname.innerText = sessionStorage.getItem('nickname');
-$lblAge.setText = getAge(sessionStorage.getItem('birthday'));
-var playerGender = sessionStorage.getItem('gender');
+$lblNickname.innerText = nickname;
+$lblAge.innerText = getAge(birthday) + " años";
+var playerGender = gender;
 var ScreenGender;
 if (playerGender == 'F'){
     ScreenGender = "Mujer";
@@ -51,15 +95,15 @@ $btnAddGame.addEventListener("click",(event) =>{
 const response = [
     {
         id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
+        game: "lol",
+        level: "160",
+        rank: "Bronce"
     },
     {
         id: 1,
         game: "Valorant",
         level: "150",
-        rank: "Diamante"
+        rank: "Inmortal"
     },
     {
         id: 1,

@@ -17,9 +17,9 @@
 </button>
 <aside class="panel aside-1">
     <nav class="navMenu">
-        <a href="#section1" class="panel-options">Buscar</a>
-        <a href="#section2" class="panel-options">Mi Perfil</a>
-        <a href="#section3" class="panel-options">Juegos</a>
+        <a href="search.html" id="hbSearch" class="panel-options">Buscar</a>
+        <a href="#section2" id="hbMyProfile" class="panel-options">Mi Perfil</a>
+        <a href="#section3" id="hbGames" class="panel-options">Juegos</a>
     </nav>
     <div class="playTwogether-brand">
         <img class="playTwogether-logo" src="../img/PlayTwogether_icon.png" alt="Play Twogether Logo">
@@ -47,10 +47,11 @@
                          alt="Profile pic">
                     <div class="col-xs-12 col-lg-6">
                         <div class="row">
-                            <label id="lblNickname" class="info mb-2">Nickname</label>
-                            <img id="verified" src="../img/verified_icon.png" alt="Verified Player">
+                            <div class="col">
+                                <label id="lblNickname" class="info fs-1">Nickname</label>
+                                <img id="verified" class="" src="../img/verified_icon.png" alt="Verified Player">
+                            </div>
                         </div>
-
                         <label id="lblAge" class="row info mb-2">Age</label>
                         <label id="lblGender" class="row info mb-2">Gender</label>
                     </div>
@@ -66,7 +67,6 @@
         <button id="btnValorant" class="rounded-2 shadow" type="submit" >
             Valorant
         </button>
-
     </div>
 </div>
 

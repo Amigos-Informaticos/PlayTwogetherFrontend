@@ -37,3 +37,18 @@ const removePanel = (panel, hamburgerButton) => {
 document.addEventListener('DOMContentLoaded', () => {
     hamburgerMenu('.hamburger-button', '.panel', '.panel-options');
 });
+
+let $hbSearch = document.getElementById("hbSearch");
+let $hbMyProfile = document.getElementById("hbMyProfile");
+let $hbGames = document.getElementById("hbGames");
+
+$hbSearch.addEventListener("click",(event) =>{
+    event.preventDefault();
+    location.href = '../view/search.html'
+})
+
+$hbMyProfile.addEventListener("click",(event) =>{
+    event.preventDefault();
+    sessionStorage.setItem('viewProfile', "MyProfile");
+    location.href = '../view/ViewProfile.html'
+})

@@ -27,7 +27,7 @@ $btnLogin.addEventListener("click", (event)=> {
                 sessionStorage.setItem('email',loginInformation.email);
                 sessionStorage.setItem('currentPassword',loginInformation.password);
                 sessionStorage.setItem('isModerator', responseJson.isModerator);
-                location.href = 'view/ViewProfile.html';
+                location.href = 'view/Welcome.html';
             })
         }
     })
