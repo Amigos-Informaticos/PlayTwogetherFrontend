@@ -29,4 +29,8 @@ export class Validator{
             password.length > 7 &&
             password.length < 21;
     }
+
+    static validateTime(startTime, endTime){
+        return startTime < endTime;
+    }
 }

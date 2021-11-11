@@ -53,8 +53,7 @@ if (profileToShow === "MyProfile") {
     }
 }
 
-console.log("Genero " + gender);
-console.log("Fecha " + birthday);
+showPlayedGames(profileToShow);
 
 function showInfo(nickname, birthday, gender, isVerified) {
     $lblNickname.innerText = nickname;
@@ -155,52 +154,26 @@ $btnAddGame.addEventListener("click", (event) => {
     location.href = '../view/AddValorant.html'
 })
 
-
-const response = [
-    {
-        id: 1,
-        game: "Valorant",
-        level: "160",
-        rank: "Bronce"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Inmortal"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
+function showPlayedGames(nickname) {
+    let sendOptions = {
+        method: "GET",
     }
-]
-let $template = document.getElementById("template-box").content;
-response.forEach((persona) => {
-    $template.querySelector(".card-level").textContent = "LVL:" + persona.level;
-    $template.querySelector(".card-game").src = "../img/" + persona.game + "/" + persona.game + "_logo.png";
-    $template.querySelector(".card-rank").src = "../img/" + persona.game + "/rank/" + persona.rank + ".png";
+    fetch("http://127.0.0.1:5000/players/" + nickname + "/games", sendOptions).then(response => {
+        if (response.ok) {
+            response.json().then(responseJson => {
+                let $template = document.getElementById("template-box").content;
+                responseJson.forEach((playedGame) => {
+                    console.log("RANGO "+ playedGame.rank);
 
-    let $clone = document.importNode($template, true);
-    let $fragment = document.getElementById("game-container");
-    $fragment.appendChild($clone);
-});
+                    $template.querySelector(".card-level").textContent = "LVL:" + playedGame.accountLevel;
+                    $template.querySelector(".card-game").src = "../img/" + playedGame.name + "/" + playedGame.name + "_logo.png";
+                    $template.querySelector(".card-rank").src = "../img/" + playedGame.name + "/rank/" + playedGame.rank + ".png";
+
+                    let $clone = document.importNode($template, true);
+                    let $fragment = document.getElementById("game-container");
+                    $fragment.appendChild($clone);
+                });
+            })
+        }
+    })
+}

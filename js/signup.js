@@ -8,6 +8,8 @@ let $tfRepeatPassword = document.getElementById("tfRepeatPassword");
 let $cbGender = document.getElementById("cbSex");
 let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
+let $tStartTime = document.getElementById("tStartTime");
+let $tEndTime = document.getElementById("tEndTime");
 
 $btnSignUp.addEventListener("click", (event) => {
     event.preventDefault();
@@ -17,14 +19,29 @@ $btnSignUp.addEventListener("click", (event) => {
     let playerRepeatPassword = $tfRepeatPassword.value;
     let playerGender = $cbGender.value;
     let playerBirthday = $dpBirthday.value;
+    let playerStartTime = $tStartTime.value;
+    let playerEndTime = $tEndTime.value;
+    console.log("HORA. " +playerStartTime);
+    console.log("HORA FIN. " +playerEndTime);
+
+    if (Validator.validateTime(playerStartTime, playerEndTime)){
+        console.log("A tiempo");
+    }else {
+        console.log("tarde");
+    }
 
     if (validateFields(playerNickname, playerEmail, playerPassword, playerRepeatPassword, playerBirthday)) {
+
+
+
         let newPlayer = {
             email: playerEmail,
             nickname: playerNickname,
             password: playerPassword,
             gender: playerGender,
-            birthday: playerBirthday
+            birthday: playerBirthday,
+            startTime: playerStartTime,
+            endTime: playerEndTime
         }
         let sendOptions = {
             method: "POST",
@@ -33,12 +50,12 @@ $btnSignUp.addEventListener("click", (event) => {
                 'Content-Type': 'application/json'
             }
         }
+        console.log("PELUSA: "+sendOptions);
         fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
             if (response.ok) {
                 location.href = '../index.html';
             }
         })
-
     }
 })
 
@@ -64,6 +81,5 @@ function validateFields(nickname, email, password, repeatPassword, birthday) {
         flag = false;
         $pWarning.innerHTML = "* El nickname debe tener al menos 4 caracteres y máximo 25"
     }
-
     return flag;
 }
