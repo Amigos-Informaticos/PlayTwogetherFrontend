@@ -1,9 +1,9 @@
 <!DOCTYPE html>
-<html lang="en">
+<html lang="es">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Login Bootstrap</title>
+    <title>Iniciar Sesión</title>
     <link href="css/style.css" rel="stylesheet">
     <link rel="stylesheet" href="css/bootstrap.min.css" crossorigin="anonymous">
 </head>
@@ -12,12 +12,10 @@
     <div class="container bg-white rounded shadow">
         <div class="row align-items-stretch">
             <!--Aquí abajo le decimos con d-none que no se muestre la imagen, pero con d-lg-block que se muestre cuando el tamaño sea large, con los col también le damos dimension segun el tamaño-->
-            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded">
-
-            </div>
+            <div class="col bg d-none d-lg-block col-md-5 col-lg-5 col-xl-6 rounded"></div>
             <div class="col bg-white p-5 rounded-end">
                 <div class="text-end">
-                    <img src="img/logo.png" width="48" alt="">
+                    <img src="img/PlayTwogether_icon.png" width="56" alt="Play Twogether Logo">
                 </div>
 
                 <h2 class="fw-bold text-center py-5">Bienvenido</h2>
@@ -34,7 +32,7 @@
                     </div>
                     <div class="d-grid">
                         <p></p>
-                        <button id="btnLogin" type="submit" >Iniciar Sesión</button>
+                        <button id="btnLogin" type="submit">Iniciar Sesión</button>
                     </div>
 
                     <div class="my-3">
@@ -46,7 +44,9 @@
     </div>
 </div>
 
-
-<script src="js/bootstrap.bundle.min.js" integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/" crossorigin="anonymous"></script>
+<script src="js/login.js"></script>
+<script src="js/bootstrap.bundle.min.js"
+        integrity="sha384-oesi62hOLfzrys4LxRF63OJCXdXDipiYWBnvTl9Y9/TRlw5xlKIEHpNyvvDShgf/"
+        crossorigin="anonymous"></script>
 </body>
 </html>

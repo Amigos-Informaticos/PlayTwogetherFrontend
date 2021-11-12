@@ -1,0 +1,8 @@
+.card-rank{
+    width: 8vw;
+}
+
+.card-game{
+    width: 15vw;
+    min-width: 14vw;
+}
