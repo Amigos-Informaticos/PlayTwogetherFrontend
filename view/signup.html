@@ -18,41 +18,91 @@
                 <form>
                     <div class="container">
                         <div class="row mb-4">
-                            <label for="tfEmail" class="col-lg-3 form-label text-lg-end">Correo electronico:</label>
-                            <input type="email" class="col form-control" name="email" id="tfEmail">
-
-                            <label for="tfNickname" class="col-lg-3 form-label text-lg-end">Nombre de usuario:</label>
-                            <input type="text" class="col form-control" name="nickname" id="tfNickname">
+                            <label for="tfEmail" class="col-lg-3 form-label text-lg-end">*Correo electronico:</label>
+                            <input type="email" class="col form-control" required name="email" id="tfEmail">
+                            <p id="email-warning"></p>
                         </div>
                         <div class="row mb-4">
-                            <label for="tfPassword" class="col-lg-3 form-label text-lg-end">Contraseña:</label>
-                            <input type="password" class="col form-control" name="password" id="tfPassword">
-
-                            <label for="tfRepeatPassword" class="col-lg-3 form-label text-lg-end">Repetir Contraseña:</label>
-                            <input type="password" class="col form-control" name="repeatPassword" id="tfRepeatPassword">
+                            <label for="tfNickname" class="col-lg-3 form-label text-lg-end">*Nombre de usuario:</label>
+                            <input type="text" class="col form-control" required name="nickname" id="tfNickname">
+                            <p id="nickname-warning"></p>
                         </div>
-
                         <div class="row mb-4">
-                            <label for="cbSex" class="col-lg-3 form-label text-lg-end">Sexo: </label>
-                            <select name="sex" class="col form-select" id="cbSex">
-                                <option value="O">Compañere</option>
+                            <label for="tfPassword" class="col-lg-3 form-label text-lg-end">*Contraseña:</label>
+                            <input type="password" class="col form-control" required name="password" id="tfPassword">
+
+                            <label for="tfRepeatPassword" class="col-lg-3 form-label text-lg-end">*Repetir
+                                Contraseña:</label>
+                            <input type="password" class="col form-control" required name="repeatPassword" id="tfRepeatPassword">
+                            <p id="password-warning"></p>
+                        </div>
+                        <div class="row mb-4">
+                            <label for="cbSex" class="col-lg-3 form-label text-lg-end">Genero: </label>
+                            <select name="sex" class="col form-select" required id="cbSex">
+                                <option value="O">No especificar</option>
                                 <option value="F">Mujer</option>
                                 <option value="M">Hombre</option>
                             </select>
-
-                            <label for="dpBirthday" class="col-lg-3 form-label text-lg-end">Fecha de nacimiento: </label>
-                            <input type="date" class="col form-control" name="birth" id="dpBirthday">
+                            <p id="gender-warning"></p>
                         </div>
 
-                        <p class="row">¿A qué horas sueles jugar?</p>
+                        <div class="row mb-4">
+                            <label for="dpBirthday" class="col-lg-3 form-label text-lg-end">*Fecha de
+                                nacimiento: </label>
+                            <input type="date" class="col form-control" required name="birth" id="dpBirthday">
+                            <p id="birthday-warning"></p>
+                        </div>
                         <div class="row">
-                            <div class="col">
-                                <label for="tStartTime">Hora Inicio</label>
-                                <input type="time" step="3600000" id="tStartTime" class="form-control">
+                            <p class="text-center">*Horario de juego:</p>
+                        </div>
+
+                        <div class="row d-flex align-content-center">
+                            <div class="col d-flex justify-content-center">
+                                <div class="row d-flex ">
+                                    <div class="col-4">
+                                        <img class="kind_icon" src="../img/KindOfPlayers/mañanero.png" alt="Mañanero">
+                                        <p>Mañanero</p>
+                                        <p>(6AM-10AM)</p>
+                                        <input name="schedule-radio" value="Manianero" type="radio">
+                                    </div>
+                                    <div class="col-4">
+                                        <img class="kind_icon" src="../img/KindOfPlayers/medio_dia.png" alt="Medio Día">
+                                        <p>Medio Día</p>
+                                        <p>(6AM-10AM)</p>
+                                        <input name="schedule-radio" value="MedioDia" type="radio">
+                                    </div>
+                                    <div class="col-4">
+                                        <img class="kind_icon" src="../img/KindOfPlayers/hora_pico.png" alt="Hora Pico">
+                                        <p>Hora Pico</p>
+                                        <p>(6AM-10AM)</p>
+                                        <input name="schedule-radio" value="HoraPico" type="radio">
+                                    </div>
+                                </div>
                             </div>
-                            <div class="col">
-                                <label for="tEndTime">Hora Fin</label>
-                                <input type="time" id="tEndTime" class="form-control">
+                        </div>
+                        <div class="row d-flex align-content-center">
+                            <div class="col d-flex justify-content-center">
+                                <div class="row d-flex ">
+                                    <div class="col-4">
+                                        <img class="kind_icon" src="../img/KindOfPlayers/vespertino.png" alt="Vespertino">
+                                        <p>Vespertino</p>
+                                        <p>(6AM-10AM)</p>
+                                        <input name="schedule-radio" value="Vespertino" type="radio">
+                                    </div>
+                                    <div class="col-4">
+                                        <img class="kind_icon" src="../img/KindOfPlayers/nocturno.png" alt="Nocturno">
+                                        <p>Nocturno</p>
+                                        <p>(6AM-10AM)</p>
+                                        <input name="schedule-radio" value="Nocturno" type="radio">
+                                    </div>
+                                    <div class="col-4">
+                                        <img class="kind_icon" src="../img/KindOfPlayers/sonambulo.png" alt="Sonambulo">
+                                        <p>Sonámbulo</p>
+                                        <p>(6AM-10AM)</p>
+                                        <input name="schedule-radio" value="Sonambulo" type="radio">
+                                    </div>
+                                    <p id="schedule-warning"></p>
+                                </div>
                             </div>
                         </div>
 

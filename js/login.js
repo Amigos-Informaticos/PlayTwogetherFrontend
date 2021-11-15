@@ -15,8 +15,9 @@ $btnLogin.addEventListener("click", (event)=> {
             'Content-Type': 'application/json'
         }
     }
+    console.log("Info: " + $tfEmail.value + $tfPassword.value);
     fetch("http://127.0.0.1:5000/" + "login", sendOptions).then(response => {
-        console.log(response);
+
         if (response.ok){
             response.json().then(responseJson => {
                 console.log(responseJson);

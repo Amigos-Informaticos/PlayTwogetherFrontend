@@ -1,6 +1,5 @@
 export class Validator{
     static validateNickname(nickname){
-        console.log(nickname.length);
         return nickname.length > 3 &&
             nickname.length < 26;
     }
@@ -30,7 +29,7 @@ export class Validator{
             password.length < 21;
     }
 
-    static validateTime(startTime, endTime){
-        return startTime < endTime;
+    static uncompleteSignUpInfo(email, nickname, password, repeatPassword, birthday, schedule){
+        return !email || !nickname || !password || !repeatPassword || !birthday || !schedule;
     }
 }

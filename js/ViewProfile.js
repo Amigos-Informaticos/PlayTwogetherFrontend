@@ -163,11 +163,14 @@ function showPlayedGames(nickname) {
             response.json().then(responseJson => {
                 let $template = document.getElementById("template-box").content;
                 responseJson.forEach((playedGame) => {
-                    console.log("RANGO "+ playedGame.rank);
-
+                    console.log(playedGame.name)
                     $template.querySelector(".card-level").textContent = "LVL:" + playedGame.accountLevel;
                     $template.querySelector(".card-game").src = "../img/" + playedGame.name + "/" + playedGame.name + "_logo.png";
                     $template.querySelector(".card-rank").src = "../img/" + playedGame.name + "/rank/" + playedGame.rank + ".png";
+                    $template.querySelectorAll(".box *").forEach((element)=>{
+
+                        element.dataset.name_game = playedGame.name;
+                    })
 
                     let $clone = document.importNode($template, true);
                     let $fragment = document.getElementById("game-container");
@@ -177,3 +180,10 @@ function showPlayedGames(nickname) {
         }
     })
 }
+
+document.addEventListener("click", (event) => {
+    if (event.target.matches(".box *")) {
+        console.log(event.target);
+        location.href = `../view/${event.target.dataset.name_game}.html`
+    }
+});
