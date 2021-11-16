@@ -39,12 +39,14 @@
                     <div class="container">
                         <div class="row mb-4">
                             <label for="tfNickname" class="col-lg-3 form-label text-lg-end">Nombre de usuario:</label>
-                            <input type="text" class="col form-control" name="nickname" id="tfNickname">
-
-                            <label for="tfLevel" class="col-lg-3 form-label text-lg-end">Nivel:</label>
-                            <input type="text" class="col form-control" name="nickname" id="tfLevel">
+                            <input type="text" minlength="5" maxlength="20" class="col form-control" name="nickname" id="tfNickname">
+                            <p id="nickname-warning"></p>
                         </div>
-
+                        <div class="row mb-4">
+                            <label for="tfLevel" class="col-lg-3 form-label text-lg-end">Nivel:</label>
+                            <input type="number" class="col form-control" name="level" id="tfLevel">
+                            <p id="level-warning"></p>
+                        </div>
 
                         <div class="row mb-4">
                             <label for="cbAgent" class="col-lg-3 form-label text-lg-end">Agente más utilizado: </label>
@@ -67,12 +69,13 @@
                                 <option value="15">Viper</option>
                                 <option value="16">Yoru</option>
                             </select>
+                            <p id="character-warning"></p>
                         </div>
 
                         <div class="row mb-4">
                             <label for="cbRank" class="col-lg-3 form-label text-lg-end">Rango: </label>
-                            <select name="sex" class="col form-select" id="cbRank">
-                                <option value="0">Selecciona</option>
+                            <select name="rank" class="col form-select" id="cbRank">
+                                <option value="0">Sin Clasificar</option>
                                 <option value="1">Hierro</option>
                                 <option value="2">Bronce</option>
                                 <option value="3">Plata</option>
@@ -82,15 +85,17 @@
                                 <option value="7">Inmortal</option>
                                 <option value="8">Radiante</option>
                             </select>
+                            <p id="rank-warning"></p>
                         </div>
 
                         <div class="row mb-4">
                             <label for="tfHours" class="col-lg-3 form-label text-lg-end">Horas de juego:</label>
                             <input type="text" class="col form-control" id="tfHours">
+                            <p id="hours-warning"></p>
                         </div>
                         <div class="row">
                             <label for="tfNote" class="col-lg-3 form-label text-lg-end">Agrega una nota: </label>
-                            <textarea placeholder="Cuéntanos tu historia con este juego" class="col form-control" id="tfNote" cols="30"
+                            <textarea placeholder="Cuéntanos tu historia con este juego" maxlength="100" class="col form-control" id="tfNote" cols="30"
                                       rows="10"></textarea>
                         </div>
                         <div class="row">

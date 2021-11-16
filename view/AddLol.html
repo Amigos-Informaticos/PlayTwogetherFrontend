@@ -41,7 +41,7 @@
                             <input type="text" class="col form-control" name="nickname" id="tfNickname">
 
                             <label for="tfLevel" class="col-lg-3 form-label text-lg-end">Nivel:</label>
-                            <input type="text" class="col form-control" name="nickname" id="tfLevel">
+                            <input type="number" class="col " name="level" id="tfLevel">
                         </div>
 
                         <div class="row mb-4">
@@ -81,16 +81,6 @@
                                 <option value="4">ADCarry</option>
                                 <option value="5">Support</option>
                             </select>
-
-                            <label for="cbCharacter" class="col-lg-3 form-label text-lg-end">Posición secundaria: </label>
-                            <select name="character" class="col form-select" id="cbSecondPosition">
-                                <option value="0">Selecciona</option>
-                                <option value="1">Toplane</option>
-                                <option value="2">Jungla</option>
-                                <option value="3">Midlane</option>
-                                <option value="4">ADCarry</option>
-                                <option value="5">Support</option>
-                            </select>
                         </div>
 
                         <div class="row mb-4">
@@ -107,6 +97,12 @@
                                 <option value="8">Gran Maestro</option>
                                 <option value="9">Challenger</option>
                             </select>
+                        </div>
+
+                        <div class="row">
+                            <label for="tfNote" class="col-lg-3 form-label text-lg-end">Agrega una nota: </label>
+                            <textarea placeholder="Cuéntanos tu historia con este juego" class="col form-control" id="tfNote" cols="30"
+                                      rows="10"></textarea>
                         </div>
 
                         <div class="row">
