@@ -18,7 +18,7 @@ let gender;
 let isVerified;
 let isModerator = sessionStorage.getItem('isModerator');
 
-if (profileToShow === "MyProfile") {
+if (profileToShow === sessionStorage.getItem('nickname')) {
     nickname = sessionStorage.getItem('nickname');
     gender = sessionStorage.getItem('gender');
     birthday = sessionStorage.getItem('birthday');
@@ -45,6 +45,7 @@ if (profileToShow === "MyProfile") {
     })
     $btnAddGame.remove();
     $btnEdit.remove();
+    $btnAddGame.remove();
     console.log("MOD: " + isModerator);
     if (isModerator != 1) {
         console.log("NO ADMIN");
@@ -171,7 +172,6 @@ function showPlayedGames(nickname) {
 
                         element.dataset.name_game = playedGame.name;
                     })
-
                     let $clone = document.importNode($template, true);
                     let $fragment = document.getElementById("game-container");
                     $fragment.appendChild($clone);
