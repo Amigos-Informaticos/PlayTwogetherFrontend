@@ -49,6 +49,6 @@ $hbSearch.addEventListener("click",(event) =>{
 
 $hbMyProfile.addEventListener("click",(event) =>{
     event.preventDefault();
-    sessionStorage.setItem('viewProfile', "MyProfile");
+    sessionStorage.setItem('viewProfile', sessionStorage.getItem('nickname'));
     location.href = '../view/ViewProfile.html'
 })

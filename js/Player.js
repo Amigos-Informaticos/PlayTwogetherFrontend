@@ -1,6 +1,16 @@
-export class Validator{
+export class Player {
+    static getAge(dateString) {
+        var today = new Date();
+        var birthDate = new Date(dateString);
+        var age = today.getFullYear() - birthDate.getFullYear();
+        var m = today.getMonth() - birthDate.getMonth();
+        if (m < 0 || (m === 0 && today.getDate() < birthDate.getDate())) {
+            age--;
+        }
+        return age;
+    }
+
     static validateNickname(nickname){
-        console.log(nickname.length);
         return nickname.length > 3 &&
             nickname.length < 26;
     }
@@ -28,5 +38,9 @@ export class Validator{
             /[0-9]/.test(password) &&
             password.length > 7 &&
             password.length < 21;
+    }
+
+    static uncompleteSignUpInfo(email, nickname, password, repeatPassword, birthday, schedule){
+        return !email || !nickname || !password || !repeatPassword || !birthday || !schedule;
     }
 }

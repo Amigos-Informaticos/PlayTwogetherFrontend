@@ -18,7 +18,7 @@ let gender;
 let isVerified;
 let isModerator = sessionStorage.getItem('isModerator');
 
-if (profileToShow === "MyProfile") {
+if (profileToShow === sessionStorage.getItem('nickname')) {
     nickname = sessionStorage.getItem('nickname');
     gender = sessionStorage.getItem('gender');
     birthday = sessionStorage.getItem('birthday');
@@ -45,6 +45,7 @@ if (profileToShow === "MyProfile") {
     })
     $btnAddGame.remove();
     $btnEdit.remove();
+    $btnAddGame.remove();
     console.log("MOD: " + isModerator);
     if (isModerator != 1) {
         console.log("NO ADMIN");
@@ -53,8 +54,7 @@ if (profileToShow === "MyProfile") {
     }
 }
 
-console.log("Genero " + gender);
-console.log("Fecha " + birthday);
+showPlayedGames(profileToShow);
 
 function showInfo(nickname, birthday, gender, isVerified) {
     $lblNickname.innerText = nickname;
@@ -155,52 +155,34 @@ $btnAddGame.addEventListener("click", (event) => {
     location.href = '../view/AddValorant.html'
 })
 
-
-const response = [
-    {
-        id: 1,
-        game: "Valorant",
-        level: "160",
-        rank: "Bronce"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Inmortal"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
-    },
-    {
-        id: 1,
-        game: "Valorant",
-        level: "150",
-        rank: "Diamante"
+function showPlayedGames(nickname) {
+    let sendOptions = {
+        method: "GET",
     }
-]
-let $template = document.getElementById("template-box").content;
-response.forEach((persona) => {
-    $template.querySelector(".card-level").textContent = "LVL:" + persona.level;
-    $template.querySelector(".card-game").src = "../img/" + persona.game + "/" + persona.game + "_logo.png";
-    $template.querySelector(".card-rank").src = "../img/" + persona.game + "/rank/" + persona.rank + ".png";
+    fetch("http://127.0.0.1:5000/players/" + nickname + "/games", sendOptions).then(response => {
+        if (response.ok) {
+            response.json().then(responseJson => {
+                let $template = document.getElementById("template-box").content;
+                responseJson.forEach((playedGame) => {
+                    console.log(playedGame.name)
+                    $template.querySelector(".card-level").textContent = "LVL:" + playedGame.accountLevel;
+                    $template.querySelector(".card-game").src = "../img/" + playedGame.name + "/" + playedGame.name + "_logo.png";
+                    $template.querySelector(".card-rank").src = "../img/" + playedGame.name + "/rank/" + playedGame.rank + ".png";
+                    $template.querySelectorAll(".box *").forEach((element)=>{
+                        element.dataset.name_game = playedGame.name;
+                    })
+                    let $clone = document.importNode($template, true);
+                    let $fragment = document.getElementById("game-container");
+                    $fragment.appendChild($clone);
+                });
+            })
+        }
+    })
+}
 
-    let $clone = document.importNode($template, true);
-    let $fragment = document.getElementById("game-container");
-    $fragment.appendChild($clone);
+document.addEventListener("click", (event) => {
+    if (event.target.matches(".box *")) {
+        console.log(event.target);
+        location.href = `../view/${event.target.dataset.name_game}.html`
+    }
 });

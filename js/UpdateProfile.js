@@ -1,4 +1,4 @@
-import {Validator} from "./Validator.js";
+import {Player} from "./Player.js";
 
 let $btnUpdate = document.getElementById("btnUpdate");
 let $tfNickname = document.getElementById("tfNickname");
@@ -56,7 +56,7 @@ function validateFields(nickname, email, password, repeatPassword, birthday){
         $pWarning.innerHTML = "* Campos vacíos"
         flag = false;
     }
-    let validatedPassword = Validator.validatePassword(password, repeatPassword);
+    let validatedPassword = Player.validatePassword(password, repeatPassword);
     if (validatedPassword === "dontMatch") {
         flag = false;
         $pWarning.innerHTML = "* Las contraseñas no coinciden"
@@ -64,7 +64,7 @@ function validateFields(nickname, email, password, repeatPassword, birthday){
         flag = false;
         $pWarning.innerHTML = "* La contraseña debe contener al menos una mayúscula y un número"
     }
-    if (!Validator.validateNickname(nickname)) {
+    if (!Player.validateNickname(nickname)) {
         flag = false;
         $pWarning.innerHTML = "* El nickname debe tener al menos 4 caracteres y máximo 25"
     }
@@ -85,7 +85,7 @@ $btnDelete.addEventListener("click",(event) =>{
         }
     }
     console.log(sendOptions.body);
-    fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
+    fetch("http://127.0.0.1:5000/players", sendOptions).then(response => {
         console.log(response);
         if (response.status === 200) {
             sessionStorage.clear();

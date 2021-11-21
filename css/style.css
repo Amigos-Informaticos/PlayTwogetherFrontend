@@ -6,6 +6,10 @@ body{
     height: 100vh;
 }
 
+.kind_icon{
+    width: 5vw;
+}
+
 .welcome-message{
     text-align: justify;
 }
