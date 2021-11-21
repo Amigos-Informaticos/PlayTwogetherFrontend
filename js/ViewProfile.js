@@ -1,3 +1,5 @@
+import {Configuration} from "./Configuration.js";
+
 let $lblNickname = document.getElementById("lblNickname");
 let $lblAge = document.getElementById("lblAge");
 let $lblGender = document.getElementById("lblGender");
@@ -32,7 +34,7 @@ if (profileToShow === sessionStorage.getItem('nickname')) {
     let sendOptions = {
         method: "GET",
     }
-    fetch("http://127.0.0.1:5000/players/" + profileToShow, sendOptions).then(response => {
+    fetch(Configuration.getURL() + "players/" + profileToShow, sendOptions).then(response => {
         console.log(response);
         if (response.ok) {
             response.json().then(responseJson => {
@@ -91,6 +93,7 @@ $btnEdit.addEventListener("click", (event) => {
     location.href = '../view/UpdateProfile.html'
 })
 
+//TODO
 $btnConfirmReport.addEventListener("click", (event) => {
     event.preventDefault();
     let reportInformation = {
@@ -124,7 +127,7 @@ $btnConfirmVerify.addEventListener("click", (event) => {
             'token': sessionStorage.getItem('token')
         }
     }
-    fetch("http://127.0.0.1:5000/players/" + profileToShow + "/verify", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "players/" + profileToShow + "/verify", sendOptions).then(response => {
         console.log(response);
         if (response.ok) {
             location.href = '../view/Welcome.html';
@@ -141,7 +144,7 @@ $btnConfirmBan.addEventListener("click", (event) => {
             'token': sessionStorage.getItem('token')
         }
     }
-    fetch("http://127.0.0.1:5000/players/" + profileToShow + "/ban", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "players/" + profileToShow + "/ban", sendOptions).then(response => {
         console.log(response);
         if (response.ok) {
             location.href = '../view/Welcome.html';
@@ -159,7 +162,7 @@ function showPlayedGames(nickname) {
     let sendOptions = {
         method: "GET",
     }
-    fetch("http://127.0.0.1:5000/players/" + nickname + "/games", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "players/" + nickname + "/games", sendOptions).then(response => {
         if (response.ok) {
             response.json().then(responseJson => {
                 let $template = document.getElementById("template-box").content;
@@ -168,7 +171,7 @@ function showPlayedGames(nickname) {
                     $template.querySelector(".card-level").textContent = "LVL:" + playedGame.accountLevel;
                     $template.querySelector(".card-game").src = "../img/" + playedGame.name + "/" + playedGame.name + "_logo.png";
                     $template.querySelector(".card-rank").src = "../img/" + playedGame.name + "/rank/" + playedGame.rank + ".png";
-                    $template.querySelectorAll(".box *").forEach((element)=>{
+                    $template.querySelectorAll(".box *").forEach((element) => {
                         element.dataset.name_game = playedGame.name;
                     })
                     let $clone = document.importNode($template, true);

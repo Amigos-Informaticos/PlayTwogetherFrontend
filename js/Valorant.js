@@ -1,3 +1,5 @@
+import {Configuration} from "./Configuration.js";
+
 let $lblNickname = document.getElementById("lblNickname");
 let $lblLevel = document.getElementById("lblLevel");
 let $lblRank = document.getElementById("lblRank");
@@ -6,16 +8,14 @@ let $imgCharacter = document.getElementById("imgCharacter");
 let $imgRank = document.getElementById("imgRank");
 let $pNote = document.getElementById("pNote");
 
+let ownerGame = sessionStorage.getItem("viewProfile");
 
 let sendOptions = {
-    method: "GET",
-    headers: {
-        'Content-Type': 'application/json',
-        email: sessionStorage.getItem("email"),
-        game: "Valorant"
-    }
+    method: "GET"
 }
-fetch("http://127.0.0.1:5000/player/" + "game", sendOptions).then(response => {
+
+let url = Configuration.getURL();
+fetch(url + "players/" + ownerGame + "/" + "valorant", sendOptions).then(response => {
     console.log(response);
     if (response.ok) {
         response.json().then(responseJson => {

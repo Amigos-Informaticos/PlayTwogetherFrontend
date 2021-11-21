@@ -1,4 +1,5 @@
 import {Player} from "./Player.js";
+import {Configuration} from "./Configuration.js";
 
 let $btnSignUp = document.getElementById("btnSignUp");
 let $tfEmail = document.getElementById("tfEmail");
@@ -27,7 +28,6 @@ $btnSignUp.addEventListener("click", (event) => {
     let playerBirthday = $dpBirthday.value;
     let playerSchedule = getSchedule();
 
-
     console.log("Email: " + playerEmail);
     console.log("Nickname: " + playerNickname);
     console.log("Password: " + playerPassword);
@@ -36,8 +36,6 @@ $btnSignUp.addEventListener("click", (event) => {
     console.log("Schedule: " + playerSchedule);
 
     if (validateFields(playerNickname, playerEmail, playerPassword, playerRepeatPassword, playerBirthday, playerSchedule)) {
-        console.log("PASÓ");
-
         let newPlayer = {
             email: playerEmail,
             nickname: playerNickname,
@@ -53,8 +51,7 @@ $btnSignUp.addEventListener("click", (event) => {
                 'Content-Type': 'application/json'
             }
         }
-        console.log("PELUSA: "+sendOptions);
-        fetch("http://127.0.0.1:5000/players", sendOptions).then(response => {
+        fetch(Configuration.getURL() + "players", sendOptions).then(response => {
             if (response.ok) {
                 location.href = '../index.html';
             }
