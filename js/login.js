@@ -1,8 +1,10 @@
+import {Configuration} from "./Configuration.js";
+
 let $tfEmail = document.getElementById("tfEmailLogin");
 let $tfPassword = document.getElementById("tfPasswordLogin");
 let $btnLogin = document.getElementById("btnLogin");
 
-$btnLogin.addEventListener("click", (event)=> {
+$btnLogin.addEventListener("click", (event) => {
     event.preventDefault();
     let loginInformation = {
         email: $tfEmail.value,
@@ -11,22 +13,22 @@ $btnLogin.addEventListener("click", (event)=> {
     let sendOptions = {
         method: "POST",
         body: JSON.stringify(loginInformation),
-        headers:{
+        headers: {
             'Content-Type': 'application/json'
         }
     }
-    console.log("Info: " + $tfEmail.value + $tfPassword.value);
-    fetch("http://127.0.0.1:5000/" + "login", sendOptions).then(response => {
+    let url = Configuration.getURL();
+    fetch(url + "/login", sendOptions).then(response => {
 
-        if (response.ok){
+        if (response.ok) {
             response.json().then(responseJson => {
                 console.log(responseJson);
                 sessionStorage.setItem('token', responseJson.token);
                 sessionStorage.setItem('nickname', responseJson.nickname);
                 sessionStorage.setItem('birthday', responseJson.birthday);
-                sessionStorage.setItem('gender',responseJson.gender);
-                sessionStorage.setItem('email',loginInformation.email);
-                sessionStorage.setItem('currentPassword',loginInformation.password);
+                sessionStorage.setItem('gender', responseJson.gender);
+                sessionStorage.setItem('email', loginInformation.email);
+                sessionStorage.setItem('currentPassword', loginInformation.password);
                 sessionStorage.setItem('isModerator', responseJson.isModerator);
                 location.href = 'view/Welcome.html';
             })

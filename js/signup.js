@@ -54,7 +54,7 @@ $btnSignUp.addEventListener("click", (event) => {
             }
         }
         console.log("PELUSA: "+sendOptions);
-        fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
+        fetch("http://127.0.0.1:5000/players", sendOptions).then(response => {
             if (response.ok) {
                 location.href = '../index.html';
             }

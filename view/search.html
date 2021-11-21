@@ -16,9 +16,9 @@
 </button>
 <aside class="panel aside-1">
     <nav class="navMenu">
-        <a href="#section1" class="panel-options">Buscar</a>
-        <a href="#section2" class="panel-options">Mi Perfil</a>
-        <a href="#section3" class="panel-options">Juegos</a>
+        <a href="search.html" id="hbSearch" class="panel-options">Buscar</a>
+        <a href="#section2" id="hbMyProfile" class="panel-options">Mi Perfil</a>
+        <a href="#section3" id="hbGames" class="panel-options">Juegos</a>
     </nav>
     <div class="playTwogether-brand">
         <img class="playTwogether-logo" src="../img/PlayTwogether_icon.png" alt="Play Twogether Logo">
@@ -33,60 +33,57 @@
                 <h1 class="text-center">Buscar</h1>
             </div>
             <div class="row mt-5">
-                <label for="tfNombreUsuario">Nombre de usuario</label>
-                <input id="tfNombreUsuario" type="search" class="form-control">
+                <label for="tfNickname">Nombre de usuario</label>
+                <input id="tfNickname" type="search" class="form-control">
+                <button class="rounded mt-2" id="btnSearchByNickname">Buscar por nombre</button>
             </div>
             <div class="row mt-5">
                 <p class="row">Horario</p>
-                <div class="row">
-                    <div class="col">
-                        <label for="tHoraInicio">Hora Inicio</label>
-                        <input type="time" id="tHoraInicio" class="form-control">
-                    </div>
-                    <div class="col">
-                        <label for="tHoraFin">Hora Fin</label>
-                        <input type="time" id="tHoraFin" class="form-control">
-                    </div>
-                    <div class="col">
-                        <label for="rdMiHorario">Mi horario:</label>
-                        <input type="checkbox" id="rdMiHorario" class="form-check-input">
-                    </div>
-                </div>
+                <select id="cbSchedule" class="form-select">
+                    <option value="ANY">Cualquiera</option>
+                    <option value="1">Mañanero</option>
+                    <option value="2">Medio día</option>
+                    <option value="3">Hora pico</option>
+                    <option value="4">Vespertino</option>
+                    <option value="5">Nocturno</option>
+                    <option value="6">Sonambulo</option>
+                </select>
             </div>
             <div class="row mt-5">
-                <label for="cbJuegos">Juego</label>
-                <select id="cbJuegos" class="form-select">
-                    <option value="0">Cualquiera</option>
-                    <option value="1">Apex Legends</option>
-                    <option value="2">League Of Legends</option>
-                    <option value="3">Valorant</option>
+                <label for="cbGames">Juego</label>
+                <select id="cbGames" class="form-select">
+                    <option value="ANY">Cualquiera</option>
+                    <option value="apexLegends">Apex Legends</option>
+                    <option value="lol">League Of Legends</option>
+                    <option value="valorant">Valorant</option>
                 </select>
             </div>
             <div class="row mt-5">
                 <p class="row">Características personales</p>
                 <div class="row">
                     <div class="col">
-                        <label for="cbGenero">Género:</label>
-                        <select name="" id="cbGenero" class="form-select">
-                            <option value="NA">Cualquiera</option>
+                        <label for="cbGender">Género:</label>
+                        <select name="" id="cbGender" class="form-select">
+                            <option value="ANY">Cualquiera</option>
                             <option value="F">Femenino</option>
                             <option value="M">Masculino</option>
                             <option value="O">Compañere</option>
                         </select>
                     </div>
                     <div class="col">
-                        <label for="tfEdad">Edad mínima:</label>
-                        <input type="text" id="tfEdad" class="form-control">
+                        <label for="tfAge">Edad mínima:</label>
+                        <input type="number" id="tfAge" class="form-control">
                     </div>
                 </div>
             </div>
             <div class="row mt-5">
-                <button class="boton-buscador rounded">Buscar</button>
+                <button id="btnGeneralSearch" class="boton-buscador rounded">Buscar</button>
             </div>
         </div>
     </div>
 </div>
 
+<script src="../js/search.js" type="module"></script>
 <script src="../js/menu_hamburguesa.js" type="module"></script>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/popper.js/1.14.0/umd/popper.min.js"
         integrity="sha384-cs/chFZiN24E4KMATLdqdvsezGxaGsi4hLGOzlXwp5UZB1LY//20VyM2taTB4QvJ"
