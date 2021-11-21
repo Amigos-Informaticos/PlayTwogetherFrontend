@@ -169,7 +169,6 @@ function showPlayedGames(nickname) {
                     $template.querySelector(".card-game").src = "../img/" + playedGame.name + "/" + playedGame.name + "_logo.png";
                     $template.querySelector(".card-rank").src = "../img/" + playedGame.name + "/rank/" + playedGame.rank + ".png";
                     $template.querySelectorAll(".box *").forEach((element)=>{
-
                         element.dataset.name_game = playedGame.name;
                     })
                     let $clone = document.importNode($template, true);

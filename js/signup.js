@@ -1,4 +1,4 @@
-import {Validator} from "./Validator.js";
+import {Player} from "./Player.js";
 
 let $btnSignUp = document.getElementById("btnSignUp");
 let $tfEmail = document.getElementById("tfEmail");
@@ -73,13 +73,13 @@ function getSchedule(){
 
 function validateFields(nickname, email, password, repeatPassword, birthday, schedule) {
     let flag = true;
-    if (!Validator.validateEmail(email)) {
+    if (!Player.validateEmail(email)) {
         flag = false;
         $pEmailWarning.innerHTML = "* La dirección de correo no es válida";
     }else {
         $pEmailWarning.innerHTML = "";
     }
-    let validatedPassword = Validator.validatePassword(password, repeatPassword);
+    let validatedPassword = Player.validatePassword(password, repeatPassword);
     if (validatedPassword === "dontMatch") {
         flag = false;
         $pPasswordWarning.innerHTML = "* Las contraseñas no coinciden";
@@ -89,13 +89,13 @@ function validateFields(nickname, email, password, repeatPassword, birthday, sch
     }else {
         $pPasswordWarning.innerHTML = ""
     }
-    if (!Validator.validateNickname(nickname)) {
+    if (!Player.validateNickname(nickname)) {
         flag = false;
         $pNicknameWarning.innerHTML = "* El nickname debe tener al menos 4 caracteres y máximo 25";
     }else {
         $pNicknameWarning.innerHTML = "";
     }
-    if (Validator.uncompleteSignUpInfo(email,nickname,password,repeatPassword,birthday,schedule)){
+    if (Player.uncompleteSignUpInfo(email,nickname,password,repeatPassword,birthday,schedule)){
         flag = false;
         $pWarning.innerHTML = "Llena todos los campos obligatorios (*)";
     }
