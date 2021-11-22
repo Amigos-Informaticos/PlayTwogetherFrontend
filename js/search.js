@@ -31,7 +31,7 @@ $btnGeneralSearch.addEventListener("click", (event) => {
 
 function createLink(schedule, game, gender, age){
     let isFirstAttribute = true;
-    let link = "http://127.0.0.1:5000/players?";
+    let link = Configuration.getURL() + "players?";
     if (schedule !== "ANY"){
         isFirstAttribute = false;
         link = link + "schedule=" + schedule;

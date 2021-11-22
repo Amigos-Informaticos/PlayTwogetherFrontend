@@ -1,4 +1,5 @@
 import {Player} from "./Player.js";
+import {Configuration} from "./Configuration.js";
 
 let $btnUpdate = document.getElementById("btnUpdate");
 let $tfNickname = document.getElementById("tfNickname");
@@ -38,21 +39,21 @@ $btnUpdate.addEventListener("click", (event) => {
                 'token': sessionStorage.getItem('token')
             }
         }
-        fetch("http://127.0.0.1:5000/" + "players", sendOptions).then(response => {
-            if (response.ok){
+        fetch(Configuration.getURL() + "players", sendOptions).then(response => {
+            if (response.ok) {
                 sessionStorage.setItem('nickname', newPlayer.nickname);
                 sessionStorage.setItem('birthday', newPlayer.birthday);
-                sessionStorage.setItem('gender',newPlayer.gender);
-                sessionStorage.setItem('currentPassword',password);
+                sessionStorage.setItem('gender', newPlayer.gender);
+                sessionStorage.setItem('currentPassword', password);
                 location.href = '../view/ViewProfile.html';
             }
         })
     }
 })
 
-function validateFields(nickname, email, password, repeatPassword, birthday){
+function validateFields(nickname, email, password, repeatPassword, birthday) {
     let flag = true;
-    if (!nickname.trim() && !email.trim() && !password.trim() && !repeatPassword.trim() && !birthday.trim()){
+    if (!nickname.trim() && !email.trim() && !password.trim() && !repeatPassword.trim() && !birthday.trim()) {
         $pWarning.innerHTML = "* Campos vacíos"
         flag = false;
     }
@@ -60,7 +61,7 @@ function validateFields(nickname, email, password, repeatPassword, birthday){
     if (validatedPassword === "dontMatch") {
         flag = false;
         $pWarning.innerHTML = "* Las contraseñas no coinciden"
-    }else if (validatedPassword === "weakPassword"){
+    } else if (validatedPassword === "weakPassword") {
         flag = false;
         $pWarning.innerHTML = "* La contraseña debe contener al menos una mayúscula y un número"
     }
@@ -71,7 +72,7 @@ function validateFields(nickname, email, password, repeatPassword, birthday){
     return flag;
 }
 
-$btnDelete.addEventListener("click",(event) =>{
+$btnDelete.addEventListener("click", (event) => {
     event.preventDefault();
     let playerToDelete = {
         email: sessionStorage.getItem('email'),
@@ -85,7 +86,7 @@ $btnDelete.addEventListener("click",(event) =>{
         }
     }
     console.log(sendOptions.body);
-    fetch("http://127.0.0.1:5000/players", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "players", sendOptions).then(response => {
         console.log(response);
         if (response.status === 200) {
             sessionStorage.clear();

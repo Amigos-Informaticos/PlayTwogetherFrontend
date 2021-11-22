@@ -1,4 +1,5 @@
 import {GameValidator} from "./GameValidator.js";
+import {Configuration} from "./Configuration.js";
 
 let $tfNickName = document.getElementById("tfNickname");
 let $tfLevel = document.getElementById("tfLevel");
@@ -21,7 +22,7 @@ $btnAddGame.addEventListener("click", (event) => {
     let note = $tfNote.value;
     let rol = 10;
 
-    if (verifyInfo(nickname, accountLevel, personage, hoursPlayed, rol)){
+    if (verifyInfo(nickname, accountLevel, personage, hoursPlayed, rol)) {
         let valorantData = {
             accountLevel: accountLevel,
             game: "valorant",
@@ -41,7 +42,7 @@ $btnAddGame.addEventListener("click", (event) => {
                 'token': sessionStorage.getItem('token')
             }
         }
-        fetch("http://127.0.0.1:5000/player/game", sendOptions).then(response => {
+        fetch(Configuration.getURL() + "player/game", sendOptions).then(response => {
             if (response.ok) {
                 location.href = './view/ViewProfile.html';
             }
@@ -51,7 +52,7 @@ $btnAddGame.addEventListener("click", (event) => {
 
 function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol) {
     let flag = true;
-    if (GameValidator.uncompleteGameInfo(nickname,accountLevel,personage,hourPlayed,rol)) {
+    if (GameValidator.uncompleteGameInfo(nickname, accountLevel, personage, hourPlayed, rol)) {
         flag = false;
         $warning.innerText = "Llena correctamente todos los campos obligatorios (*)";
     }
