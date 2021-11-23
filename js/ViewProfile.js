@@ -8,10 +8,14 @@ let $btnReport = document.getElementById("btnReport");
 let $btnVerify = document.getElementById("btnVerify");
 let $btnBan = document.getElementById("btnBan");
 let $btnAddGame = document.getElementById("btnAddGame");
-let $btnConfirmReport = document.getElementById("btnConfirmReport");
+
 let $btnConfirmVerify = document.getElementById("btnConfirmVerify");
 let $btnConfirmBan = document.getElementById("btnConfirmBan");
 let $verified = document.getElementById("verified");
+
+let $rdReportReason = document.getElementsByName("report-radio");
+let $tfReport = document.getElementById("tfReport");
+let $btnConfirmReport = document.getElementById("btnConfirmReport");
 
 let profileToShow = sessionStorage.getItem('viewProfile');
 let nickname;
@@ -100,9 +104,16 @@ $btnEdit.addEventListener("click", (event) => {
 //TODO
 $btnConfirmReport.addEventListener("click", (event) => {
     event.preventDefault();
+    let reason;
+    let comment;
+    reason = getReportReason();
+    comment = $tfReport.value;
+
     let reportInformation = {
-        email: $tfEmail.value,
-        password: $tfPassword.value
+        informer: sessionStorage.getItem("nickname"),
+        informed: profileToShow,
+        reason: reason,
+        comment: comment
     }
     let sendOptions = {
         method: "POST",
@@ -111,7 +122,7 @@ $btnConfirmReport.addEventListener("click", (event) => {
             'Content-Type': 'application/json'
         }
     }
-    fetch("http://127.0.0.1:5000/" + "login", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "player/report", sendOptions).then(response => {
         console.log(response);
         if (response.ok) {
             response.json().then(responseJson => {
@@ -121,6 +132,15 @@ $btnConfirmReport.addEventListener("click", (event) => {
         }
     })
 })
+
+function getReportReason(){
+    let selectedReason;
+    for(var i = 0; i < $rdReportReason.length; i++) {
+        if($rdReportReason[i].checked)
+            selectedReason = $rdReportReason[i].value;
+    }
+    return selectedReason;
+}
 
 $btnConfirmVerify.addEventListener("click", (event) => {
     event.preventDefault();
