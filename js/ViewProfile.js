@@ -20,43 +20,47 @@ let gender;
 let isVerified;
 let isModerator = sessionStorage.getItem('isModerator');
 
-if (profileToShow === sessionStorage.getItem('nickname')) {
-    nickname = sessionStorage.getItem('nickname');
-    gender = sessionStorage.getItem('gender');
-    birthday = sessionStorage.getItem('birthday');
-    showInfo(nickname, birthday, gender, 0);
 
-    $btnReport.remove();
-    $btnVerify.remove();
-    $btnBan.remove();
+configureWindow();
+showPlayedGames(profileToShow);
 
-} else {
-    let sendOptions = {
-        method: "GET",
-    }
-    fetch(Configuration.getURL() + "players/" + profileToShow, sendOptions).then(response => {
-        console.log(response);
-        if (response.ok) {
-            response.json().then(responseJson => {
-                gender = responseJson.gender;
-                birthday = responseJson.birthday;
-                isVerified = responseJson.isVerified;
-                showInfo(profileToShow, birthday, gender, isVerified);
-            })
-        }
-    })
-    $btnAddGame.remove();
-    $btnEdit.remove();
-    $btnAddGame.remove();
-    console.log("MOD: " + isModerator);
-    if (isModerator != 1) {
-        console.log("NO ADMIN");
+function configureWindow(){
+    if (profileToShow === sessionStorage.getItem('nickname')) {
+        nickname = sessionStorage.getItem('nickname');
+        gender = sessionStorage.getItem('gender');
+        birthday = sessionStorage.getItem('birthday');
+        showInfo(nickname, birthday, gender, 0);
+
+        $btnReport.remove();
         $btnVerify.remove();
         $btnBan.remove();
+
+    } else {
+        let sendOptions = {
+            method: "GET",
+        }
+        fetch(Configuration.getURL() + "players/" + profileToShow, sendOptions).then(response => {
+            console.log(response);
+            if (response.ok) {
+                response.json().then(responseJson => {
+                    gender = responseJson.gender;
+                    birthday = responseJson.birthday;
+                    isVerified = responseJson.isVerified;
+                    showInfo(profileToShow, birthday, gender, isVerified);
+                })
+            }
+        })
+        $btnAddGame.remove();
+        $btnEdit.remove();
+        $btnAddGame.remove();
+        console.log("MOD: " + isModerator);
+        if (isModerator != 1) {
+            console.log("NO ADMIN");
+            $btnVerify.remove();
+            $btnBan.remove();
+        }
     }
 }
-
-showPlayedGames(profileToShow);
 
 function showInfo(nickname, birthday, gender, isVerified) {
     $lblNickname.innerText = nickname;

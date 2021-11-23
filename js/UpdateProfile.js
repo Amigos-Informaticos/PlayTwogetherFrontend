@@ -10,6 +10,9 @@ let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
 let $btnDelete = document.getElementById("btnConfirmDelete");
 
+let $inpProfilePic = document.getElementById("inpProfilePic");
+let $btnUpdateProfile = document.getElementById("btnUpdateProfilePic");
+
 $tfNickname.value = sessionStorage.getItem('nickname');
 $dpBirthday.value = sessionStorage.getItem('birthday');
 $cbGender.value = sessionStorage.getItem('gender');
@@ -72,6 +75,26 @@ function validateFields(nickname, email, password, repeatPassword, birthday) {
     return flag;
 }
 
+$btnUpdateProfile.addEventListener("click",(event) => {
+    event.preventDefault();
+    var data = new FormData();
+    data.append("image", $inpProfilePic.files[0]);
+    let sendOptions = {
+        method: "POST",
+        body: data,
+        headers: {
+            'Content-Type': 'application/json',
+            'token': sessionStorage.getItem('token')
+        }
+    }
+    let nickname = sessionStorage.getItem("nickname");
+    fetch(Configuration.getURL() + "palyers/" + nickname + "/image", sendOptions).then(response => {
+        if (response.ok){
+            location.href = '../view/ViewProfile.html';
+        }
+    })
+})
+
 $btnDelete.addEventListener("click", (event) => {
     event.preventDefault();
     let playerToDelete = {
@@ -85,9 +108,7 @@ $btnDelete.addEventListener("click", (event) => {
             'token': sessionStorage.getItem('token')
         }
     }
-    console.log(sendOptions.body);
     fetch(Configuration.getURL() + "players", sendOptions).then(response => {
-        console.log(response);
         if (response.status === 200) {
             sessionStorage.clear();
             location.href = '../index.html';

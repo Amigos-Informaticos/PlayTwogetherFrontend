@@ -18,7 +18,7 @@ $btnLogin.addEventListener("click", (event) => {
         }
     }
     let url = Configuration.getURL();
-    fetch(url + "/login", sendOptions).then(response => {
+    fetch(url + "login", sendOptions).then(response => {
 
         if (response.ok) {
             response.json().then(responseJson => {
