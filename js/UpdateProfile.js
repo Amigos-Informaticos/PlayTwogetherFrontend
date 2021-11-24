@@ -11,7 +11,7 @@ let $pWarning = document.getElementById("warning");
 let $btnDelete = document.getElementById("btnConfirmDelete");
 
 let $inpProfilePic = document.getElementById("inpProfilePic");
-let $btnUpdateProfile = document.getElementById("btnUpdateProfilePic");
+let $btnUpdateProfilePic = document.getElementById("btnUpdateProfilePic");
 
 $tfNickname.value = sessionStorage.getItem('nickname');
 $dpBirthday.value = sessionStorage.getItem('birthday');
@@ -39,7 +39,7 @@ $btnUpdate.addEventListener("click", (event) => {
             body: JSON.stringify(newPlayer),
             headers: {
                 'Content-Type': 'application/json',
-                'token': sessionStorage.getItem('token')
+                'token': sessionStorage.getItem("token")
             }
         }
         fetch(Configuration.getURL() + "players", sendOptions).then(response => {
@@ -75,43 +75,46 @@ function validateFields(nickname, email, password, repeatPassword, birthday) {
     return flag;
 }
 
-$btnUpdateProfile.addEventListener("click",(event) => {
+$btnUpdateProfilePic.addEventListener("click",(event) => {
     event.preventDefault();
-    var data = new FormData();
-    data.append("image", $inpProfilePic.files[0]);
-    let sendOptions = {
-        method: "POST",
-        body: data,
-        headers: {
-            'Content-Type': 'application/json',
-            'token': sessionStorage.getItem('token')
-        }
-    }
+    const formData = new FormData();
+
+    console.log($inpProfilePic.files[0]);
+
+    formData.append("image", $inpProfilePic.files[0]);
+
     let nickname = sessionStorage.getItem("nickname");
-    fetch(Configuration.getURL() + "palyers/" + nickname + "/image", sendOptions).then(response => {
+
+    fetch(Configuration.getURL() + "players/Yira98/image",{
+        method: "POST",
+        body: formData,
+        headers: {
+            'token': "CACACACAAA"
+        }
+    }).then(response => {
         if (response.ok){
             location.href = '../view/ViewProfile.html';
         }
-    })
+    }).catch(console.error);
 })
 
 $btnDelete.addEventListener("click", (event) => {
     event.preventDefault();
     let playerToDelete = {
-        email: sessionStorage.getItem('email'),
+        email: sessionStorage.getItem("email"),
     }
     let sendOptions = {
         method: "DELETE",
         body: JSON.stringify(playerToDelete),
         headers: {
             'Content-Type': 'application/json',
-            'token': sessionStorage.getItem('token')
+            'token': sessionStorage.getItem("token")
         }
     }
     fetch(Configuration.getURL() + "players", sendOptions).then(response => {
         if (response.status === 200) {
             sessionStorage.clear();
-            location.href = '../index.html';
+            location.href = "../index.html";
         }
     })
 })

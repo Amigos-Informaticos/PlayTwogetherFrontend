@@ -13,7 +13,7 @@ let $characterWarning = document.getElementById("character-warning");
 
 $btnAddGame.addEventListener("click", (event) => {
     event.preventDefault();
-    let email = sessionStorage.getItem('email');
+    let email = sessionStorage.getItem("email");
     let nickname = $tfNickName.value;
     let accountLevel = $tfLevel.value;
     let personage = $cbAgent.value;

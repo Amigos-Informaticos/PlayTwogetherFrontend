@@ -55,7 +55,7 @@ function configureWindow(){
             }
         })
         $btnAddGame.remove();
-        $btnEdit.remove();
+        //$btnEdit.remove();
         $btnAddGame.remove();
         console.log("MOD: " + isModerator);
         if (isModerator != 1) {
@@ -101,7 +101,6 @@ $btnEdit.addEventListener("click", (event) => {
     location.href = '../view/UpdateProfile.html'
 })
 
-//TODO
 $btnConfirmReport.addEventListener("click", (event) => {
     event.preventDefault();
     let reason;
@@ -110,8 +109,8 @@ $btnConfirmReport.addEventListener("click", (event) => {
     comment = $tfReport.value;
 
     let reportInformation = {
-        informer: sessionStorage.getItem("nickname"),
-        informed: profileToShow,
+        informer: "Efrayork777",
+        informed: "Yira98",
         reason: reason,
         comment: comment
     }
@@ -125,10 +124,7 @@ $btnConfirmReport.addEventListener("click", (event) => {
     fetch(Configuration.getURL() + "player/report", sendOptions).then(response => {
         console.log(response);
         if (response.ok) {
-            response.json().then(responseJson => {
-                console.log(responseJson);
-                location.href = '../view/Welcome.html';
-            })
+            location.href = "../view/Welcome.html";
         }
     })
 })
