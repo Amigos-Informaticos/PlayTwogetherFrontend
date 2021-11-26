@@ -17,6 +17,8 @@ let $rdReportReason = document.getElementsByName("report-radio");
 let $tfReport = document.getElementById("tfReport");
 let $btnConfirmReport = document.getElementById("btnConfirmReport");
 
+let $btnViewReports = document.getElementById("btnViewReports");
+
 let profileToShow = sessionStorage.getItem('viewProfile');
 let nickname;
 let birthday;
@@ -109,16 +111,18 @@ $btnConfirmReport.addEventListener("click", (event) => {
     comment = $tfReport.value;
 
     let reportInformation = {
-        informer: "Efrayork777",
-        informed: "Yira98",
+        informer: sessionStorage.getItem("nickname"),
+        informed: profileToShow,
         reason: reason,
-        comment: comment
+        comment: comment,
+        email: sessionStorage.getItem("email")
     }
     let sendOptions = {
         method: "POST",
         body: JSON.stringify(reportInformation),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'token': sessionStorage.getItem("token")
         }
     }
     fetch(Configuration.getURL() + "player/report", sendOptions).then(response => {
@@ -177,6 +181,33 @@ $btnAddGame.addEventListener("click", (event) => {
     event.preventDefault();
     location.href = '../view/AddValorant.html'
 })
+
+$btnViewReports.addEventListener("click", (event) => {
+    event.preventDefault();
+    getReports();
+})
+
+function getReports(){
+    let sendOptions = {
+        method: "GET",
+    }
+    fetch(Configuration.getURL() + "players/" + "Yira98" + "/reports", sendOptions).then(response => {
+        if (response.ok) {
+            response.json().then(responseJson => {
+
+                responseJson.forEach((report) => {
+                    var reportItem = document.createElement("p");
+                    var reportReason = document.createTextNode(report.reason + ": ");
+                    reportItem.appendChild(reportReason);
+                    var reportComment = document.createTextNode(report.comment);
+                    reportItem.appendChild(reportComment);
+                    var element = document.getElementById("report-list");
+                    element.appendChild(reportItem);
+                });
+            })
+        }
+    })
+}
 
 function showPlayedGames(nickname) {
     let sendOptions = {

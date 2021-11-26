@@ -78,18 +78,14 @@ function validateFields(nickname, email, password, repeatPassword, birthday) {
 $btnUpdateProfilePic.addEventListener("click",(event) => {
     event.preventDefault();
     const formData = new FormData();
-
     console.log($inpProfilePic.files[0]);
-
     formData.append("image", $inpProfilePic.files[0]);
-
     let nickname = sessionStorage.getItem("nickname");
-
-    fetch(Configuration.getURL() + "players/Yira98/image",{
+    fetch(Configuration.getURL() + "players/" + nickname + "/image",{
         method: "POST",
         body: formData,
         headers: {
-            'token': "CACACACAAA"
+            'token': sessionStorage.getItem("token")
         }
     }).then(response => {
         if (response.ok){

@@ -4,6 +4,8 @@
  * @param {panel} panel - Selector to toggle
  * @param {panelOption} panelOption - Selector from the options in the panel
  */
+import {Configuration} from "./Configuration.js";
+
 export default function hamburgerMenu(hamburgerButton, panel, panelOption) {
     document.addEventListener('click', (event) => {
         const $target = event.target;
@@ -41,6 +43,7 @@ document.addEventListener('DOMContentLoaded', () => {
 let $hbSearch = document.getElementById("hbSearch");
 let $hbMyProfile = document.getElementById("hbMyProfile");
 let $hbGames = document.getElementById("hbGames");
+let $hbReportedPlayers = document.getElementById("hbReportedPlayers");
 
 $hbSearch.addEventListener("click",(event) =>{
     event.preventDefault();
@@ -51,4 +54,17 @@ $hbMyProfile.addEventListener("click",(event) =>{
     event.preventDefault();
     sessionStorage.setItem('viewProfile', sessionStorage.getItem('nickname'));
     location.href = '../view/ViewProfile.html'
+})
+
+$hbMyProfile.addEventListener("click",(event) =>{
+    event.preventDefault();
+    sessionStorage.setItem('viewProfile', sessionStorage.getItem('nickname'));
+    location.href = '../view/ViewProfile.html'
+})
+
+$hbReportedPlayers.addEventListener("click",(event) =>{
+    event.preventDefault();
+    sessionStorage.setItem("linkForSearch", Configuration.getURL() + "report/players/");
+    sessionStorage.setItem("searching", "reportedPlayers");
+    location.href = '../view/playerList.html'
 })
