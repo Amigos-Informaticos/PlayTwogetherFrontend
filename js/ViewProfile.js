@@ -8,10 +8,16 @@ let $btnReport = document.getElementById("btnReport");
 let $btnVerify = document.getElementById("btnVerify");
 let $btnBan = document.getElementById("btnBan");
 let $btnAddGame = document.getElementById("btnAddGame");
-let $btnConfirmReport = document.getElementById("btnConfirmReport");
+
 let $btnConfirmVerify = document.getElementById("btnConfirmVerify");
 let $btnConfirmBan = document.getElementById("btnConfirmBan");
 let $verified = document.getElementById("verified");
+
+let $rdReportReason = document.getElementsByName("report-radio");
+let $tfReport = document.getElementById("tfReport");
+let $btnConfirmReport = document.getElementById("btnConfirmReport");
+
+let $btnViewReports = document.getElementById("btnViewReports");
 
 let profileToShow = sessionStorage.getItem('viewProfile');
 let nickname;
@@ -20,43 +26,47 @@ let gender;
 let isVerified;
 let isModerator = sessionStorage.getItem('isModerator');
 
-if (profileToShow === sessionStorage.getItem('nickname')) {
-    nickname = sessionStorage.getItem('nickname');
-    gender = sessionStorage.getItem('gender');
-    birthday = sessionStorage.getItem('birthday');
-    showInfo(nickname, birthday, gender, 0);
 
-    $btnReport.remove();
-    $btnVerify.remove();
-    $btnBan.remove();
+configureWindow();
+showPlayedGames(profileToShow);
 
-} else {
-    let sendOptions = {
-        method: "GET",
-    }
-    fetch(Configuration.getURL() + "players/" + profileToShow, sendOptions).then(response => {
-        console.log(response);
-        if (response.ok) {
-            response.json().then(responseJson => {
-                gender = responseJson.gender;
-                birthday = responseJson.birthday;
-                isVerified = responseJson.isVerified;
-                showInfo(profileToShow, birthday, gender, isVerified);
-            })
-        }
-    })
-    $btnAddGame.remove();
-    $btnEdit.remove();
-    $btnAddGame.remove();
-    console.log("MOD: " + isModerator);
-    if (isModerator != 1) {
-        console.log("NO ADMIN");
+function configureWindow(){
+    if (profileToShow === sessionStorage.getItem('nickname')) {
+        nickname = sessionStorage.getItem('nickname');
+        gender = sessionStorage.getItem('gender');
+        birthday = sessionStorage.getItem('birthday');
+        showInfo(nickname, birthday, gender, 0);
+
+        $btnReport.remove();
         $btnVerify.remove();
         $btnBan.remove();
+
+    } else {
+        let sendOptions = {
+            method: "GET",
+        }
+        fetch(Configuration.getURL() + "players/" + profileToShow, sendOptions).then(response => {
+            console.log(response);
+            if (response.ok) {
+                response.json().then(responseJson => {
+                    gender = responseJson.gender;
+                    birthday = responseJson.birthday;
+                    isVerified = responseJson.isVerified;
+                    showInfo(profileToShow, birthday, gender, isVerified);
+                })
+            }
+        })
+        $btnAddGame.remove();
+        //$btnEdit.remove();
+        $btnAddGame.remove();
+        console.log("MOD: " + isModerator);
+        if (isModerator != 1) {
+            console.log("NO ADMIN");
+            $btnVerify.remove();
+            $btnBan.remove();
+        }
     }
 }
-
-showPlayedGames(profileToShow);
 
 function showInfo(nickname, birthday, gender, isVerified) {
     $lblNickname.innerText = nickname;
@@ -93,30 +103,44 @@ $btnEdit.addEventListener("click", (event) => {
     location.href = '../view/UpdateProfile.html'
 })
 
-//TODO
 $btnConfirmReport.addEventListener("click", (event) => {
     event.preventDefault();
+    let reason;
+    let comment;
+    reason = getReportReason();
+    comment = $tfReport.value;
+
     let reportInformation = {
-        email: $tfEmail.value,
-        password: $tfPassword.value
+        informer: sessionStorage.getItem("nickname"),
+        informed: profileToShow,
+        reason: reason,
+        comment: comment,
+        email: sessionStorage.getItem("email")
     }
     let sendOptions = {
         method: "POST",
         body: JSON.stringify(reportInformation),
         headers: {
-            'Content-Type': 'application/json'
+            'Content-Type': 'application/json',
+            'token': sessionStorage.getItem("token")
         }
     }
-    fetch("http://127.0.0.1:5000/" + "login", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "player/report", sendOptions).then(response => {
         console.log(response);
         if (response.ok) {
-            response.json().then(responseJson => {
-                console.log(responseJson);
-                location.href = '../view/Welcome.html';
-            })
+            location.href = "../view/Welcome.html";
         }
     })
 })
+
+function getReportReason(){
+    let selectedReason;
+    for(var i = 0; i < $rdReportReason.length; i++) {
+        if($rdReportReason[i].checked)
+            selectedReason = $rdReportReason[i].value;
+    }
+    return selectedReason;
+}
 
 $btnConfirmVerify.addEventListener("click", (event) => {
     event.preventDefault();
@@ -157,6 +181,33 @@ $btnAddGame.addEventListener("click", (event) => {
     event.preventDefault();
     location.href = '../view/AddValorant.html'
 })
+
+$btnViewReports.addEventListener("click", (event) => {
+    event.preventDefault();
+    getReports();
+})
+
+function getReports(){
+    let sendOptions = {
+        method: "GET",
+    }
+    fetch(Configuration.getURL() + "players/" + "Yira98" + "/reports", sendOptions).then(response => {
+        if (response.ok) {
+            response.json().then(responseJson => {
+
+                responseJson.forEach((report) => {
+                    var reportItem = document.createElement("p");
+                    var reportReason = document.createTextNode(report.reason + ": ");
+                    reportItem.appendChild(reportReason);
+                    var reportComment = document.createTextNode(report.comment);
+                    reportItem.appendChild(reportComment);
+                    var element = document.getElementById("report-list");
+                    element.appendChild(reportItem);
+                });
+            })
+        }
+    })
+}
 
 function showPlayedGames(nickname) {
     let sendOptions = {

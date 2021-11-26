@@ -11,9 +11,11 @@ let $warning = document.getElementById("warning");
 let $btnAddGame = document.getElementById("btnAddGame");
 let $characterWarning = document.getElementById("character-warning");
 
+populatePersonageCombo();
+
 $btnAddGame.addEventListener("click", (event) => {
     event.preventDefault();
-    let email = sessionStorage.getItem('email');
+    let email = sessionStorage.getItem("email");
     let nickname = $tfNickName.value;
     let accountLevel = $tfLevel.value;
     let personage = $cbAgent.value;
@@ -61,4 +63,22 @@ function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol) {
         $characterWarning.innerText = "Selecciona un agente";
     }
     return flag;
+}
+
+function populatePersonageCombo(){
+    let sendOptions = {
+        method: "GET"
+    }
+    fetch(Configuration.getURL() + "game/lol/personages", sendOptions).then(response => {
+        if (response.ok) {
+            response.json().then(responseJson => {
+                responseJson.forEach((personage) => {
+                    var option = document.createElement("option");
+                    option.value = personage.id;
+                    option.innerHTML = personage.name;
+                    $cbAgent.appendChild(option);
+                });
+            })
+        }
+    })
 }

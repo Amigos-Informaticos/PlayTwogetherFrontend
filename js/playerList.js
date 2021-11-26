@@ -1,6 +1,7 @@
 import {Player} from "./Player.js";
 
 let page = 0;
+let searching = sessionStorage.getItem("searching");
 showPlayers();
 
 function showPlayers() {
@@ -13,8 +14,13 @@ function showPlayers() {
         if (response.ok) {
             response.json().then(playersJson => {
                 playersJson.forEach((player) => {
+                    $template.querySelector(".card-picture").src = "http://amigosinformaticos.ddns.net:42081/players/" + player.nickname + "/image";
                     $template.querySelector(".card-nickname").textContent = player.nickname;
-                    $template.querySelector(".card-age").textContent = Player.getAge(player.birthday) + " años";
+                    if (searching === "reportedPlayers") {
+                        $template.querySelector(".card-age").textContent = player.reports + " reportes";
+                    } else {
+                        $template.querySelector(".card-age").textContent = Player.getAge(player.birthday) + " años";
+                    }
                     $template.querySelector(".verified-icon").style.display = "block";
                     if (!player.isVerified) {
                         $template.querySelector(".verified-icon").style.display = "none";
@@ -34,33 +40,8 @@ function showPlayers() {
 }
 
 
-/*
-const response = [
-    {
-        nickname: "EfraYork",
-        isVerified: 1,
-        birthday: "1999-10-21"
-    },
-    {
-        nickname: "Yira98",
-        isVerified: 1,
-        birthday: "1998-10-21"
-    },
-    {
-        nickname: "EfraYork",
-        isVerified: 1,
-        birthday: "1999-10-21"
-    }
-]
-
- */
-
-
-
-
 document.addEventListener("click", (event) => {
     if (event.target.matches(".box *")) {
-        console.log(event.target);
         sessionStorage.setItem('viewProfile', event.target.dataset.nickname_player);
         location.href = `../view/ViewProfile.html`;
     }

@@ -10,6 +10,9 @@ let $dpBirthday = document.getElementById("dpBirthday");
 let $pWarning = document.getElementById("warning");
 let $btnDelete = document.getElementById("btnConfirmDelete");
 
+let $inpProfilePic = document.getElementById("inpProfilePic");
+let $btnUpdateProfilePic = document.getElementById("btnUpdateProfilePic");
+
 $tfNickname.value = sessionStorage.getItem('nickname');
 $dpBirthday.value = sessionStorage.getItem('birthday');
 $cbGender.value = sessionStorage.getItem('gender');
@@ -36,7 +39,7 @@ $btnUpdate.addEventListener("click", (event) => {
             body: JSON.stringify(newPlayer),
             headers: {
                 'Content-Type': 'application/json',
-                'token': sessionStorage.getItem('token')
+                'token': sessionStorage.getItem("token")
             }
         }
         fetch(Configuration.getURL() + "players", sendOptions).then(response => {
@@ -72,25 +75,42 @@ function validateFields(nickname, email, password, repeatPassword, birthday) {
     return flag;
 }
 
+$btnUpdateProfilePic.addEventListener("click",(event) => {
+    event.preventDefault();
+    const formData = new FormData();
+    console.log($inpProfilePic.files[0]);
+    formData.append("image", $inpProfilePic.files[0]);
+    let nickname = sessionStorage.getItem("nickname");
+    fetch(Configuration.getURL() + "players/" + nickname + "/image",{
+        method: "POST",
+        body: formData,
+        headers: {
+            'token': sessionStorage.getItem("token")
+        }
+    }).then(response => {
+        if (response.ok){
+            location.href = '../view/ViewProfile.html';
+        }
+    }).catch(console.error);
+})
+
 $btnDelete.addEventListener("click", (event) => {
     event.preventDefault();
     let playerToDelete = {
-        email: sessionStorage.getItem('email'),
+        email: sessionStorage.getItem("email"),
     }
     let sendOptions = {
         method: "DELETE",
         body: JSON.stringify(playerToDelete),
         headers: {
             'Content-Type': 'application/json',
-            'token': sessionStorage.getItem('token')
+            'token': sessionStorage.getItem("token")
         }
     }
-    console.log(sendOptions.body);
     fetch(Configuration.getURL() + "players", sendOptions).then(response => {
-        console.log(response);
         if (response.status === 200) {
             sessionStorage.clear();
-            location.href = '../index.html';
+            location.href = "../index.html";
         }
     })
 })

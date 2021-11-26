@@ -14,6 +14,7 @@ $btnSearchByNickname.addEventListener("click", (event) => {
     let nickname = $tfNickname.value;
     let link = Configuration.getURL() + "/players?nickname=" + nickname + "&info_page=";
     sessionStorage.setItem("linkForSearch", link);
+    sessionStorage.setItem("searching", "queriedPlayers");
     location.href = `../view/playerList.html`;
 })
 
@@ -26,6 +27,7 @@ $btnGeneralSearch.addEventListener("click", (event) => {
 
     let link = createLink(schedule, game, gender, age);
     sessionStorage.setItem("linkForSearch", link);
+    sessionStorage.setItem("searching", "queriedPlayers");
     location.href = `../view/playerList.html`;
 })
 
