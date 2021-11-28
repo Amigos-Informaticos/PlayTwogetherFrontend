@@ -10,6 +10,7 @@ let $cbGender = document.getElementById("cbSex");
 let $dpBirthday = document.getElementById("dpBirthday");
 let $rdSchedule = document.getElementsByName("schedule-radio");
 let $pWarning = document.getElementById("warning");
+let $modalErrorMessage = document.getElementById("errorModal");
 
 let $pEmailWarning = document.getElementById("email-warning");
 let $pNicknameWarning = document.getElementById("nickname-warning");
@@ -52,8 +53,13 @@ $btnSignUp.addEventListener("click", (event) => {
             }
         }
         fetch(Configuration.getURL() + "players", sendOptions).then(response => {
-            if (response.ok) {
+            if (response.status === 201) {
                 location.href = '../index.html';
+            }else if (response.status === 409){
+                $pWarning.innerHTML = "El nickname o el email existen, prueba cambiándolos*";
+            }else{
+                //document.getElementById("myDialog").showModal()
+                document.getElementById("errorModal").showModal();
             }
         })
     }
@@ -92,9 +98,17 @@ function validateFields(nickname, email, password, repeatPassword, birthday, sch
     }else {
         $pNicknameWarning.innerHTML = "";
     }
+    if (!Player.validateBirthday(birthday)){
+        flag = false;
+        $pBirthdayWarning.innerHTML = "* Debes ser mayor que 11 años y menor que 100 para poder registrarte"
+    }else{
+        $pBirthdayWarning.innerHTML = "";
+    }
     if (Player.uncompleteSignUpInfo(email,nickname,password,repeatPassword,birthday,schedule)){
         flag = false;
         $pWarning.innerHTML = "Llena todos los campos obligatorios (*)";
+    }else{
+        $pWarning.innerHTML = "";
     }
     return flag;
 }

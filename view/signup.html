@@ -19,22 +19,22 @@
                     <div class="container">
                         <div class="row mb-4">
                             <label for="tfEmail" class="col-lg-3 form-label text-lg-end">*Correo electronico:</label>
-                            <input type="email" class="col form-control" required name="email" id="tfEmail">
-                            <p id="email-warning"></p>
+                            <input type="email" class="col form-control" required name="email" id="tfEmail" maxlength="320">
+                            <p id="email-warning" class="warning-message"></p>
                         </div>
                         <div class="row mb-4">
                             <label for="tfNickname" class="col-lg-3 form-label text-lg-end">*Nombre de usuario:</label>
-                            <input type="text" class="col form-control" required name="nickname" id="tfNickname">
-                            <p id="nickname-warning"></p>
+                            <input type="text" class="col form-control" required name="nickname" id="tfNickname" maxlength="25">
+                            <p id="nickname-warning" class="warning-message"></p>
                         </div>
                         <div class="row mb-4">
                             <label for="tfPassword" class="col-lg-3 form-label text-lg-end">*Contraseña:</label>
-                            <input type="password" class="col form-control" required name="password" id="tfPassword">
+                            <input type="password" class="col form-control" required name="password" id="tfPassword" maxlength="20">
 
                             <label for="tfRepeatPassword" class="col-lg-3 form-label text-lg-end">*Repetir
                                 Contraseña:</label>
-                            <input type="password" class="col form-control" required name="repeatPassword" id="tfRepeatPassword">
-                            <p id="password-warning"></p>
+                            <input type="password" class="col form-control" required name="repeatPassword" id="tfRepeatPassword" maxlength="20">
+                            <p id="password-warning" class="warning-message"></p>
                         </div>
                         <div class="row mb-4">
                             <label for="cbSex" class="col-lg-3 form-label text-lg-end">Genero: </label>
@@ -43,14 +43,14 @@
                                 <option value="F">Mujer</option>
                                 <option value="M">Hombre</option>
                             </select>
-                            <p id="gender-warning"></p>
+                            <p id="gender-warning" class="warning-message"></p>
                         </div>
 
                         <div class="row mb-4">
                             <label for="dpBirthday" class="col-lg-3 form-label text-lg-end">*Fecha de
                                 nacimiento: </label>
                             <input type="date" class="col form-control" required name="birth" id="dpBirthday">
-                            <p id="birthday-warning"></p>
+                            <p id="birthday-warning" class="warning-message"></p>
                         </div>
                         <div class="row">
                             <p class="text-center">*Horario de juego:</p>
@@ -116,6 +116,25 @@
         </div>
     </div>
 
+</div>
+<div class="modal" tabindex="-1" role="dialog" id="ventana-modal">
+    <div class="modal-dialog" role="document">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title">Modal title</h5>
+                <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                    <span aria-hidden="true">&times;</span>
+                </button>
+            </div>
+            <div class="modal-body">
+                <p>Modal body text goes here.</p>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-primary">Save changes</button>
+                <button type="button" class="btn btn-secondary" data-dismiss="modal">Close</button>
+            </div>
+        </div>
+    </div>
 </div>
 
 <script src="../js/signup.js" type="module"></script>
