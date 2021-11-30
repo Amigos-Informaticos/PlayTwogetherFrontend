@@ -1,0 +1,9 @@
+.bg-apex-character {
+    background-image: url(../img/Apex/characters/mirage.jpg);
+    background-position: 30% 5%;
+}
+
+.character-apex{
+    margin-top: 75%;
+    color: white;
+}
