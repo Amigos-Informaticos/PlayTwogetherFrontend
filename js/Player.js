@@ -10,6 +10,15 @@ export class Player {
         return age;
     }
 
+    static validateBirthday(dateString){
+        var flag = false;
+        var age = this.getAge(dateString);
+        if ((age>=12) && (age<100)){
+            flag = true;
+        }
+        return flag;
+    }
+
     static validateNickname(nickname){
         return nickname.length > 3 &&
             nickname.length < 26;
