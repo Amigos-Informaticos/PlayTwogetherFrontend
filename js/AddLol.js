@@ -3,13 +3,15 @@ import {Configuration} from "./Configuration.js";
 
 let $tfNickName = document.getElementById("tfNickname");
 let $tfLevel = document.getElementById("tfLevel");
-let $cbAgent = document.getElementById("cbAgent");
+let $cbCharacter = document.getElementById("cbCharacter");
 let $cbRank = document.getElementById("cbRank");
+let $cbRol = document.getElementById("cbRol");
 let $tfHours = document.getElementById("tfHours");
 let $tfNote = document.getElementById("tfNote");
 let $warning = document.getElementById("warning");
 let $btnAddGame = document.getElementById("btnAddGame");
 let $characterWarning = document.getElementById("character-warning");
+let $rolWarning = document.getElementById("rol-warning");
 
 populatePersonageCombo();
 
@@ -18,16 +20,16 @@ $btnAddGame.addEventListener("click", (event) => {
     let email = sessionStorage.getItem("email");
     let nickname = $tfNickName.value;
     let accountLevel = $tfLevel.value;
-    let personage = $cbAgent.value;
+    let personage = $cbCharacter.value;
     let idRank = $cbRank.value;
     let hoursPlayed = $tfHours.value;
     let note = $tfNote.value;
-    let rol = 10;
+    let rol = $cbRol.value;
 
     if (verifyInfo(nickname, accountLevel, personage, hoursPlayed, rol)) {
-        let valorantData = {
+        let lolData = {
             accountLevel: accountLevel,
-            game: "valorant",
+            game: "lol",
             hoursPlayed: hoursPlayed,
             note: note,
             personage: personage,
@@ -38,7 +40,7 @@ $btnAddGame.addEventListener("click", (event) => {
         }
         let sendOptions = {
             method: "POST",
-            body: JSON.stringify(valorantData),
+            body: JSON.stringify(lolData),
             headers: {
                 'Content-Type': 'application/json',
                 'token': sessionStorage.getItem('token')
@@ -46,7 +48,7 @@ $btnAddGame.addEventListener("click", (event) => {
         }
         fetch(Configuration.getURL() + "player/game", sendOptions).then(response => {
             if (response.ok) {
-                location.href = '../view/ViewProfile.html';
+                location.href = "../view/ViewProfile.html";
             }
         })
     }
@@ -62,6 +64,10 @@ function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol) {
         flag = false;
         $characterWarning.innerText = "Selecciona un agente";
     }
+    if (!GameValidator.validateRol(rol)){
+        flag = false;
+        $rolWarning.innerText = "Selecciona un rol";
+    }
     return flag;
 }
 
@@ -69,14 +75,14 @@ function populatePersonageCombo(){
     let sendOptions = {
         method: "GET"
     }
-    fetch(Configuration.getURL() + "game/valorant/personages", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "game/lol/personages", sendOptions).then(response => {
         if (response.ok) {
             response.json().then(responseJson => {
                 responseJson.forEach((personage) => {
                     var option = document.createElement("option");
                     option.value = personage.id;
                     option.innerHTML = personage.name;
-                    $cbAgent.appendChild(option);
+                    $cbCharacter.appendChild(option);
                 });
             })
         }
