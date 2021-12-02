@@ -6,16 +6,24 @@ let $cbGender = document.getElementById("cbGender");
 let $tfAge = document.getElementById("tfAge");
 let $btnGeneralSearch = document.getElementById("btnGeneralSearch");
 let $btnSearchByNickname = document.getElementById("btnSearchByNickname");
+let $warningNickname = document.getElementById("warningNickname");
+let $warningGeneral = document.getElementById("warningGeneralSearch");
 
 
 
 $btnSearchByNickname.addEventListener("click", (event) => {
     event.preventDefault();
+    $warningNickname.innerHTML = "";
     let nickname = $tfNickname.value;
-    let link = Configuration.getURL() + "/players?nickname=" + nickname + "&info_page=";
-    sessionStorage.setItem("linkForSearch", link);
-    sessionStorage.setItem("searching", "queriedPlayers");
-    location.href = `../view/playerList.html`;
+    if (!nickname.trim().length && nickname.trim()!= ""){
+        let link = Configuration.getURL() + "/players?nickname=" + nickname.trim() + "&info_page=";
+        sessionStorage.setItem("linkForSearch", link);
+        sessionStorage.setItem("searching", "queriedPlayers");
+        location.href = `../view/playerList.html`;
+    }else{
+        $warningNickname.innerHTML = "Escriba un nickname por favor";
+    }
+
 })
 
 $btnGeneralSearch.addEventListener("click", (event) => {
@@ -25,10 +33,14 @@ $btnGeneralSearch.addEventListener("click", (event) => {
     let gender = $cbGender.value;
     let age = $tfAge.value;
 
-    let link = createLink(schedule, game, gender, age);
-    sessionStorage.setItem("linkForSearch", link);
-    sessionStorage.setItem("searching", "queriedPlayers");
-    location.href = `../view/playerList.html`;
+    if (age != "" && (age<12 || age > 99)){
+        $warningGeneral.innerText = "Introduzca una edad entre los 12 y 99 años"
+    }else{
+        let link = createLink(schedule, game, gender, age);
+        sessionStorage.setItem("linkForSearch", link);
+        sessionStorage.setItem("searching", "queriedPlayers");
+        location.href = `../view/playerList.html`;
+    }
 })
 
 function createLink(schedule, game, gender, age){
@@ -57,9 +69,9 @@ function createLink(schedule, game, gender, age){
     if (age){
         if (isFirstAttribute){
             isFirstAttribute = false;
-            link = link + "age=" + age;
+            link = link + "min_age=" + age;
         }else{
-            link = link + "&age=" + age;
+            link = link + "&min_age=" + age;
         }
     }
     if (isFirstAttribute){

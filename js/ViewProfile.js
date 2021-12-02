@@ -16,6 +16,7 @@ let $verified = document.getElementById("verified");
 let $rdReportReason = document.getElementsByName("report-radio");
 let $tfReport = document.getElementById("tfReport");
 let $btnConfirmReport = document.getElementById("btnConfirmReport");
+let $imgProfile = document.getElementById("profile-pic");
 
 let $btnViewReports = document.getElementById("btnViewReports");
 
@@ -26,9 +27,10 @@ let gender;
 let isVerified;
 let isModerator = sessionStorage.getItem('isModerator');
 
-
+getProfileImage();
 configureWindow();
 showPlayedGames(profileToShow);
+
 
 function configureWindow(){
     if (profileToShow === sessionStorage.getItem('nickname')) {
@@ -67,6 +69,20 @@ function configureWindow(){
         }
     }
 }
+
+function getProfileImage(){
+    let hasImage = false;
+    let sendOptions = {
+        method: "GET",
+    }
+    fetch(Configuration.getURL() + "players/" + profileToShow + "/has_image", sendOptions).then(response => {
+        if (response.ok) {
+           $imgProfile.src = "http://amigosinformaticos.ddns.net:42081/players/" + profileToShow + "/image";
+        }
+    })
+    return hasImage;
+}
+
 
 function showInfo(nickname, birthday, gender, isVerified) {
     $lblNickname.innerText = nickname;
