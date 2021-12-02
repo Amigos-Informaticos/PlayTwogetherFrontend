@@ -6,16 +6,23 @@ let $cbGender = document.getElementById("cbGender");
 let $tfAge = document.getElementById("tfAge");
 let $btnGeneralSearch = document.getElementById("btnGeneralSearch");
 let $btnSearchByNickname = document.getElementById("btnSearchByNickname");
+let warningNickname = document.getElementById("warningNickname");
 
 
 
 $btnSearchByNickname.addEventListener("click", (event) => {
     event.preventDefault();
+    warningNickname.innerHTML = "";
     let nickname = $tfNickname.value;
-    let link = Configuration.getURL() + "/players?nickname=" + nickname + "&info_page=";
-    sessionStorage.setItem("linkForSearch", link);
-    sessionStorage.setItem("searching", "queriedPlayers");
-    location.href = `../view/playerList.html`;
+    if (!nickname.trim().length && nickname.trim()!= ""){
+        let link = Configuration.getURL() + "/players?nickname=" + nickname.trim() + "&info_page=";
+        sessionStorage.setItem("linkForSearch", link);
+        sessionStorage.setItem("searching", "queriedPlayers");
+        location.href = `../view/playerList.html`;
+    }else{
+        warningNickname.innerHTML = "Escriba un nickname por favor";
+    }
+
 })
 
 $btnGeneralSearch.addEventListener("click", (event) => {

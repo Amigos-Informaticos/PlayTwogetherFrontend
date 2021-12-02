@@ -209,7 +209,8 @@ $btnUpdateProfilePic.addEventListener("click",(event) => {
         method: "POST",
         body: formData,
         headers: {
-            'token': sessionStorage.getItem("token")
+            'token': sessionStorage.getItem("token"),
+            'email': sessionStorage.getItem("email")
         }
     }).then(response => {
         if (response.ok){
