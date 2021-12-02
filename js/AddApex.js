@@ -27,9 +27,9 @@ $btnAddGame.addEventListener("click", (event) => {
     let rol = $cbRol.value;
 
     if (verifyInfo(nickname, accountLevel, personage, hoursPlayed, rol)) {
-        let lolData = {
+        let apexData = {
             accountLevel: accountLevel,
-            game: "lol",
+            game: "apexLegends",
             hoursPlayed: hoursPlayed,
             note: note,
             personage: personage,
@@ -40,7 +40,7 @@ $btnAddGame.addEventListener("click", (event) => {
         }
         let sendOptions = {
             method: "POST",
-            body: JSON.stringify(lolData),
+            body: JSON.stringify(apexData),
             headers: {
                 'Content-Type': 'application/json',
                 'token': sessionStorage.getItem('token')
@@ -75,7 +75,7 @@ function populatePersonageCombo(){
     let sendOptions = {
         method: "GET"
     }
-    fetch(Configuration.getURL() + "game/lol/personages", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "game/apexLegends/personages", sendOptions).then(response => {
         if (response.ok) {
             response.json().then(responseJson => {
                 responseJson.forEach((personage) => {
