@@ -195,7 +195,7 @@ $btnConfirmBan.addEventListener("click", (event) => {
 
 $btnAddGame.addEventListener("click", (event) => {
     event.preventDefault();
-    location.href = '../view/AddValorant.html'
+    location.href = '../view/games.html'
 })
 
 $btnViewReports.addEventListener("click", (event) => {
@@ -207,7 +207,7 @@ function getReports(){
     let sendOptions = {
         method: "GET",
     }
-    fetch(Configuration.getURL() + "players/" + "Yira98" + "/reports", sendOptions).then(response => {
+    fetch(Configuration.getURL() + "players/" + profileToShow + "/reports", sendOptions).then(response => {
         if (response.ok) {
             response.json().then(responseJson => {
 
