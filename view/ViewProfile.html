@@ -20,6 +20,7 @@
         <a href="search.html" id="hbSearch" class="panel-options">Buscar</a>
         <a href="#section2" id="hbMyProfile" class="panel-options">Mi Perfil</a>
         <a href="#section3" id="hbGames" class="panel-options">Juegos</a>
+        <a href="#section4" id="hbReportedPlayers" class="panel-options">Jugadores reportados</a>
     </nav>
     <div class="playTwogether-brand">
         <img class="playTwogether-logo" src="../img/PlayTwogether_icon.png" alt="Play Twogether Logo">
@@ -31,14 +32,12 @@
 
     <div id="edit-icon" class="text-end">
         <input id="btnEdit" type="image" src="../img/update_icon.png" width="48" alt="Update Profile">
-        <input id="btnViewReports" type="image" src="../img/view_reports_icon.png" width="48" alt="View Player Reports" data-bs-toggle="modal"
+        <input id="btnBan" type="image" src="../img/ban_player.png" width="48" alt="View Player Reports" data-bs-toggle="modal"
                data-bs-target="#viewReportModal">
         <input id="btnReport" type="image" src="../img/report_user.png" width="48" alt="Report Profile" data-bs-toggle="modal"
                data-bs-target="#reportModal">
         <input id="btnVerify" type="image" src="../img/verify_profile.png" width="48" alt="Verify Profile" data-bs-toggle="modal"
                data-bs-target="#verifyModal">
-        <input id="btnBan" type="image" src="../img/ban_player.png" width="48" alt="Ban Profile" data-bs-toggle="modal"
-               data-bs-target="#banModal">
     </div>
 
     <div class="row align-items-stretch">
@@ -69,7 +68,6 @@
     </div>
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="reportModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -114,7 +112,6 @@
     </div>
 </div>
 
-<!-- Modal -->
 <div class="modal fade" id="verifyModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
     <div class="modal-dialog">
         <div class="modal-content">
@@ -128,25 +125,6 @@
             <div class="modal-footer">
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button id="btnConfirmVerify" type="button" class="btn btn-success">Verificar</button>
-            </div>
-        </div>
-    </div>
-</div>
-
-<!-- Modal -->
-<div class="modal fade" id="banModal" tabindex="-1" aria-labelledby="exampleModalLabel" aria-hidden="true">
-    <div class="modal-dialog">
-        <div class="modal-content">
-            <div class="modal-header">
-                <h5 class="modal-title" id="exampleModalLabel">Eliminar Perfil</h5>
-                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
-            </div>
-            <div class="modal-body">
-                <p>¿Estás seguro que deseas eliminar la cuenta de este usuario? Esta accíón no puede deshacerse</p>
-            </div>
-            <div class="modal-footer">
-                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
-                <button type="button" class="btn btn-danger">Eliminar</button>
             </div>
         </div>
     </div>
@@ -168,7 +146,6 @@
         </div>
     </div>
 </div>
-
 
 <template id="template-box">
     <div class="container m-1 card bg-light rounded box">

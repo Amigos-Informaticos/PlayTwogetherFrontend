@@ -18,8 +18,6 @@ let $tfReport = document.getElementById("tfReport");
 let $btnConfirmReport = document.getElementById("btnConfirmReport");
 let $imgProfile = document.getElementById("profile-pic");
 
-let $btnViewReports = document.getElementById("btnViewReports");
-
 let profileToShow = sessionStorage.getItem('viewProfile');
 let nickname;
 let birthday;
@@ -198,7 +196,7 @@ $btnAddGame.addEventListener("click", (event) => {
     location.href = '../view/games.html'
 })
 
-$btnViewReports.addEventListener("click", (event) => {
+$btnBan.addEventListener("click", (event) => {
     event.preventDefault();
     getReports();
 })

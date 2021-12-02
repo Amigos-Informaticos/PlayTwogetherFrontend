@@ -16,4 +16,13 @@ export class GameValidator{
     static uncompleteGameInfo(nickname, accountLevel, personage, hoursPlayed, rol){
         return !nickname || !accountLevel || !personage || !hoursPlayed || !rol;
     }
+
+    static validateRol(rol) {
+        let response = true;
+        let id = Number(rol);
+        if (id <= 0){
+            response = false;
+        }
+        return response;
+    }
 }
