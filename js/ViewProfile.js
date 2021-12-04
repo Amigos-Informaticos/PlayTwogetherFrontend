@@ -57,7 +57,7 @@ function configureWindow(){
             }
         })
         $btnAddGame.remove();
-        //$btnEdit.remove();
+        $btnEdit.remove();
         $btnAddGame.remove();
         console.log("MOD: " + isModerator);
         if (isModerator != 1) {
