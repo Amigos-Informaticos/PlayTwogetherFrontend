@@ -54,7 +54,7 @@ $btnSignUp.addEventListener("click", (event) => {
         }
         fetch(Configuration.getURL() + "players", sendOptions).then(response => {
             if (response.status === 201) {
-                location.href = '../index.html';
+                location.href = '../view/singUpSuccessful.html';
             }else if (response.status === 409){
                 $pWarning.innerHTML = "El nickname o el email existen, prueba cambiándolos*";
             }else{
@@ -88,7 +88,8 @@ function validateFields(nickname, email, password, repeatPassword, birthday, sch
         $pPasswordWarning.innerHTML = "* Las contraseñas no coinciden";
     }else if (validatedPassword === "weakPassword"){
         flag = false;
-        $pPasswordWarning.innerHTML = "* La contraseña debe contener al menos una mayúscula y un número";
+        $pPasswordWarning.innerHTML = "* La contraseña debe contener entre 8 y 20 caracteres," +
+            " con al menos una mayúscula y un número";
     }else {
         $pPasswordWarning.innerHTML = ""
     }

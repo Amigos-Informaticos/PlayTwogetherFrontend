@@ -21,7 +21,7 @@ export class Player {
 
     static validateNickname(nickname){
         return nickname.length > 3 &&
-            nickname.length < 26;
+            nickname.length < 26 && !this.validateEmail(nickname);
     }
 
     static validateEmail(email) {
