@@ -15,7 +15,7 @@ $btnSearchByNickname.addEventListener("click", (event) => {
     event.preventDefault();
     $warningNickname.innerHTML = "";
     let nickname = $tfNickname.value;
-    if (!nickname.trim().length && nickname.trim()!= ""){
+    if (nickname.trim()!= ""){
         let link = Configuration.getURL() + "/players?nickname=" + nickname.trim() + "&info_page=";
         sessionStorage.setItem("linkForSearch", link);
         sessionStorage.setItem("searching", "queriedPlayers");
