@@ -5,7 +5,7 @@ const response = [
     },
     {
         id: 2,
-        name: "Apex"
+        name: "apexLegends"
     },
     {
         id:3,
