@@ -68,3 +68,9 @@ $hbReportedPlayers.addEventListener("click",(event) =>{
     sessionStorage.setItem("searching", "reportedPlayers");
     location.href = '../view/playerList.html'
 })
+
+let isModerator = sessionStorage.getItem('isModerator');
+if (isModerator != 1) {
+    console.log(isModerator);
+    $hbReportedPlayers.remove();
+}
