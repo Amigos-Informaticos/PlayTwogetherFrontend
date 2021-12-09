@@ -18,12 +18,12 @@ let $tfReport = document.getElementById("tfReport");
 let $btnConfirmReport = document.getElementById("btnConfirmReport");
 let $imgProfile = document.getElementById("profile-pic");
 
-let profileToShow = sessionStorage.getItem('viewProfile');
+let profileToShow = sessionStorage.getItem("viewProfile");
 let nickname;
 let birthday;
 let gender;
 let isVerified;
-let isModerator = sessionStorage.getItem('isModerator');
+let isModerator = sessionStorage.getItem("isModerator");
 
 getProfileImage();
 configureWindow();
@@ -31,10 +31,10 @@ showPlayedGames(profileToShow);
 
 
 function configureWindow(){
-    if (profileToShow === sessionStorage.getItem('nickname')) {
-        nickname = sessionStorage.getItem('nickname');
-        gender = sessionStorage.getItem('gender');
-        birthday = sessionStorage.getItem('birthday');
+    if (profileToShow === sessionStorage.getItem("nickname")) {
+        nickname = sessionStorage.getItem("nickname");
+        gender = sessionStorage.getItem("gender");
+        birthday = sessionStorage.getItem("birthday");
         showInfo(nickname, birthday, gender, 0);
 
         $btnReport.remove();
@@ -46,7 +46,6 @@ function configureWindow(){
             method: "GET",
         }
         fetch(Configuration.getURL() + "players/" + profileToShow, sendOptions).then(response => {
-            console.log(response);
             if (response.ok) {
                 response.json().then(responseJson => {
                     gender = responseJson.gender;
@@ -59,9 +58,7 @@ function configureWindow(){
         $btnAddGame.remove();
         $btnEdit.remove();
         $btnAddGame.remove();
-        console.log("MOD: " + isModerator);
         if (isModerator != 1) {
-            console.log("NO ADMIN");
             $btnVerify.remove();
             $btnBan.remove();
         }
@@ -87,9 +84,9 @@ function showInfo(nickname, birthday, gender, isVerified) {
     $lblAge.innerText = getAge(birthday) + " años";
     var playerGender = gender;
     var ScreenGender;
-    if (playerGender == 'F') {
+    if (playerGender == "F") {
         ScreenGender = "Mujer";
-    } else if (playerGender == 'M') {
+    } else if (playerGender == "M") {
         ScreenGender = "Hombre";
     } else {
         ScreenGender = "Compañere";
@@ -114,7 +111,7 @@ function getAge(dateString) {
 
 $btnEdit.addEventListener("click", (event) => {
     event.preventDefault();
-    location.href = '../view/UpdateProfile.html'
+    location.href = "../view/UpdateProfile.html"
 })
 
 $btnConfirmReport.addEventListener("click", (event) => {
@@ -135,12 +132,11 @@ $btnConfirmReport.addEventListener("click", (event) => {
         method: "POST",
         body: JSON.stringify(reportInformation),
         headers: {
-            'Content-Type': 'application/json',
-            'token': sessionStorage.getItem("token")
+            "Content-Type": "application/json",
+            "token": sessionStorage.getItem("token")
         }
     }
     fetch(Configuration.getURL() + "player/report", sendOptions).then(response => {
-        console.log(response);
         if (response.ok) {
             location.href = "../view/Welcome.html";
         }
@@ -161,14 +157,13 @@ $btnConfirmVerify.addEventListener("click", (event) => {
     let sendOptions = {
         method: "PATCH",
         headers: {
-            'Content-Type': 'application/json',
-            'token': sessionStorage.getItem('token')
+            "Content-Type": "application/json",
+            "token": sessionStorage.getItem("token")
         }
     }
     fetch(Configuration.getURL() + "players/" + profileToShow + "/verify", sendOptions).then(response => {
-        console.log(response);
         if (response.ok) {
-            location.href = '../view/Welcome.html';
+            location.href = "../view/Welcome.html";
         }
     })
 })
@@ -178,14 +173,13 @@ $btnConfirmBan.addEventListener("click", (event) => {
     let sendOptions = {
         method: "PATCH",
         headers: {
-            'Content-Type': 'application/json',
-            'token': sessionStorage.getItem('token')
+            "Content-Type": "application/json",
+            "token": sessionStorage.getItem("token")
         }
     }
     fetch(Configuration.getURL() + "players/" + profileToShow + "/ban", sendOptions).then(response => {
-        console.log(response);
         if (response.ok) {
-            location.href = '../view/Welcome.html';
+            location.href = "../view/Welcome.html";
         }
     })
 })
@@ -193,7 +187,7 @@ $btnConfirmBan.addEventListener("click", (event) => {
 
 $btnAddGame.addEventListener("click", (event) => {
     event.preventDefault();
-    location.href = '../view/games.html'
+    location.href = "../view/games.html";
 })
 
 $btnBan.addEventListener("click", (event) => {
@@ -232,7 +226,6 @@ function showPlayedGames(nickname) {
             response.json().then(responseJson => {
                 let $template = document.getElementById("template-box").content;
                 responseJson.forEach((playedGame) => {
-                    console.log(playedGame.name)
                     $template.querySelector(".card-level").textContent = "LVL:" + playedGame.accountLevel;
                     $template.querySelector(".card-game").src = "../img/" + playedGame.name + "/" + playedGame.name + "_logo.png";
                     $template.querySelector(".card-rank").src = "../img/" + playedGame.name + "/rank/" + playedGame.rank + ".png";
@@ -250,7 +243,6 @@ function showPlayedGames(nickname) {
 
 document.addEventListener("click", (event) => {
     if (event.target.matches(".box *")) {
-        console.log(event.target);
         location.href = `../view/${event.target.dataset.name_game}.html`
     }
 });

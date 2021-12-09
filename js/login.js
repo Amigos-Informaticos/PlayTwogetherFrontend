@@ -42,7 +42,6 @@ $btnLogin.addEventListener("click", (event) => {
 
             if (response.ok) {
                 response.json().then(responseJson => {
-                    console.log(responseJson);
                     sessionStorage.setItem('token', responseJson.token);
                     sessionStorage.setItem('nickname', responseJson.nickname);
                     sessionStorage.setItem('birthday', responseJson.birthday);

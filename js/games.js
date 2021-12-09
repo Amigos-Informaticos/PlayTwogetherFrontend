@@ -26,7 +26,6 @@ response.forEach((game) => {
 
 document.addEventListener("click", (event) => {
     if (event.target.matches(".box *")) {
-        console.log(event.target);
         location.href = `../view/Add${event.target.dataset.name_game}.html`
     }
 });

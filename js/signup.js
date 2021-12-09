@@ -15,7 +15,6 @@ let $modalErrorMessage = document.getElementById("errorModal");
 let $pEmailWarning = document.getElementById("email-warning");
 let $pNicknameWarning = document.getElementById("nickname-warning");
 let $pPasswordWarning = document.getElementById("password-warning");
-let $pGenderWarning = document.getElementById("gender-warning");
 let $pBirthdayWarning = document.getElementById("birthday-warning");
 let $pScheduleWarning = document.getElementById("schedule-warning");
 
@@ -28,13 +27,6 @@ $btnSignUp.addEventListener("click", (event) => {
     let playerGender = $cbGender.value;
     let playerBirthday = $dpBirthday.value;
     let playerSchedule = getSchedule();
-
-    console.log("Email: " + playerEmail);
-    console.log("Nickname: " + playerNickname);
-    console.log("Password: " + playerPassword);
-    console.log("RPassword: " + playerRepeatPassword);
-    console.log("Birthday: " + playerBirthday);
-    console.log("Schedule: " + playerSchedule);
 
     if (validateFields(playerNickname, playerEmail, playerPassword, playerRepeatPassword, playerBirthday, playerSchedule)) {
         let newPlayer = {

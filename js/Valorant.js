@@ -16,10 +16,8 @@ let sendOptions = {
 
 let url = Configuration.getURL();
 fetch(url + "players/" + ownerGame + "/" + "valorant", sendOptions).then(response => {
-    console.log(response);
     if (response.ok) {
         response.json().then(responseJson => {
-            console.log(responseJson);
             $lblNickname.innerText = responseJson.nickname;
             $lblLevel.innerText = "Nivel: " + responseJson.accountLevel;
             $lblRank.innerText = responseJson.rank;
