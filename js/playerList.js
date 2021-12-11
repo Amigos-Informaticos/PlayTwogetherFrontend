@@ -1,4 +1,5 @@
 import {Player} from "./Player.js";
+import {Configuration} from "./Configuration.js";
 
 let page = 0;
 let searching = sessionStorage.getItem("searching");
@@ -38,7 +39,6 @@ function showPlayers() {
         }
     })
 }
-
 
 document.addEventListener("click", (event) => {
     if (event.target.matches(".box *")) {

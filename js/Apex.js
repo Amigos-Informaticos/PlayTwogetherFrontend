@@ -19,10 +19,8 @@ let sendOptions = {
 
 let url = Configuration.getURL();
 fetch(url + "players/" + ownerGame + "/" + "apexLegends", sendOptions).then(response => {
-    console.log(response);
     if (response.ok) {
         response.json().then(responseJson => {
-            console.log(responseJson);
             $lblCharacter.innerText = responseJson.personage;
             $container.style.backgroundImage = "url(../img/apexLegends/characters/" + responseJson.personage + ".jpg)";
             $lblNickname.innerText = responseJson.nickname;

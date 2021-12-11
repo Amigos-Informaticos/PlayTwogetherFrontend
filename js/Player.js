@@ -32,8 +32,6 @@ export class Player {
     static validatePassword(password, repeatPassword) {
         let response = "ok";
         if (password.localeCompare(repeatPassword) != 0) {
-            console.log("sos" + password);
-            console.log("sas" + repeatPassword);
             response = "dontMatch";
         } else if (!this.validateStrongPassword(password)){
             response = "weakPassword";

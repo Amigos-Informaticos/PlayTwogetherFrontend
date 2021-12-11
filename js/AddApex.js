@@ -42,8 +42,8 @@ $btnAddGame.addEventListener("click", (event) => {
             method: "POST",
             body: JSON.stringify(apexData),
             headers: {
-                'Content-Type': 'application/json',
-                'token': sessionStorage.getItem('token')
+                "Content-Type": "application/json",
+                "token": sessionStorage.getItem("token")
             }
         }
         fetch(Configuration.getURL() + "player/game", sendOptions).then(response => {

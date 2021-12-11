@@ -17,10 +17,8 @@ let sendOptions = {
 
 let url = Configuration.getURL();
 fetch(url + "players/" + ownerGame + "/" + "lol", sendOptions).then(response => {
-    console.log(response);
     if (response.ok) {
         response.json().then(responseJson => {
-            console.log(responseJson);
             $lblCharacter.innerText = responseJson.personage;
             $imgCharacter.src = "https://ddragon.leagueoflegends.com/cdn/img/champion/splash/" + responseJson.personage + "_0.jpg";
             $lblRol.innerText = responseJson.rol;
