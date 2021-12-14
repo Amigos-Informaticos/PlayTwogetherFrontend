@@ -25,4 +25,26 @@ export class GameValidator{
         }
         return response;
     }
+
+    static validateHoursToPlay(hours){
+        let isValid = false;
+        let hoursInt = parseInt(hours);
+        if (Number.isInteger(hoursInt)){
+            if (hoursInt> 0 && hoursInt < 2000){
+                isValid = true;
+            }
+        }
+        return isValid;
+    }
+
+    static validateLevel(level){
+        let isValid = false;
+        let levelInt = parseInt(level)
+        if (Number.isInteger(levelInt)){
+            if (levelInt>0 && levelInt<3000){
+                isValid = true;
+            }
+        }
+        return isValid;
+    }
 }
