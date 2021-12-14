@@ -78,7 +78,7 @@ function getProfileImage(){
     }
     fetch(Configuration.getURL() + "players/" + profileToShow + "/has_image", sendOptions).then(response => {
         if (response.ok) {
-           $imgProfile.src = "http://amigosinformaticos.ddns.net:42081/players/" + profileToShow + "/image";
+           $imgProfile.src = Configuration.getURL() +"players/" + profileToShow + "/image";
         }
     }).catch(error => $imgProfile.src = "../img/default_picture.jpg" );
     return hasImage;
