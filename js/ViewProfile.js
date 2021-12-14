@@ -24,11 +24,17 @@ let birthday;
 let gender;
 let isVerified;
 let isModerator = sessionStorage.getItem("isModerator");
+let getGames = false;
 
 getProfileImage();
 configureWindow();
 showPlayedGames(profileToShow);
 
+function force(){
+    if(!getGames){
+        showPlayedGames();
+    }
+}
 
 function configureWindow(){
     if (profileToShow === sessionStorage.getItem("nickname")) {
@@ -74,7 +80,7 @@ function getProfileImage(){
         if (response.ok) {
            $imgProfile.src = "http://amigosinformaticos.ddns.net:42081/players/" + profileToShow + "/image";
         }
-    })
+    }).catch(error => $imgProfile.src = "../img/default_picture.jpg" );
     return hasImage;
 }
 
@@ -218,6 +224,7 @@ function getReports(){
 }
 
 function showPlayedGames(nickname) {
+    getGames = true;
     let sendOptions = {
         method: "GET",
     }
