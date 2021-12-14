@@ -105,13 +105,14 @@ function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol, idRank) 
         $levelWarning.innerHTML = "El nivel de cuenta es inválido, debe de estar entre 1 y 3000"
     }
     if(!GameValidator.validateNickname(nickname)){
-        flag = true;
+        flag = false;
         $nicknameWarning.innerHTML = "Ingresa un nickname válido de entre 4 y  26 caracteres";
     }
     if (idRank==="0"){
         flag = false;
         $rankWarning.innerHTML = "Elige un rango porfavor";
     }
+
 
 
     return flag;

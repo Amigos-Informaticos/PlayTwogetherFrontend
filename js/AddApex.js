@@ -89,7 +89,7 @@ function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol, idRank) 
         $warning.innerText = "Llena correctamente todos los campos obligatorios (*)";
     }
     if(!GameValidator.validateNickname(nickname)){
-        flag = true;
+        flag = false;
         $nicknameWarning.innerHTML = "Ingresa un nickname válido de entre 4 y  26 caracteres";
     }
 

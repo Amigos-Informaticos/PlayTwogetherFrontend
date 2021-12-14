@@ -10,14 +10,28 @@ let $tfNote = document.getElementById("tfNote");
 let $warning = document.getElementById("warning");
 let $btnAddGame = document.getElementById("btnAddGame");
 let $characterWarning = document.getElementById("character-warning");
+
+let $nicknameWarning = document.getElementById("nickname-warning");
+let $levelWarning = document.getElementById("level-warning");
+let $rankWarning = document.getElementById("rank-warning");
+let $hoursWarning = document.getElementById("hours-warning");
 sessionStorage.setItem('viewProfile', sessionStorage.getItem("nickname"));
 
 populatePersonageCombo();
+
+function cleanFields(){
+    $nicknameWarning.innerHTML = "";
+    $levelWarning .innerHTML = "";
+    $rankWarning.innerHTML = "";
+    $hoursWarning.innerHTML = "";
+    $warning.innerHTML = "";
+}
 
 $btnAddGame.addEventListener("click", (event) => {
     event.preventDefault();
     let email = sessionStorage.getItem("email");
     let nickname = $tfNickName.value;
+    nickname = nickname.replace(/ /g, "");
     let accountLevel = $tfLevel.value;
     let personage = $cbAgent.value;
     let idRank = $cbRank.value;
@@ -25,7 +39,7 @@ $btnAddGame.addEventListener("click", (event) => {
     let note = $tfNote.value;
     let rol = 10;
 
-    if (verifyInfo(nickname, accountLevel, personage, hoursPlayed, rol)) {
+    if (verifyInfo(nickname, accountLevel, personage, hoursPlayed, rol, idRank)) {
         let valorantData = {
             accountLevel: accountLevel,
             game: "valorant",
@@ -65,8 +79,9 @@ function goLogin(){
     location.href = '../index.html';
 }
 
-function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol) {
+function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol, idRank) {
     let flag = true;
+    cleanFields();
     if (GameValidator.uncompleteGameInfo(nickname, accountLevel, personage, hourPlayed, rol)) {
         flag = false;
         $warning.innerText = "Llena correctamente todos los campos obligatorios (*)";
@@ -78,12 +93,21 @@ function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol) {
 
     if (!GameValidator.validateHoursToPlay(hourPlayed)){
         flag = false;
-        $warning.innerHTML = "Las horas totales no son válidas, deben estar entre 1 y 2000";
+        $hoursWarning.innerHTML = "Las horas totales no son válidas, deben estar entre 1 y 2000";
     }
 
     if (!GameValidator.validateLevel(accountLevel)){
         flag = false;
-        $warning.innerHTML = "El nivel de cuenta es inválido, debe de estar entre 1 y 3000"
+        $levelWarning.innerHTML = "El nivel de cuenta es inválido, debe de estar entre 1 y 3000"
+    }
+
+    if (idRank==="0"){
+        flag = false;
+        $rankWarning.innerHTML = "Elige un rango porfavor";
+    }
+    if(!GameValidator.validateNickname(nickname)){
+        flag = false;
+        $nicknameWarning.innerHTML = "Ingresa un nickname válido de entre 4 y  26 caracteres";
     }
     return flag;
 }
