@@ -245,3 +245,7 @@ button{
 .playTwogether-logo {
     width: 30vh;
 }
+
+.warningRed{
+    color: red;
+}

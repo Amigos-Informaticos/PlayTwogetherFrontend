@@ -15,7 +15,7 @@ function showPlayers() {
         if (response.ok) {
             response.json().then(playersJson => {
                 playersJson.forEach((player) => {
-                    $template.querySelector(".card-picture").src = "http://amigosinformaticos.ddns.net:42081/players/" + player.nickname + "/image";
+                    $template.querySelector(".card-picture").src = Configuration.getURL() + "players/" + player.nickname + "/image";
                     $template.querySelector(".card-nickname").textContent = player.nickname;
                     if (searching === "reportedPlayers") {
                         $template.querySelector(".card-age").textContent = player.reports + " reportes";
