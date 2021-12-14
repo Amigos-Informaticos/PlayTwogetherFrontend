@@ -42,7 +42,8 @@ $btnSignUp.addEventListener("click", (event) => {
             method: "POST",
             body: JSON.stringify(newPlayer),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin":"*"
             }
         }
         fetch(Configuration.getURL() + "players", sendOptions).then(response => {

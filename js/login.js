@@ -34,7 +34,8 @@ $btnLogin.addEventListener("click", (event) => {
             method: "POST",
             body: JSON.stringify(loginInformation),
             headers: {
-                'Content-Type': 'application/json'
+                'Content-Type': 'application/json',
+                "Access-Control-Allow-Origin":"*"
             }
         }
         let url = Configuration.getURL();

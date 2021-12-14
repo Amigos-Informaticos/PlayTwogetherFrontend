@@ -16,6 +16,8 @@ let $verified = document.getElementById("verified");
 let $rdReportReason = document.getElementsByName("report-radio");
 let $tfReport = document.getElementById("tfReport");
 let $btnConfirmReport = document.getElementById("btnConfirmReport");
+let $reportWarning = document.getElementById("report-warning");
+
 let $imgProfile = document.getElementById("profile-pic");
 
 let profileToShow = sessionStorage.getItem("viewProfile");
@@ -145,6 +147,8 @@ $btnConfirmReport.addEventListener("click", (event) => {
     fetch(Configuration.getURL() + "player/report", sendOptions).then(response => {
         if (response.ok) {
             location.href = "../view/Welcome.html";
+        }else if (response.status == 409){
+            $reportWarning.innerText = "Ya reportaste a este jugador anteriormente";
         }
     })
 })
