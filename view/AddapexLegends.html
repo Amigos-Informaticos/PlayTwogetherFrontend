@@ -40,19 +40,19 @@
                             <label for="tfNickname" class="col-lg-3 form-label text-lg-end">*Nombre de usuario:</label>
                             <input type="text" minlength="5" maxlength="20" class="col form-control" name="nickname"
                                    id="tfNickname">
-                            <p id="nickname-warning"></p>
+                            <p id="nickname-warning"  class="warningRed" ></p>
                         </div>
                         <div class="row mb-4">
                             <label for="tfLevel" class="col-lg-3 form-label text-lg-end">*Nivel:</label>
-                            <input type="number" class="col form-control" name="level" id="tfLevel">
-                            <p id="level-warning"></p>
+                            <input type="number" min="1" max="4000" maxlength="3" class="col form-control" name="level" id="tfLevel">
+                            <p id="level-warning" class="warningRed"></p>
                         </div>
                         <div class="row mb-4">
                             <label for="cbCharacter" class="col-lg-3 form-label text-lg-end">*Leyenda más utilizada: </label>
                             <select name="character" class="col form-select" id="cbCharacter">
                                 <option value="0">Selecciona</option>
                             </select>
-                            <p id="character-warning"></p>
+                            <p id="character-warning" class="warningRed"></p>
                         </div>
                         <div class="row mb-4">
                             <label for="cbRank" class="col-lg-3 form-label text-lg-end">Rango: </label>
@@ -65,7 +65,7 @@
                                 <option value="6">Diamond</option>
                                 <option value="10">Apex Predator</option>
                             </select>
-                            <p id="rank-warning"></p>
+                            <p id="rank-warning" class="warningRed"></p>
                         </div>
                         <div class="row mb-4">
                             <label for="cbRol" class="col-lg-3 form-label text-lg-end">Rol Principal: </label>
@@ -76,12 +76,12 @@
                                 <option value="3">Transporte</option>
                                 <option value="4">Defensa</option>
                             </select>
-                            <p id="rol-warning"></p>
+                            <p id="rol-warning" class="warningRed"></p>
                         </div>
                         <div class="row mb-4">
                             <label for="tfHours" class="col-lg-3 form-label text-lg-end">*Horas de juego:</label>
                             <input type="text" class="col form-control" id="tfHours">
-                            <p id="hours-warning"></p>
+                            <p id="hours-warning" class="warningRed"></p>
                         </div>
                         <div class="row">
                             <label for="tfNote" class="col-lg-3 form-label text-lg-end">Agrega una nota: </label>

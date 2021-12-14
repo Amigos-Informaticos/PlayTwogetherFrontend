@@ -57,7 +57,7 @@ $btnLogin.addEventListener("click", (event) => {
             } else {
                 $lbWarning.innerHTML = "Servidor en mantenimiento, por favor, ingrese más tarde";
             }
-        })
+        }).catch(error => alert("No fue posible conectar con el servidor"));
 
     }
 

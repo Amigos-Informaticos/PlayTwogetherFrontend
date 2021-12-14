@@ -21,7 +21,8 @@ let $pScheduleWarning = document.getElementById("schedule-warning");
 $btnSignUp.addEventListener("click", (event) => {
     event.preventDefault();
     let playerEmail = $tfEmail.value;
-    let playerNickname = $tfNickname.value;
+    let playerNickname_with_spaces = $tfNickname.value;
+    let playerNickname = playerNickname_with_spaces.replace(/ /g, "");
     let playerPassword = $tfPassword.value;
     let playerRepeatPassword = $tfRepeatPassword.value;
     let playerGender = $cbGender.value;
@@ -50,10 +51,9 @@ $btnSignUp.addEventListener("click", (event) => {
             }else if (response.status === 409){
                 $pWarning.innerHTML = "El nickname o el email existen, prueba cambiándolos*";
             }else{
-                //document.getElementById("myDialog").showModal()
-                document.getElementById("errorModal").showModal();
+                $pWarning.innerHTML = "Servidor en mantenimiento, intente más tarde";
             }
-        })
+        }).catch(error => $pWarning.innerHTML = "Servidor en mantenimiento, intente más tarde");
     }
 })
 

@@ -93,6 +93,7 @@ function sendFetchUpdate(options , newPlayer){
             sessionStorage.setItem('birthday', newPlayer.birthday);
             sessionStorage.setItem('gender', newPlayer.gender);
             sessionStorage.setItem('schedule', newPlayer.schedule);
+            sessionStorage.setItem('viewProfile', newPlayer.nickname);
             location.href = '../view/ViewProfile.html';
         }else if (response.status ===  409){
             $pWarning.innerHTML = "El nickname ya existe actualmente, porfavor, elige otro.";
