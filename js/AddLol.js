@@ -16,7 +16,75 @@ let $nicknameWarning = document.getElementById("nickname-warning");
 let $levelWarning = document.getElementById("level-warning");
 let $rankWarning = document.getElementById("rank-warning");
 let $hoursWarning = document.getElementById("hours-warning");
-sessionStorage.setItem('viewProfile', sessionStorage.getItem("nickname"));
+sessionStorage.setItem("viewProfile", sessionStorage.getItem("nickname"));
+
+function populatePersonageCombo(){
+    let sendOptions = {
+        method: "GET"
+    }
+    fetch(Configuration.getURL() + "game/lol/personages", sendOptions).then(response => {
+        if (response.ok) {
+            response.json().then(responseJson => {
+                responseJson.forEach((personage) => {
+                    var option = document.createElement("option");
+                    option.value = personage.id;
+                    option.innerHTML = personage.name;
+                    $cbCharacter.appendChild(option);
+                });
+            })
+        }
+    })
+}
+function goLogin(){
+    alert("Error al conectar con el servidor.");
+    sessionStorage.clear();
+    location.href = "../index.html";
+}
+function cleanFields(){
+    $rolWarning.innerHTML = "";
+    $nicknameWarning.innerHTML = "";
+    $levelWarning .innerHTML = "";
+    $rankWarning.innerHTML = "";
+    $hoursWarning.innerHTML = "";
+    $warning.innerHTML = "";
+}
+
+function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol, idRank) {
+    cleanFields();
+    let flag = true;
+    if (GameValidator.uncompleteGameInfo(nickname, accountLevel, personage, hourPlayed, rol)) {
+        flag = false;
+        $warning.innerText = "Llena correctamente todos los campos obligatorios (*)";
+    }
+    if (!GameValidator.validatePersonage(personage)) {
+        flag = false;
+        $characterWarning.innerText = "Selecciona un agente";
+    }
+    if (!GameValidator.validateRol(rol)){
+        flag = false;
+        $rolWarning.innerText = "Selecciona un rol";
+    }
+    if (!GameValidator.validateHoursToPlay(hourPlayed)){
+        flag = false;
+        $hoursWarning.innerHTML = "Las horas totales no son válidas, deben estar entre 1 y 2000";
+    }
+
+    if (!GameValidator.validateLevel(accountLevel)){
+        flag = false;
+        $levelWarning.innerHTML = "El nivel de cuenta es inválido, debe de estar entre 1 y 3000";
+    }
+    if(!GameValidator.validateNickname(nickname)){
+        flag = false;
+        $nicknameWarning.innerHTML = "Ingresa un nickname válido de entre 4 y  26 caracteres";
+    }
+    if (idRank==="0"){
+        flag = false;
+        $rankWarning.innerHTML = "Elige un rango porfavor";
+    }
+
+    return flag;
+}
+
 
 populatePersonageCombo();
 
@@ -57,7 +125,7 @@ $btnAddGame.addEventListener("click", (event) => {
                 location.href = "../view/ViewProfile.html";
             }else if (response.status === 409){
                 $warning.innerHTML = "Ya has registrado Lol previamente, por favor, intenta con otro juego";
-            }else if (response.status == 400) {
+            }else if (response.status === 400) {
                 $warning.innerHTML = "Campos inválidos, valida la información";
             }else{
                 goLogin();
@@ -66,72 +134,4 @@ $btnAddGame.addEventListener("click", (event) => {
     }
 })
 
-function goLogin(){
-    alert("Error al conectar con el servidor.");
-    sessionStorage.clear();
-    location.href = '../index.html';
-}
-function cleanFields(){
-    $rolWarning.innerHTML = "";
-    $nicknameWarning.innerHTML = "";
-    $levelWarning .innerHTML = "";
-    $rankWarning.innerHTML = "";
-    $hoursWarning.innerHTML = "";
-    $warning.innerHTML = "";
-}
 
-function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol, idRank) {
-    cleanFields();
-    let flag = true;
-    if (GameValidator.uncompleteGameInfo(nickname, accountLevel, personage, hourPlayed, rol)) {
-        flag = false;
-        $warning.innerText = "Llena correctamente todos los campos obligatorios (*)";
-    }
-    if (!GameValidator.validatePersonage(personage)) {
-        flag = false;
-        $characterWarning.innerText = "Selecciona un agente";
-    }
-    if (!GameValidator.validateRol(rol)){
-        flag = false;
-        $rolWarning.innerText = "Selecciona un rol";
-    }
-    if (!GameValidator.validateHoursToPlay(hourPlayed)){
-        flag = false;
-        $hoursWarning.innerHTML = "Las horas totales no son válidas, deben estar entre 1 y 2000";
-    }
-
-    if (!GameValidator.validateLevel(accountLevel)){
-        flag = false;
-        $levelWarning.innerHTML = "El nivel de cuenta es inválido, debe de estar entre 1 y 3000"
-    }
-    if(!GameValidator.validateNickname(nickname)){
-        flag = false;
-        $nicknameWarning.innerHTML = "Ingresa un nickname válido de entre 4 y  26 caracteres";
-    }
-    if (idRank==="0"){
-        flag = false;
-        $rankWarning.innerHTML = "Elige un rango porfavor";
-    }
-
-
-
-    return flag;
-}
-
-function populatePersonageCombo(){
-    let sendOptions = {
-        method: "GET"
-    }
-    fetch(Configuration.getURL() + "game/lol/personages", sendOptions).then(response => {
-        if (response.ok) {
-            response.json().then(responseJson => {
-                responseJson.forEach((personage) => {
-                    var option = document.createElement("option");
-                    option.value = personage.id;
-                    option.innerHTML = personage.name;
-                    $cbCharacter.appendChild(option);
-                });
-            })
-        }
-    })
-}

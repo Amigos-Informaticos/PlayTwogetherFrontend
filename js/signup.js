@@ -21,8 +21,8 @@ let $pScheduleWarning = document.getElementById("schedule-warning");
 $btnSignUp.addEventListener("click", (event) => {
     event.preventDefault();
     let playerEmail = $tfEmail.value;
-    let playerNickname_with_spaces = $tfNickname.value;
-    let playerNickname = playerNickname_with_spaces.replace(/ /g, "");
+    let playerNicknameWithSpaces = $tfNickname.value;
+    let playerNickname = playerNicknameWithSpaces.replace(/ /g, "");
     let playerPassword = $tfPassword.value;
     let playerRepeatPassword = $tfRepeatPassword.value;
     let playerGender = $cbGender.value;
