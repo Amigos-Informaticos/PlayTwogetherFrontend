@@ -1,5 +1,6 @@
 import {Player} from "./Player.js";
 import {Configuration} from "./Configuration.js";
+import {ApiError} from "./ApiError.js";
 
 let page = 0;
 let searching = sessionStorage.getItem("searching");
@@ -43,8 +44,10 @@ function showPlayers() {
                         $fragment.appendChild($clone);
                     })
                 });
+            }else if(response.status === 500){
+                ApiError.goLogin();
             }
-        })
+        }).catch(error=> ApiError.goLogin());
     }
 }
 

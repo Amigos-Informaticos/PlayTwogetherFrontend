@@ -1,4 +1,5 @@
 import {Configuration} from "./Configuration.js";
+import {ApiError} from "./ApiError.js";
 
 let $lblNickname = document.getElementById("lblNickname");
 let $lblAge = document.getElementById("lblAge");
@@ -61,8 +62,10 @@ function configureWindow(){
                     isVerified = responseJson.isVerified;
                     showInfo(profileToShow, birthday, gender, isVerified);
                 })
+            }else if(response.status === 500){
+                ApiError.goLogin();
             }
-        })
+        }).catch(error=> ApiError.goLogin());
         $btnAddGame.remove();
         $btnEdit.remove();
         $btnAddGame.remove();
@@ -149,8 +152,10 @@ $btnConfirmReport.addEventListener("click", (event) => {
             location.href = "../view/Welcome.html";
         }else if (response.status == 409){
             $reportWarning.innerText = "Ya reportaste a este jugador anteriormente";
+        }else if(response.status === 500){
+            ApiError.goLogin();
         }
-    })
+    }).catch(error=> ApiError.goLogin());
 })
 
 function getReportReason(){
@@ -174,8 +179,10 @@ $btnConfirmVerify.addEventListener("click", (event) => {
     fetch(Configuration.getURL() + "players/" + profileToShow + "/verify", sendOptions).then(response => {
         if (response.ok) {
             location.href = "../view/Welcome.html";
+        }else if(response.status === 500){
+            ApiError.goLogin();
         }
-    })
+    }).catch(error=> ApiError.goLogin());
 })
 
 $btnConfirmBan.addEventListener("click", (event) => {
@@ -190,8 +197,10 @@ $btnConfirmBan.addEventListener("click", (event) => {
     fetch(Configuration.getURL() + "players/" + profileToShow + "/ban", sendOptions).then(response => {
         if (response.ok) {
             location.href = "../view/Welcome.html";
+        }else if(response.status === 500){
+            ApiError.goLogin();
         }
-    })
+    }).catch(error=> ApiError.goLogin());
 })
 
 
@@ -227,8 +236,10 @@ function getReports(){
                         element.appendChild(reportItem);
                     });
                 })
+            }else if(response.status === 500){
+                ApiError.goLogin();
             }
-        })
+        }).catch(error=> ApiError.goLogin());
     }
 }
 
@@ -253,8 +264,10 @@ function showPlayedGames(nickname) {
                     $fragment.appendChild($clone);
                 });
             })
+        }else if(response.status === 500){
+            ApiError.goLogin();
         }
-    })
+    }).catch(error=> ApiError.goLogin());
 }
 
 document.addEventListener("click", (event) => {

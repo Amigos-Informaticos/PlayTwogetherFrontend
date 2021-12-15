@@ -1,5 +1,6 @@
 import {GameValidator} from "./GameValidator.js";
 import {Configuration} from "./Configuration.js";
+import {ApiError} from "./ApiError.js";
 
 let $tfNickName = document.getElementById("tfNickname");
 let $tfLevel = document.getElementById("tfLevel");
@@ -32,14 +33,12 @@ function populatePersonageCombo(){
                     $cbCharacter.appendChild(option);
                 });
             })
+        }else if(response.status === 500){
+            ApiError.goLogin();
         }
-    })
+    }).catch(error=> ApiError.goLogin());
 }
-function goLogin(){
-    alert("Error al conectar con el servidor.");
-    sessionStorage.clear();
-    location.href = "../index.html";
-}
+
 function cleanFields(){
     $rolWarning.innerHTML = "";
     $nicknameWarning.innerHTML = "";
@@ -128,9 +127,9 @@ $btnAddGame.addEventListener("click", (event) => {
             }else if (response.status === 400) {
                 $warning.innerHTML = "Campos inválidos, valida la información";
             }else{
-                goLogin();
+                ApiError.goLogin();
             }
-        }).catch(error => goLogin());
+        }).catch(error => ApiError.goLogin());
     }
 })
 

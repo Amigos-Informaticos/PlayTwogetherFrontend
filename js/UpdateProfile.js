@@ -1,5 +1,6 @@
 import {Player} from "./Player.js";
 import {Configuration} from "./Configuration.js";
+import {ApiError} from "./ApiError.js";
 
 let $btnUpdate = document.getElementById("btnUpdate");
 let $tfNickname = document.getElementById("tfNickname");
@@ -102,11 +103,10 @@ function sendFetchUpdate(options , newPlayer){
         }else if(response.status === 403){
             alert("Tu sesión expiró, por favor, inicia sesión nuevamente");
             location.href = "../index.html";
-        }else{
-            alert("Servidor en mantenimiento, ingrese más tarde");
-            location.href = "../index.html";
+        }else if(response.status === 500){
+            ApiError.goLogin();
         }
-    })
+    }).catch(error=> ApiError.goLogin());
 }
 
 
@@ -239,6 +239,8 @@ $btnDelete.addEventListener("click", (event) => {
         }else if(response.status === 403){
             alert("Tu sesión expiró, por favor, inicia sesión nuevamente");
             location.href = "../index.html";
+        }else if(response.status === 500){
+            ApiError.goLogin();
         }
-    })
+    }).catch(error=> ApiError.goLogin());
 })
