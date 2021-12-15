@@ -11,7 +11,10 @@ function showPlayers() {
     let linkForSearch = sessionStorage.getItem("linkForSearch");
     let sendOptions = {
         method: "GET",
-        "token": sessionStorage.getItem("token")
+        headers: {
+            'Content-Type': 'application/json',
+            'token': sessionStorage.getItem("token")
+        }
     }
     let $fragment = document.getElementById("players-container");
     if (!$fragment.firstChild){
