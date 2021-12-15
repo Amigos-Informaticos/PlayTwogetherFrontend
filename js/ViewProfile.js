@@ -16,6 +16,8 @@ let $verified = document.getElementById("verified");
 let $rdReportReason = document.getElementsByName("report-radio");
 let $tfReport = document.getElementById("tfReport");
 let $btnConfirmReport = document.getElementById("btnConfirmReport");
+let $reportWarning = document.getElementById("report-warning");
+
 let $imgProfile = document.getElementById("profile-pic");
 
 let profileToShow = sessionStorage.getItem("viewProfile");
@@ -145,6 +147,8 @@ $btnConfirmReport.addEventListener("click", (event) => {
     fetch(Configuration.getURL() + "player/report", sendOptions).then(response => {
         if (response.ok) {
             location.href = "../view/Welcome.html";
+        }else if (response.status == 409){
+            $reportWarning.innerText = "Ya reportaste a este jugador anteriormente";
         }
     })
 })
@@ -204,23 +208,28 @@ $btnBan.addEventListener("click", (event) => {
 function getReports(){
     let sendOptions = {
         method: "GET",
-    }
-    fetch(Configuration.getURL() + "players/" + profileToShow + "/reports", sendOptions).then(response => {
-        if (response.ok) {
-            response.json().then(responseJson => {
-
-                responseJson.forEach((report) => {
-                    var reportItem = document.createElement("p");
-                    var reportReason = document.createTextNode(report.reason + ": ");
-                    reportItem.appendChild(reportReason);
-                    var reportComment = document.createTextNode(report.comment);
-                    reportItem.appendChild(reportComment);
-                    var element = document.getElementById("report-list");
-                    element.appendChild(reportItem);
-                });
-            })
+        headers: {
+            'Content-Type': 'application/json',
+            'token': sessionStorage.getItem("token")
         }
-    })
+    }
+    var element = document.getElementById("report-list");
+    if (!element.firstChild){
+        fetch(Configuration.getURL() + "players/" + profileToShow + "/reports", sendOptions).then(response => {
+            if (response.ok) {
+                response.json().then(responseJson => {
+                    responseJson.forEach((report) => {
+                        var reportItem = document.createElement("p");
+                        var reportReason = document.createTextNode(report.reason + ": ");
+                        reportItem.appendChild(reportReason);
+                        var reportComment = document.createTextNode(report.comment);
+                        reportItem.appendChild(reportComment);
+                        element.appendChild(reportItem);
+                    });
+                })
+            }
+        })
+    }
 }
 
 function showPlayedGames(nickname) {

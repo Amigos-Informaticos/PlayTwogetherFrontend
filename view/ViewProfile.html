@@ -79,13 +79,14 @@
                 <input class="row" id="checkMisbehavior" value="1" name="report-radio" type="radio">
                 <label class="row" for="checkMisbehavior">Irrespetuoso</label><br>
                 <input class="row" id="checkImpersonation" value="2" name="report-radio" type="radio">
-                <label class="row" for="checkImpersonation">Suplantación de identidad</label><br>
+                <label class="row" for="checkImpersonation">Información falsa</label><br>
                 <input class="row" id="checkFakeInformation" value="3" name="report-radio" type="radio">
-                <label class="row" for="checkFakeInformation">Información falsa</label><br>
+                <label class="row" for="checkFakeInformation">Suplantación de identidad</label><br>
                 <label class="row" for="tfReport">Explícanos qué pasa</label>
                 <input class="row" id="tfReport" type="text">
             </div>
             <div class="modal-footer">
+                <p id="report-warning" class="warning-message"></p>
                 <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Cancelar</button>
                 <button id="btnConfirmReport" type="button" class="btn btn-warning">Reportar</button>
             </div>
