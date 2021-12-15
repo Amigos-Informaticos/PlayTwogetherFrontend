@@ -103,7 +103,7 @@ $btnAddGame.addEventListener("click", (event) => {
     if (verifyInfo(nickname, accountLevel, personage, hoursPlayed, rol, idRank)) {
         let apexData = {
             accountLevel: accountLevel,
-            game: "apexLegends",
+            game: "ApexLegends",
             hoursPlayed: hoursPlayed,
             note: note,
             personage: personage,

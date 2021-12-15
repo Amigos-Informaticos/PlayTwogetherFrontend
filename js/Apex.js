@@ -22,11 +22,11 @@ fetch(url + "players/" + ownerGame + "/" + "apexLegends", sendOptions).then(resp
     if (response.ok) {
         response.json().then(responseJson => {
             $lblCharacter.innerText = responseJson.personage;
-            $container.style.backgroundImage = "url(../img/apexLegends/characters/" + responseJson.personage + ".jpg)";
+            $container.style.backgroundImage = "url(../img/ApexLegends/characters/" + responseJson.personage + ".jpg)";
             $lblNickname.innerText = responseJson.nickname;
             $lblLevel.innerText = "Nivel: " + responseJson.accountLevel;
             $lblRank.innerText = responseJson.rank;
-            $imgRank.src = "../img/apexLegends/rank/" + responseJson.rank + ".png";
+            $imgRank.src = "../img/ApexLegends/rank/" + responseJson.rank + ".png";
             $pNote.innerText = responseJson.note;
         })
     }
