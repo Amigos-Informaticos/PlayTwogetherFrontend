@@ -29,7 +29,7 @@ $btnLogin.addEventListener("click", (event) => {
         let loginInformation = {
             email: $tfEmail.value,
             password: $tfPassword.value
-        }
+        };
         let sendOptions = {
             method: "POST",
             body: JSON.stringify(loginInformation),
@@ -37,7 +37,7 @@ $btnLogin.addEventListener("click", (event) => {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin":"*"
             }
-        }
+        };
         let url = Configuration.getURL();
         fetch(url + "login", sendOptions).then(response => {
 
@@ -51,8 +51,8 @@ $btnLogin.addEventListener("click", (event) => {
                     sessionStorage.setItem("currentPassword", loginInformation.password);
                     sessionStorage.setItem("isModerator", responseJson.isModerator);
                     sessionStorage.setItem("schedule", responseJson.schedule);
-                    location.href = 'view/Welcome.html';
-                })
+                    location.href = "view/Welcome.html";
+                });
             }else if (response.status === 404){
                 $lbWarning.innerHTML = "No se ha encontrado un usuario y contraseña que coincidan";
             } else {

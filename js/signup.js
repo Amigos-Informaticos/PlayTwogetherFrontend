@@ -37,7 +37,7 @@ $btnSignUp.addEventListener("click", (event) => {
             gender: playerGender,
             birthday: playerBirthday,
             schedule: playerSchedule
-        }
+        };
         let sendOptions = {
             method: "POST",
             body: JSON.stringify(newPlayer),
@@ -45,7 +45,7 @@ $btnSignUp.addEventListener("click", (event) => {
                 "Content-Type": "application/json",
                 "Access-Control-Allow-Origin":"*"
             }
-        }
+        };
         fetch(Configuration.getURL() + "players", sendOptions).then(response => {
             if (response.status === 201) {
                 location.href = "../view/singUpSuccessful.html";
@@ -56,7 +56,7 @@ $btnSignUp.addEventListener("click", (event) => {
             }
         }).catch(error => $pWarning.innerHTML = "Servidor en mantenimiento, intente más tarde");
     }
-})
+});
 
 function getSchedule(){
     let selectedSchedule;
@@ -84,7 +84,7 @@ function validateFields(nickname, email, password, repeatPassword, birthday, sch
         $pPasswordWarning.innerHTML = "* La contraseña debe contener entre 8 y 20 caracteres," +
             " con al menos una mayúscula y un número";
     }else {
-        $pPasswordWarning.innerHTML = ""
+        $pPasswordWarning.innerHTML = "";
     }
     if (!Player.validateNickname(nickname)) {
         flag = false;
@@ -94,7 +94,7 @@ function validateFields(nickname, email, password, repeatPassword, birthday, sch
     }
     if (!Player.validateBirthday(birthday)){
         flag = false;
-        $pBirthdayWarning.innerHTML = "* Debes ser mayor que 11 años y menor que 100 para poder registrarte"
+        $pBirthdayWarning.innerHTML = "* Debes ser mayor que 11 años y menor que 100 para poder registrarte";
     }else{
         $pBirthdayWarning.innerHTML = "";
     }

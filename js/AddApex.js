@@ -32,7 +32,7 @@ function populatePersonageCombo(){
                     option.innerHTML = personage.name;
                     $cbCharacter.appendChild(option);
                 });
-            })
+            });
         }else if(response.status === 500){
             ApiError.goLogin();
         }

@@ -48,26 +48,26 @@ let $hbReportedPlayers = document.getElementById("hbReportedPlayers");
 $hbSearch.addEventListener("click",(event) =>{
     event.preventDefault();
     location.href = "../view/search.html";
-})
+});
 
 $hbMyProfile.addEventListener("click",(event) =>{
     event.preventDefault();
     sessionStorage.setItem("viewProfile", sessionStorage.getItem("nickname"));
     location.href = "../view/ViewProfile.html";
-})
+});
 
 $hbMyProfile.addEventListener("click",(event) =>{
     event.preventDefault();
     sessionStorage.setItem("viewProfile", sessionStorage.getItem("nickname"));
     location.href = "../view/ViewProfile.html";
-})
+});
 
 $hbReportedPlayers.addEventListener("click",(event) =>{
     event.preventDefault();
     sessionStorage.setItem("linkForSearch", Configuration.getURL() + "report/players/");
     sessionStorage.setItem("searching", "reportedPlayers");
     location.href = "../view/playerList.html";
-})
+});
 
 let isModerator = sessionStorage.getItem("isModerator");
 if (isModerator != 1) {
