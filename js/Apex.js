@@ -1,4 +1,5 @@
 import {Configuration} from "./Configuration.js";
+import {ApiError} from "./ApiError.js";
 
 let $lblNickname = document.getElementById("lblNickname");
 let $lblLevel = document.getElementById("lblLevel");
@@ -29,5 +30,7 @@ fetch(url + "players/" + ownerGame + "/" + "apexLegends", sendOptions).then(resp
             $imgRank.src = "../img/ApexLegends/rank/" + responseJson.rank + ".png";
             $pNote.innerText = responseJson.note;
         })
-    }
-})
+    }else if(response.status === 500){
+            ApiError.goLogin();
+        }
+    }).catch(error=> ApiError.goLogin());

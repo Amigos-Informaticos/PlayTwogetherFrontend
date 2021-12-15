@@ -1,5 +1,6 @@
 import {GameValidator} from "./GameValidator.js";
 import {Configuration} from "./Configuration.js";
+import {ApiError} from "./ApiError.js";
 
 let $tfNickName = document.getElementById("tfNickname");
 let $tfLevel = document.getElementById("tfLevel");
@@ -31,8 +32,10 @@ function populatePersonageCombo(){
                     $cbAgent.appendChild(option);
                 });
             })
+        }else if(response.status === 500){
+            ApiError.goLogin();
         }
-    })
+    }).catch(error=> ApiError.goLogin());
 }
 
 populatePersonageCombo();
@@ -122,9 +125,9 @@ $btnAddGame.addEventListener("click", (event) => {
             }else if (response.status === 400) {
                 $warning.innerHTML = "Campos inválidos, valida la información";
             }else{
-                goLogin();
+                ApiError.goLogin();
             }
-        }).catch(error => goLogin());
+        }).catch(error => ApiError.goLogin());
     }
 })
 
