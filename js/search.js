@@ -24,7 +24,7 @@ $btnSearchByNickname.addEventListener("click", (event) => {
         $warningNickname.innerHTML = "Escriba un nickname por favor";
     }
 
-})
+});
 
 $btnGeneralSearch.addEventListener("click", (event) => {
     event.preventDefault();

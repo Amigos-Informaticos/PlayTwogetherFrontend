@@ -53,7 +53,7 @@ function configureWindow(){
     } else {
         let sendOptions = {
             method: "GET",
-        }
+        };
         fetch(Configuration.getURL() + "players/" + profileToShow, sendOptions).then(response => {
             if (response.ok) {
                 response.json().then(responseJson => {
@@ -61,7 +61,7 @@ function configureWindow(){
                     birthday = responseJson.birthday;
                     isVerified = responseJson.isVerified;
                     showInfo(profileToShow, birthday, gender, isVerified);
-                })
+                });
             }else if(response.status === 500){
                 ApiError.goLogin();
             }

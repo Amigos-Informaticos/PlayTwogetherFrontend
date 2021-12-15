@@ -13,7 +13,7 @@ let ownerGame = sessionStorage.getItem("viewProfile");
 
 let sendOptions = {
     method: "GET"
-}
+};
 
 let url = Configuration.getURL();
 fetch(url + "players/" + ownerGame + "/" + "valorant", sendOptions).then(response => {
@@ -26,7 +26,7 @@ fetch(url + "players/" + ownerGame + "/" + "valorant", sendOptions).then(respons
             $lblCharacter.innerText = responseJson.personage;
             $imgCharacter.src = "../img/Valorant/agents/" + responseJson.personage + ".png";
             $pNote.innerText = responseJson.note;
-        })
+        });
     }else if(response.status === 500){
         ApiError.goLogin();
     }

@@ -14,7 +14,7 @@ let ownerGame = sessionStorage.getItem("viewProfile");
 
 let sendOptions = {
     method: "GET"
-}
+};
 
 let url = Configuration.getURL();
 fetch(url + "players/" + ownerGame + "/" + "lol", sendOptions).then(response => {
@@ -28,7 +28,7 @@ fetch(url + "players/" + ownerGame + "/" + "lol", sendOptions).then(response => 
             $lblRank.innerText = responseJson.rank;
             $imgRank.src = "../img/lol/rank/" + responseJson.rank + ".png";
             $pNote.innerText = responseJson.note;
-        })
+        });
     }else if(response.status === 500){
         ApiError.goLogin();
     }

@@ -16,7 +16,7 @@ function showPlayers() {
             "Content-Type": "application/json",
             "token": sessionStorage.getItem("token")
         }
-    }
+    };
     let $fragment = document.getElementById("players-container");
     if (!$fragment.firstChild){
         fetch(linkForSearch + page, sendOptions).then(response => {
@@ -37,7 +37,7 @@ function showPlayers() {
 
                         $template.querySelectorAll(".box *").forEach((element) => {
                             element.dataset.nickname_player = player.nickname;
-                        })
+                        });
 
                         let $clone = document.importNode($template, true);
 
@@ -45,7 +45,7 @@ function showPlayers() {
                     })
                 });
             }else if(response.status === 500){
-                ApiError.goLogin();
+                alert("No se encontraron resultados");
             }else if (response.status === 404){
                 alert("No se encontraron resultados");
             }
@@ -55,7 +55,7 @@ function showPlayers() {
 
 document.addEventListener("click", (event) => {
     if (event.target.matches(".box *")) {
-        sessionStorage.setItem('viewProfile', event.target.dataset.nickname_player);
+        sessionStorage.setItem("viewProfile", event.target.dataset.nickname_player);
         location.href = `../view/ViewProfile.html`;
     }
 });

@@ -15,9 +15,9 @@ let $rdSchedule = document.getElementsByName("update-schedule-radio");
 let $inpProfilePic = document.getElementById("inpProfilePic");
 let $btnUpdateProfilePic = document.getElementById("btnUpdateProfilePic");
 
-$tfNickname.value = sessionStorage.getItem('nickname');
-$dpBirthday.value = sessionStorage.getItem('birthday');
-$cbGender.value = sessionStorage.getItem('gender');
+$tfNickname.value = sessionStorage.getItem("nickname");
+$dpBirthday.value = sessionStorage.getItem("birthday");
+$cbGender.value = sessionStorage.getItem("gender");
 
 initForm();
 $btnUpdate.addEventListener("click", (event) => {
@@ -35,7 +35,8 @@ $btnUpdate.addEventListener("click", (event) => {
     }else if(infoIsUpdated() && !passwordIsUpdated()){
         sendUpdateInfo(playerNickname, playerEmail, playerGender, playerBirthday);
     }
-})
+});
+
 function sendUpdateInfo(playerNickname, playerEmail, playerGender, playerBirthday){
     if (validateFieldsInfo(playerNickname, playerBirthday)){
         let newPlayer = {
@@ -44,7 +45,7 @@ function sendUpdateInfo(playerNickname, playerEmail, playerGender, playerBirthda
             gender: playerGender,
             birthday: playerBirthday,
             schedule: getSchedule()
-        }
+        };
         let sendOptions = buildOptions(newPlayer);
         sendFetchUpdate(sendOptions, newPlayer);
     }
@@ -59,8 +60,8 @@ function sendUpdateComplete(playerNickname, playerEmail, playerPassword, playerR
             gender: playerGender,
             birthday: playerBirthday,
             schedule: getSchedule()
-        }
-        let sendOptions = buildOptions(newPlayer)
+        };
+        let sendOptions = buildOptions(newPlayer);
         sendFetchUpdate(sendOptions, newPlayer);
 
     }
@@ -114,26 +115,26 @@ function sendFetchUpdate(options , newPlayer){
 
 function validateFieldsComplete(nickname,  password, repeatPassword, birthday) {
     let flag = true;
-    $pWarning.innerHTML = ""
+    $pWarning.innerHTML = "";
     if (!nickname && !password && !repeatPassword && !birthday) {
-        $pWarning.innerHTML = "* Campos vacíos"
+        $pWarning.innerHTML = "* Campos vacíos";
         flag = false;
     }else{
         let validatedPassword = Player.validatePassword(password, repeatPassword);
         if (validatedPassword === "dontMatch") {
             flag = false;
-            $pWarning.innerHTML = "* Las contraseñas no coinciden"
+            $pWarning.innerHTML = "* Las contraseñas no coinciden";
         } else if (validatedPassword === "weakPassword") {
             flag = false;
-            $pWarning.innerHTML = "* La contraseña debe contener al menos una mayúscula y un número"
+            $pWarning.innerHTML = "* La contraseña debe contener al menos una mayúscula y un número";
         }
         if (!Player.validateNickname(nickname)) {
             flag = false;
-            $pWarning.innerHTML = "* El nickname debe tener al menos 4 caracteres y máximo 25"
+            $pWarning.innerHTML = "* El nickname debe tener al menos 4 caracteres y máximo 25";
         }
         if (!Player.validateBirthday(birthday)){
             flag = false;
-            $pWarning.innerHTML = "* Debes ser mayor que 11 años y menor que 100 para poder registrarte"
+            $pWarning.innerHTML = "* Debes ser mayor que 11 años y menor que 100 para poder registrarte";
         }
     }
 

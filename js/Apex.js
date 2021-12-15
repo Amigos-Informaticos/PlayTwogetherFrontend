@@ -29,7 +29,7 @@ fetch(url + "players/" + ownerGame + "/" + "apexLegends", sendOptions).then(resp
             $lblRank.innerText = responseJson.rank;
             $imgRank.src = "../img/ApexLegends/rank/" + responseJson.rank + ".png";
             $pNote.innerText = responseJson.note;
-        })
+        });
     }else if(response.status === 500){
             ApiError.goLogin();
         }
