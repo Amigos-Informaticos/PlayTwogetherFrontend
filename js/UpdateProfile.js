@@ -232,7 +232,8 @@ $btnDelete.addEventListener("click", (event) => {
         body: JSON.stringify(playerToDelete),
         headers: {
             "Content-Type": "application/json",
-            "token": sessionStorage.getItem("token")
+            "token": sessionStorage.getItem("token"),
+            "email": sessionStorage.getItem("email")
         }
     }
     fetch(Configuration.getURL() + "players", sendOptions).then(response => {
