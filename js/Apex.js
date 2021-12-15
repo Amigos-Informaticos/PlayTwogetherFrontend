@@ -16,7 +16,7 @@ let ownerGame = sessionStorage.getItem("viewProfile");
 
 let sendOptions = {
     method: "GET"
-}
+};
 
 let url = Configuration.getURL();
 fetch(url + "players/" + ownerGame + "/" + "apexLegends", sendOptions).then(response => {
@@ -33,4 +33,4 @@ fetch(url + "players/" + ownerGame + "/" + "apexLegends", sendOptions).then(resp
     }else if(response.status === 500){
             ApiError.goLogin();
         }
-    }).catch(error=> ApiError.goLogin());
+    }).catch(error => ApiError.goLogin());

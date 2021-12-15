@@ -42,13 +42,13 @@ $btnSignUp.addEventListener("click", (event) => {
             method: "POST",
             body: JSON.stringify(newPlayer),
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
                 "Access-Control-Allow-Origin":"*"
             }
         }
         fetch(Configuration.getURL() + "players", sendOptions).then(response => {
             if (response.status === 201) {
-                location.href = '../view/singUpSuccessful.html';
+                location.href = "../view/singUpSuccessful.html";
             }else if (response.status === 409){
                 $pWarning.innerHTML = "El nickname o el email existen, prueba cambiándolos*";
             }else{

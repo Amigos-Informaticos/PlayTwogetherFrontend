@@ -34,7 +34,7 @@ $btnGeneralSearch.addEventListener("click", (event) => {
     let age = $tfAge.value;
 
     if (age != "" && (age<12 || age > 99)){
-        $warningGeneral.innerText = "Introduzca una edad entre los 12 y 99 años"
+        $warningGeneral.innerText = "Introduzca una edad entre los 12 y 99 años";
     }else{
         let link = createLink(schedule, game, gender, age);
         sessionStorage.setItem("linkForSearch", link);

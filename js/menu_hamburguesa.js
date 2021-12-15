@@ -59,7 +59,7 @@ $hbMyProfile.addEventListener("click",(event) =>{
 $hbMyProfile.addEventListener("click",(event) =>{
     event.preventDefault();
     sessionStorage.setItem("viewProfile", sessionStorage.getItem("nickname"));
-    location.href = "../view/ViewProfile.html"
+    location.href = "../view/ViewProfile.html";
 })
 
 $hbReportedPlayers.addEventListener("click",(event) =>{

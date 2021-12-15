@@ -22,7 +22,7 @@ sessionStorage.setItem("viewProfile", sessionStorage.getItem("nickname"));
 function populatePersonageCombo(){
     let sendOptions = {
         method: "GET"
-    }
+    };
     fetch(Configuration.getURL() + "game/apexLegends/personages", sendOptions).then(response => {
         if (response.ok) {
             response.json().then(responseJson => {
@@ -36,7 +36,7 @@ function populatePersonageCombo(){
         }else if(response.status === 500){
             ApiError.goLogin();
         }
-    }).catch(error=> ApiError.goLogin());
+    }).catch(error => ApiError.goLogin());
 }
 
 function verifyInfo(nickname, accountLevel, personage, hourPlayed, rol, idRank) {
@@ -110,7 +110,7 @@ $btnAddGame.addEventListener("click", (event) => {
             id_rank: idRank,
             rol: rol,
             nickname: nickname
-        }
+        };
         let sendOptions = {
             method: "POST",
             body: JSON.stringify(apexData),
@@ -118,7 +118,7 @@ $btnAddGame.addEventListener("click", (event) => {
                 "Content-Type": "application/json",
                 "token": sessionStorage.getItem("token")
             }
-        }
+        };
         fetch(Configuration.getURL() + "player/game", sendOptions).then(response => {
             if (response.ok) {
                 location.href = "../view/ViewProfile.html";
