@@ -1,5 +1,6 @@
 export class Configuration {
+
     static getURL() {
-        return "http://playtwogetherapi.ddns.net:42081/";
+        return "http://127.0.0.1:42081/";
     }
 }

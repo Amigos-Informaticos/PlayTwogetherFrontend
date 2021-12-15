@@ -2,7 +2,7 @@
 <project version="4">
   <component name="WebServers">
     <option name="servers">
-      <webServer id="79158c74-8d83-4a70-bb06-516242fd4c77" name="amigosinformaticos.ddns.net" url="http://amigosinformaticos.ddns.net">
+      <webServer id="79158c74-8d83-4a70-bb06-516242fd4c77" name="amigosinformaticos.ddns.net" url="">
         <fileTransfer rootFolder="/var/www/html" host="amigosinformaticos.ddns.net" port="21">
           <advancedOptions>
             <advancedOptions dataProtectionLevel="Private" shareSSLContext="true" />
