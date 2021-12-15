@@ -215,8 +215,10 @@ $btnUpdateProfilePic.addEventListener("click",(event) => {
     }).then(response => {
         if (response.ok){
             location.href = '../view/ViewProfile.html';
+        }else if (response.status == 413){
+            $pWarning.innerHTML = "* La imagen es demasiado grande (Tamaño maximo: 1MB)";
         }
-    }).catch(console.error);
+    }).catch(error => ApiError.goLogin());
 })
 
 $btnDelete.addEventListener("click", (event) => {
