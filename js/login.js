@@ -34,7 +34,7 @@ $btnLogin.addEventListener("click", (event) => {
             method: "POST",
             body: JSON.stringify(loginInformation),
             headers: {
-                'Content-Type': 'application/json',
+                "Content-Type": "application/json",
                 "Access-Control-Allow-Origin":"*"
             }
         }
@@ -43,14 +43,14 @@ $btnLogin.addEventListener("click", (event) => {
 
             if (response.ok) {
                 response.json().then(responseJson => {
-                    sessionStorage.setItem('token', responseJson.token);
-                    sessionStorage.setItem('nickname', responseJson.nickname);
-                    sessionStorage.setItem('birthday', responseJson.birthday);
-                    sessionStorage.setItem('gender', responseJson.gender);
-                    sessionStorage.setItem('email', loginInformation.email);
-                    sessionStorage.setItem('currentPassword', loginInformation.password);
-                    sessionStorage.setItem('isModerator', responseJson.isModerator);
-                    sessionStorage.setItem('schedule', responseJson.schedule);
+                    sessionStorage.setItem("token", responseJson.token);
+                    sessionStorage.setItem("nickname", responseJson.nickname);
+                    sessionStorage.setItem("birthday", responseJson.birthday);
+                    sessionStorage.setItem("gender", responseJson.gender);
+                    sessionStorage.setItem("email", loginInformation.email);
+                    sessionStorage.setItem("currentPassword", loginInformation.password);
+                    sessionStorage.setItem("isModerator", responseJson.isModerator);
+                    sessionStorage.setItem("schedule", responseJson.schedule);
                     location.href = 'view/Welcome.html';
                 })
             }else if (response.status === 404){

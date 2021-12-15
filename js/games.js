@@ -15,7 +15,7 @@ const response = [
 let $template = document.getElementById("template-game").content;
 response.forEach((game) => {
     $template.querySelector(".card-game").src = "../img/"+ game.name +"/" + game.name + "_logo.png";
-    $template.querySelectorAll(".box *").forEach((element)=>{
+    $template.querySelectorAll(".box *").forEach((element) => {
         element.dataset.name_game = game.name;
         element.id = game.name + "Card";
     })

@@ -30,4 +30,4 @@ fetch(url + "players/" + ownerGame + "/" + "valorant", sendOptions).then(respons
     }else if(response.status === 500){
         ApiError.goLogin();
     }
-}).catch(error=> ApiError.goLogin());
+}).catch(error => ApiError.goLogin());

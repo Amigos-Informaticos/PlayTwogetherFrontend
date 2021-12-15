@@ -21,7 +21,7 @@ sessionStorage.setItem("viewProfile", sessionStorage.getItem("nickname"));
 function populatePersonageCombo(){
     let sendOptions = {
         method: "GET"
-    }
+    };
     fetch(Configuration.getURL() + "game/valorant/personages", sendOptions).then(response => {
         if (response.ok) {
             response.json().then(responseJson => {
@@ -35,7 +35,7 @@ function populatePersonageCombo(){
         }else if(response.status === 500){
             ApiError.goLogin();
         }
-    }).catch(error=> ApiError.goLogin());
+    }).catch(error => ApiError.goLogin());
 }
 
 populatePersonageCombo();
@@ -108,18 +108,18 @@ $btnAddGame.addEventListener("click", (event) => {
             id_rank: idRank,
             rol: rol,
             nickname: nickname
-        }
+        };
         let sendOptions = {
             method: "POST",
             body: JSON.stringify(valorantData),
             headers: {
-                'Content-Type': 'application/json',
-                'token': sessionStorage.getItem('token')
+                "Content-Type": "application/json",
+                "token": sessionStorage.getItem("token")
             }
-        }
+        };
         fetch(Configuration.getURL() + "player/game", sendOptions).then(response => {
             if (response.ok) {
-                location.href = '../view/ViewProfile.html';
+                location.href = "../view/ViewProfile.html";
             }else if (response.status === 409){
                 $warning.innerHTML = "Ya has registrado valorant previamente, por favor, intenta con otro juego";
             }else if (response.status === 400) {

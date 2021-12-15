@@ -80,8 +80,8 @@ function buildOptions(newPlayer){
         method: "PUT",
         body: JSON.stringify(newPlayer),
         headers: {
-            'Content-Type': 'application/json',
-            'token': sessionStorage.getItem("token")
+            "Content-Type": "application/json",
+            "token": sessionStorage.getItem("token")
         }
     }
     return options;
@@ -90,12 +90,12 @@ function buildOptions(newPlayer){
 function sendFetchUpdate(options , newPlayer){
     fetch(Configuration.getURL() + "players", options).then(response => {
         if (response.ok) {
-            sessionStorage.setItem('nickname', newPlayer.nickname);
-            sessionStorage.setItem('birthday', newPlayer.birthday);
-            sessionStorage.setItem('gender', newPlayer.gender);
-            sessionStorage.setItem('schedule', newPlayer.schedule);
-            sessionStorage.setItem('viewProfile', newPlayer.nickname);
-            location.href = '../view/ViewProfile.html';
+            sessionStorage.setItem("nickname", newPlayer.nickname);
+            sessionStorage.setItem("birthday", newPlayer.birthday);
+            sessionStorage.setItem("gender", newPlayer.gender);
+            sessionStorage.setItem("schedule", newPlayer.schedule);
+            sessionStorage.setItem("viewProfile", newPlayer.nickname);
+            location.href = "../view/ViewProfile.html";
         }else if (response.status ===  409){
             $pWarning.innerHTML = "El nickname ya existe actualmente, porfavor, elige otro.";
         }else if (response.status === 400){
@@ -142,7 +142,7 @@ function validateFieldsComplete(nickname,  password, repeatPassword, birthday) {
 function  validateFieldsInfo(nickname,  birthday){
     let flag = true;
     if (!nickname  && !birthday){
-        $pWarning.innerHTML = "* Campos vacíos"
+        $pWarning.innerHTML = "* Campos vacíos";
         flag = false;
     }else {
         if (!Player.validateNickname(nickname)) {
@@ -158,7 +158,7 @@ function  validateFieldsInfo(nickname,  birthday){
 }
 
 function infoIsUpdated(){
-    $pWarning.innerHTML = ""
+    $pWarning.innerHTML = "";
     let flag = false;
     let latestNickname = sessionStorage.getItem("nickname");
     let latestBirthday = sessionStorage.getItem("birthday");
@@ -209,12 +209,12 @@ $btnUpdateProfilePic.addEventListener("click",(event) => {
         method: "POST",
         body: formData,
         headers: {
-            'token': sessionStorage.getItem("token"),
-            'email': sessionStorage.getItem("email")
+            "token": sessionStorage.getItem("token"),
+            "email": sessionStorage.getItem("email")
         }
     }).then(response => {
         if (response.ok){
-            location.href = '../view/ViewProfile.html';
+            location.href = "../view/ViewProfile.html";
         }else if (response.status == 413){
             $pWarning.innerHTML = "* La imagen es demasiado grande (Tamaño maximo: 1MB)";
         }
@@ -230,8 +230,8 @@ $btnDelete.addEventListener("click", (event) => {
         method: "DELETE",
         body: JSON.stringify(playerToDelete),
         headers: {
-            'Content-Type': 'application/json',
-            'token': sessionStorage.getItem("token")
+            "Content-Type": "application/json",
+            "token": sessionStorage.getItem("token")
         }
     }
     fetch(Configuration.getURL() + "players", sendOptions).then(response => {
@@ -244,5 +244,5 @@ $btnDelete.addEventListener("click", (event) => {
         }else if(response.status === 500){
             ApiError.goLogin();
         }
-    }).catch(error=> ApiError.goLogin());
+    }).catch(error => ApiError.goLogin());
 })

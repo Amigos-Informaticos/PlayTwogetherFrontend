@@ -65,7 +65,7 @@ function configureWindow(){
             }else if(response.status === 500){
                 ApiError.goLogin();
             }
-        }).catch(error=> ApiError.goLogin());
+        }).catch(error => ApiError.goLogin());
         $btnAddGame.remove();
         $btnEdit.remove();
         $btnAddGame.remove();
@@ -122,7 +122,7 @@ function getAge(dateString) {
 
 $btnEdit.addEventListener("click", (event) => {
     event.preventDefault();
-    location.href = "../view/UpdateProfile.html"
+    location.href = "../view/UpdateProfile.html";
 })
 
 $btnConfirmReport.addEventListener("click", (event) => {
@@ -155,7 +155,7 @@ $btnConfirmReport.addEventListener("click", (event) => {
         }else if(response.status === 500){
             ApiError.goLogin();
         }
-    }).catch(error=> ApiError.goLogin());
+    }).catch(error => ApiError.goLogin());
 })
 
 function getReportReason(){
@@ -182,7 +182,7 @@ $btnConfirmVerify.addEventListener("click", (event) => {
         }else if(response.status === 500){
             ApiError.goLogin();
         }
-    }).catch(error=> ApiError.goLogin());
+    }).catch(error => ApiError.goLogin());
 })
 
 $btnConfirmBan.addEventListener("click", (event) => {
@@ -200,7 +200,7 @@ $btnConfirmBan.addEventListener("click", (event) => {
         }else if(response.status === 500){
             ApiError.goLogin();
         }
-    }).catch(error=> ApiError.goLogin());
+    }).catch(error => ApiError.goLogin());
 })
 
 
@@ -218,8 +218,8 @@ function getReports(){
     let sendOptions = {
         method: "GET",
         headers: {
-            'Content-Type': 'application/json',
-            'token': sessionStorage.getItem("token")
+            "Content-Type": "application/json",
+            "token": sessionStorage.getItem("token")
         }
     }
     var element = document.getElementById("report-list");
@@ -239,7 +239,7 @@ function getReports(){
             }else if(response.status === 500){
                 ApiError.goLogin();
             }
-        }).catch(error=> ApiError.goLogin());
+        }).catch(error => ApiError.goLogin());
     }
 }
 
@@ -267,11 +267,11 @@ function showPlayedGames(nickname) {
         }else if(response.status === 500){
             ApiError.goLogin();
         }
-    }).catch(error=> ApiError.goLogin());
+    }).catch(error => ApiError.goLogin());
 }
 
 document.addEventListener("click", (event) => {
     if (event.target.matches(".box *")) {
-        location.href = `../view/${event.target.dataset.name_game}.html`
+        location.href = `../view/${event.target.dataset.name_game}.html`;
     }
 });

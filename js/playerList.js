@@ -13,8 +13,8 @@ function showPlayers() {
     let sendOptions = {
         method: "GET",
         headers: {
-            'Content-Type': 'application/json',
-            'token': sessionStorage.getItem("token")
+            "Content-Type": "application/json",
+            "token": sessionStorage.getItem("token")
         }
     }
     let $fragment = document.getElementById("players-container");
@@ -46,8 +46,10 @@ function showPlayers() {
                 });
             }else if(response.status === 500){
                 ApiError.goLogin();
+            }else if (response.status === 404){
+                alert("No se encontraron resultados");
             }
-        }).catch(error=> ApiError.goLogin());
+        }).catch(error => ApiError.goLogin());
     }
 }
 
